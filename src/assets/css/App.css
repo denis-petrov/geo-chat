@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6a17a;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(246, 161, 122, 0.5), rgba(208, 212, 153, 1));
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(246, 161, 122, 0.5), rgba(208, 212, 153, 1));
+
+
+  /* it's for text */
+  /*-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;*/
+}
+
+.rounded-left {
+  border-top-left-radius: 1.5rem !important;
+  border-bottom-left-radius: 1.5rem !important;
+}
+
+.rounded-right {
+  border-top-right-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
+}
+
+.block-round {
+  border-radius: 1.5rem !important;
 }
