@@ -1,23 +1,48 @@
+import React from 'react'
+import {browserHistory, Link, Route, Router} from 'react-router'
 import logo from './assets/icons/logo.svg'
 import './assets/css/App.css'
 
-const App = () => (
+const Page = ({title}) => (
     <div className="App">
-        <header className="App-header">
+        <div className="App-header">
             <img src={logo} className="App-logo" alt="logo"/>
-            <p>
-                Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn React
-            </a>
-        </header>
+            <h2>{title}</h2>
+        </div>
+        <p className="App-intro">
+            This is the {title} page.
+        </p>
+        <p>
+            <Link to="/">Home</Link>
+        </p>
+        <p>
+            <Link to="/about">About</Link>
+        </p>
+        <p>
+            <Link to="/settings">Settings</Link>
+        </p>
     </div>
+)
+
+const Home = (props) => (
+    <Page title="Home"/>
+)
+
+const About = (props) => (
+    <Page title="About"/>
+)
+
+const Settings = (props) => (
+    <Page title="Settings"/>
+)
+
+
+const App = () => (
+    <Router history={browserHistory}>
+        <Route path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/settings" component={Settings}/>
+    </Router>
 )
 
 export default App
