@@ -2,6 +2,7 @@ import React from 'react'
 import {browserHistory, Link, Route, Router} from 'react-router'
 import logo from './assets/icons/logo.svg'
 import './assets/css/App.css'
+import Chat from "./components/chat/Chat";
 
 const Page = ({title}) => (
     <div className="App">
@@ -14,6 +15,9 @@ const Page = ({title}) => (
         </p>
         <p>
             <Link to="/">Home</Link>
+        </p>
+        <p>
+            <Link to="/chat">Chat</Link>
         </p>
         <p>
             <Link to="/about">About</Link>
@@ -40,6 +44,7 @@ const Settings = (props) => (
 const App = () => (
     <Router history={browserHistory}>
         <Route path="/" component={Home}/>
+        <Route path="/chat" component={Chat}/>
         <Route path="/about" component={About}/>
         <Route path="/settings" component={Settings}/>
     </Router>
