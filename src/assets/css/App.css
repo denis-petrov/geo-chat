@@ -43,7 +43,7 @@
 }
 
 
-.gradient-custom {
+.test-gradient-custom {
   /* fallback for old browsers */
   background: #f6a17a;
   /* Chrome 10-25, Safari 5.1-6 */
@@ -64,6 +64,16 @@
 
 .rounded-right {
   border-top-right-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
+}
+
+.top-rounded {
+  border-top-right-radius: 1.5rem !important;
+  border-top-left-radius: 1.5rem !important;
+}
+
+.bottom-rounded {
+  border-bottom-left-radius: 1.5rem !important;
   border-bottom-right-radius: 1.5rem !important;
 }
 

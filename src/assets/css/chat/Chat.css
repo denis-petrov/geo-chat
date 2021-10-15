@@ -1,0 +1,33 @@
+.profile-picture.medium {
+    width: 60px;
+    height: 60px;
+}
+
+.profile-picture.small {
+    width: 30px;
+    height: 30px;
+}
+
+.chat-item {
+    background: #0c0b0c !important;
+}
+
+.chat-item-title,
+.chat-item-text {
+    color: #c9eeef !important;
+}
+
+.chat {
+    background: #201E21;
+}
+
+.chat-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    max-width: 800px;
+}
+
+.dialog-items-wrapper {
+    overflow-y: scroll;
+}
