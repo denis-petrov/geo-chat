@@ -1,0 +1,15 @@
+.navigation {
+    background: #363437 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.navigation__item {
+    background: #a5e6e8 !important;
+    width: 65px;
+    height: 55px;
+}
+
+.navigation__item.active {
+    background: #9f90ad !important;
+}
