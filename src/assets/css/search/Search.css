@@ -1,0 +1,24 @@
+.search {
+    /* fallback for old browsers */
+    background: #9f90ad;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(159, 144, 173, 1), rgba(165, 230, 232, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(159, 144, 173, 1), rgba(165, 230, 232, 1))
+}
+
+input,
+input:focus-visible,
+.btn:focus,
+.btn:focus-visible {
+    outline: none !important;
+}
+
+.stick {
+    width: 1px;
+}
+
+input::placeholder {
+    color: #807680;
+}
