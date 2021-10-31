@@ -1,3 +1,4 @@
+import React from 'react'
 import "../../assets/css/chat/Chat.css";
 import DialogItem from "./DialogItem";
 import Search from "../search/Search";
