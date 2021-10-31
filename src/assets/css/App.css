@@ -80,3 +80,14 @@
 .block-round {
   border-radius: 1.5rem !important;
 }
+
+.block-round-small {
+  border-radius: .5rem;
+}
+
+[contenteditable][data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #a2acb4;
+  display: block;
+  pointer-events: none;
+}

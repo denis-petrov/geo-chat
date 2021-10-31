@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import './assets/css/App.css'
 import Chat from './components/chat/Chat'
 import Map from './components/map/Map'
+import Dialog from "./components/chat/Dialog";
 
 
 const App = () => (
