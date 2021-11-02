@@ -1,19 +1,49 @@
 .navigation {
-    background: #363437 !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    background: #201E21 !important;
+
+    border-radius: 2rem 2rem 0 0!important;
 
     margin-top: auto;
     bottom: 0;
     z-index: 10;
 }
 
-.navigation__item {
-    background: #a5e6e8 !important;
-    width: 65px;
-    height: 55px;
+.navigation__search {
+    background: #201E21 !important;
+
+    margin: 3vh 4vw 2vh 4vw;
+
+    width: 91.5vw;
+    height: 9.5vw;
+    max-height: 38px;
 }
 
-.navigation__item.active {
-    background: #9f90ad !important;
+
+.navigation__search_input {
+    background: linear-gradient(45deg, #fca178, #d0d498);
+    border-radius: 1.10rem!important;
+
+    height: 100%;
+    max-height: 38px;
+
+    border: 0;
+}
+
+.navigation__block {
+    background: #201E21 !important;
+}
+
+.navigation__block_item {
+    background: #DDCDAA !important;
+    border-radius: 1.10rem !important;
+
+    width: 20vw !important;
+    max-width: 90px;
+
+    height: 16.6vw !important;
+    max-height: 75px;
+}
+
+.navigation__block_item.active {
+    background: #FBA178 !important;
 }
