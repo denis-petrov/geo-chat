@@ -1,7 +1,8 @@
-import {Button} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faLongArrowAltRight} from "@fortawesome/free-solid-svg-icons";
-import "../../assets/css/search/Search.css";
+import React from 'react'
+import {Button} from 'react-bootstrap'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
+import '../../assets/css/search/Search.css'
 
 const Search = (props) => (
     <div className={"px-3 py-4 bg-transparent"}>
