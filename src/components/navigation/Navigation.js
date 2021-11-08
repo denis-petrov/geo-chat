@@ -3,28 +3,79 @@ import {Card} from 'react-bootstrap'
 import '../../assets/css/navigation/Navigation.css'
 import {Link} from 'react-router-dom'
 import Pages from '../navigation/Pages'
+import ChatSearch from './search/ChatSearch'
+import MapSearch from './search/MapSearch'
+import Add from './control-button/Add'
+
 
 const Navigation = (props) => {
 
     const currPage = props.currPage
-    console.log(currPage)
+
+    let search
+    let controlPanel = []
+    if (currPage === Pages.CHAT) {
+        search = ChatSearch
+        controlPanel.push(<Add/>)
+    } else if (currPage === Pages.MAP) {
+        search = MapSearch
+        controlPanel.push(<Add/>)
+    }
+
     return (
-        <Card className={"navigation"}>
-            <Card className={"navigation__search" }>{/*m-auto mt-3 mb-2*/}
-                <input type="text" placeholder={"Where we go?"} className={"navigation__search_input"}/>
+        <Card className={"navigation__wrapper"}>
+            <Card className={"navigation__control_panel"}>
+                {controlPanel}
             </Card>
-            <Card className={"navigation__block flex-row p-2 mb-2"}>
-                <Card className={"navigation__block_item mx-auto" + (currPage === Pages.MAP ? " active": "")}>
-                    <Link to="/map">Map</Link>
-                </Card>
-                <Card className={"navigation__block_item mx-auto" + (currPage === Pages.CHAT? " active": "")}>
-                    <Link to="/chat">Chat</Link>
-                </Card>
-                <Card className={"navigation__block_item mx-auto" + (currPage === Pages.PROFILE? " active": "")}>
-                    <Link to="/profile">profile</Link>
-                </Card>
-                <Card className={"navigation__block_item mx-auto" + (currPage === Pages.SETTINGS? " active": "")}>
-                    <Link to="/settings">Settings</Link>
+
+            <Card className={"navigation"}>
+                {search()}
+
+                <Card className={"navigation__block flex-row p-2 mb-2"}>
+
+                    <Card className={"navigation__block_item mx-auto"}>
+                        <Link to="/map">
+                            <div
+                                className={"navigation__block_item_background" + (currPage === Pages.MAP ? " active" : "")}>
+                                <img src={"/icons/navigation/map.png"} alt="Map"
+                                     className={"navigation__block_item_logo center"}/>
+                            </div>
+                            <p className={"navigation__block_item_name p__center"}>Map</p>
+                        </Link>
+                    </Card>
+
+                    <Card className={"navigation__block_item mx-auto"}>
+                        <Link to="/chat">
+                            <div
+                                className={"navigation__block_item_background" + (currPage === Pages.CHAT ? " active" : "")}>
+                                <img src={"/icons/navigation/chat.png"} alt="Chat"
+                                     className={"navigation__block_item_logo center"}/>
+                            </div>
+                            <p className={"navigation__block_item_name p__center"}>Chat</p>
+                        </Link>
+                    </Card>
+
+                    <Card className={"navigation__block_item mx-auto"}>
+                        <Link to="/profile">
+                            <div
+                                className={"navigation__block_item_background" + (currPage === Pages.PROFILE ? " active" : "")}>
+                                <img src={"/icons/navigation/profile.png"} alt="Profile"
+                                     className={"navigation__block_item_logo center"}/>
+                            </div>
+                            <p className={"navigation__block_item_name p__center"}>Profile</p>
+                        </Link>
+                    </Card>
+
+                    <Card className={"navigation__block_item mx-auto" + (currPage === Pages.SETTINGS ? " active" : "")}>
+                        <Link to="/settings">
+                            <div
+                                className={"navigation__block_item_background" + (currPage === Pages.SETTINGS ? " active" : "")}>
+                                <img src={"/icons/navigation/settings.png"} alt="Profile"
+                                     className={"navigation__block_item_logo center"}/>
+                            </div>
+                            <p className={"navigation__block_item_name p__center"}>Settings</p>
+                        </Link>
+                    </Card>
                 </Card>
             </Card>
         </Card>

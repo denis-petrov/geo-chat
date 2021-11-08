@@ -1,11 +1,54 @@
+a {
+    text-decoration: none !important;
+}
+
+input, select, textarea {
+    color: #451D05;
+}
+
+input {
+    text-indent: 2vh;
+}
+
+.navigation__wrapper {
+    margin-top: auto;
+    bottom: 0;
+}
+
+.navigation__control_panel {
+    margin: auto 5vw 2vh auto;
+    right: 0;
+}
+
 .navigation {
     background: #201E21 !important;
 
-    border-radius: 2rem 2rem 0 0!important;
+    border-radius: 2rem 2rem 0 0 !important;
 
     margin-top: auto;
     bottom: 0;
     z-index: 10;
+}
+
+.navigation__control_button {
+    width: 18vw;
+    height: 18vw;
+
+    max-width: 55px;
+    max-height: 55px;
+
+    border: none;
+    background: #E8B786 !important;
+    box-shadow: 0 1px 2px 0 #e3ca99;
+    z-index: 100;
+
+    border-radius: 100px !important;
+    margin-top: 1vh;
+}
+
+.navigation__control_button__img {
+    width: 22px !important;
+    height: 22px !important;
 }
 
 .navigation__search {
@@ -18,32 +61,86 @@
     max-height: 38px;
 }
 
+.navigation__search_form {
+    height: 4vh;
+    display: grid;
 
-.navigation__search_input {
     background: linear-gradient(45deg, #fca178, #d0d498);
-    border-radius: 1.10rem!important;
+    border-radius: 2rem !important;
+}
+
+.navigation__search_form__input {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
 
     height: 100%;
     max-height: 38px;
 
+    width: 100%;
+
     border: 0;
+
+    grid-area: 1 / 1;
 }
 
-.navigation__block {
+.navigation__search_form__submit {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    grid-area: 1 / 4;
+}
+
+.navigation__search_form__submit_icon {
+    width: auto;
+    max-width: 32px;
+    height: auto;
+}
+
+.navigation__block, .navigation__block_item {
     background: #201E21 !important;
 }
 
 .navigation__block_item {
-    background: #DDCDAA !important;
-    border-radius: 1.10rem !important;
-
     width: 20vw !important;
     max-width: 90px;
 
-    height: 16.6vw !important;
+    height: 8vh !important;
     max-height: 75px;
 }
 
-.navigation__block_item.active {
+.navigation__block_item_background {
+    background: #DDCDAA !important;
+    border-radius: 2rem !important;
+}
+
+.navigation__block_item_background.active {
     background: #FBA178 !important;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.p__center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.navigation__block_item_logo {
+    padding: 2px;
+}
+
+.navigation__block_item_name {
+    text-decoration: none;
+    color: #EBE5E3;
+
+    margin-bottom: 0;
 }
