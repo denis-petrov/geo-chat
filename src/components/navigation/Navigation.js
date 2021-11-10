@@ -23,10 +23,10 @@ const Navigation = (props) => {
     }
 
     return (
-        <Card className={"navigation__wrapper"}>
-            <Card className={"navigation__control_panel"}>
+        <div className={"navigation__wrapper"}>
+            <div className={"navigation__control_panel d-flex align-items-end flex-column"}>
                 {controlPanel}
-            </Card>
+            </div>
 
             <Card className={"navigation"}>
                 {search()}
@@ -78,7 +78,7 @@ const Navigation = (props) => {
                     </Card>
                 </Card>
             </Card>
-        </Card>
+        </div>
     )
 }
 
