@@ -3,24 +3,14 @@ import {Card} from 'react-bootstrap'
 import '../../assets/css/navigation/Navigation.css'
 import {Link} from 'react-router-dom'
 import Pages from '../navigation/Pages'
-import ChatSearch from './search/ChatSearch'
-import MapSearch from './search/MapSearch'
-import Add from './control-button/Add'
 
 
 const Navigation = (props) => {
 
     const currPage = props.currPage
 
-    let search
-    let controlPanel = []
-    if (currPage === Pages.CHAT) {
-        search = ChatSearch
-        controlPanel.push(<Add/>)
-    } else if (currPage === Pages.MAP) {
-        search = MapSearch
-        controlPanel.push(<Add/>)
-    }
+    const search = props.search
+    const controlPanel = props.controlPanel
 
     return (
         <div className={"navigation__wrapper"}>
