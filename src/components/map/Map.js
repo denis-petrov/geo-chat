@@ -5,6 +5,7 @@ import Navigation from '../navigation/Navigation'
 import {connect} from 'react-redux'
 import {getMarkers} from '../../store/actions/getMarkers'
 import {addMarker} from '../../store/actions/addMarkers'
+import Pages from '../navigation/Pages'
 
 class Map extends Component {
 
@@ -29,7 +30,7 @@ class Map extends Component {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
                     </MapContainer>
-                    <Navigation/>
+                    <Navigation currPage={Pages.MAP} />
                 </div>
             </div>
         )

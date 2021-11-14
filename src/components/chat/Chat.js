@@ -3,6 +3,7 @@ import "../../assets/css/chat/Chat.css";
 import DialogItem from "./DialogItem";
 import Search from "../search/Search";
 import Navigation from "../navigation/Navigation";
+import Pages from '../navigation/Pages'
 
 const Chat = (props) => {
     let items = [];
@@ -17,7 +18,7 @@ const Chat = (props) => {
                 <div className={"dialog-items-wrapper"}>
                     {items}
                 </div>
-                <Navigation/>
+                <Navigation currPage={Pages.CHAT}/>
             </div>
         </div>
     );
