@@ -6,7 +6,6 @@ import Pages from '../navigation/Pages'
 
 
 const Navigation = (props) => {
-
     const currPage = props.currPage
 
     const search = props.search

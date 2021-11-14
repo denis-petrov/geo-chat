@@ -1,41 +1,34 @@
 import React, {Component} from 'react';
 import '../../assets/css/chat/Chat.css';
 import DialogItem from './DialogItem';
-import Search from '../search/Search';
 import Navigation from '../navigation/Navigation';
-import Dialog from "./Dialog";
-import DialogHeader from "./DialogHeader";
-import DialogInput from "./DialogInput";
 import {connect} from "react-redux";
 import {getChats} from "../../store/actions/chat/getChats";
 import {addChat} from "../../store/actions/chat/addChat";
-import Chat from "./Chat";
+import Add from "../navigation/control-button/Add";
+import Pages from "../navigation/Pages";
+import ChatSearch from "../navigation/search/ChatSearch";
 
 class ChatList extends Component {
 
     componentDidMount() {
+        console.log('here');
         this.props.getChats();
     }
 
     render() {
-
         let items = this.props.chats;
 
-        const chatId = new URLSearchParams(this.props.location.search).get('id');
-        if (chatId) {
-            return (
-                <Chat chatId={chatId} />
-            );
-        }
+        const controlPanel = [<Add key={"Add"}/>];
 
         return (
             <div className={"chat"}>
                 <div className={"chat-wrapper mx-auto"}>
-                    <Search/>
+                    <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>Chats</div>
                     <div className={"dialog-items-wrapper"}>
                         {items.map(chat => <DialogItem key={"dialog-item-" + chat.chatId} chatId={chat.chatId} />)}
                     </div>
-                    <Navigation/>
+                    <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={ChatSearch}/>
                 </div>
             </div>
         );

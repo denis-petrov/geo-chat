@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import '../../assets/css/chat/Chat.css';
-import DialogItem from './DialogItem';
-import Search from '../search/Search';
-import Navigation from '../navigation/Navigation';
 import Dialog from "./Dialog";
 import DialogHeader from "./DialogHeader";
 import DialogInput from "./DialogInput";

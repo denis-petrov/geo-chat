@@ -3,6 +3,28 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+html {
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  width: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  height: inherit;
+}
+
 .App {
   text-align: center;
 }

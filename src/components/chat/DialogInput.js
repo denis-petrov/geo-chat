@@ -27,7 +27,7 @@ class DialogInput extends Component {
         return (
             <div className={"px-3 py-4 bg-transparent"}>
                 <div className="d-flex">
-                    <div className="block-round-small bg-light w-100">
+                    <div className="block-round-small bg-light w-100 p-2">
                         <div contentEditable={true} data-placeholder="Message"
                              className={"py-1 px-3 w-100 bg-transparent dialog-input"}/>
                     </div>

@@ -6,7 +6,6 @@ import {faEllipsisV} from "@fortawesome/free-solid-svg-icons";
 import {connect} from "react-redux";
 import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {getUserInfo} from "../../store/actions/user/getUserInfo";
-import {createBrowserHistory} from "history";
 import {Link} from "react-router-dom";
 
 class DialogHeader extends Component {
@@ -16,7 +15,6 @@ class DialogHeader extends Component {
     }
 
     render() {
-        let history = createBrowserHistory();
 
         // send request for getting chat
         // let chat = getChat(chatId);

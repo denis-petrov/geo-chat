@@ -21,7 +21,7 @@ class DialogItem extends Component {
 
     render() {
         return (
-            <Link to={'/chat?id=1'}>
+            <Link to={'/chat/1'}>
                 <Card className={"block-round chat-item text-white flex-row px-3 py-2 mb-1"}>
                     <img alt="anime girl" className={"profile-picture medium rounded-circle m-auto"}
                          src="https://avatars.mds.yandex.net/get-zen_doc/1911932/pub_5d6370bcac412400aeb2c040_5d884d0d6d29c100adddaf85/scale_1200"/>

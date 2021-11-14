@@ -5,6 +5,66 @@ const initialState = [
         chatId: 1,
         name: 'Test',
         members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
+    },
+    {
+        chatId: 1,
+        name: 'Test',
+        members: [1, 2]
     }
 ];
 

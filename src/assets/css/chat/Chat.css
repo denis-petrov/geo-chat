@@ -18,13 +18,14 @@
 }
 
 .chat {
+    height: inherit;
     background: #201E21;
 }
 
 .chat-wrapper {
+    height: inherit;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
     max-width: 800px;
 }
 
