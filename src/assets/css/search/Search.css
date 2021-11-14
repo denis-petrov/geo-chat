@@ -1,11 +1,11 @@
 .search {
     /* fallback for old browsers */
-    background: #9f90ad;
+    background: #fca178;
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(159, 144, 173, 1), rgba(165, 230, 232, 1));
+    background: -webkit-linear-gradient(to right, #fca178, #d0d498);
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(159, 144, 173, 1), rgba(165, 230, 232, 1))
+    background: linear-gradient(to right, #fca178, #d0d498)
 }
 
 input,
@@ -21,4 +21,14 @@ input:focus-visible,
 
 input::placeholder {
     color: #807680;
+}
+
+.search_button {
+    margin-right: 3vw;
+}
+
+.search__submit_icon {
+    width: auto;
+    max-width: 30px;
+    height: auto;
 }

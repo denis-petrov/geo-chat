@@ -1,5 +1,5 @@
-import {API} from '../../api/API'
-import {GET_MARKERS, MARKERS_ERROR} from '../types'
+import {API} from '../../../api/API'
+import {GET_MARKERS, MARKERS_ERROR} from '../../types'
 
 export const getMarkers = () => async dispatch => {
     try {
