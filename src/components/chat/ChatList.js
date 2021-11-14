@@ -9,33 +9,45 @@ import DialogInput from "./DialogInput";
 import {connect} from "react-redux";
 import {getChats} from "../../store/actions/chat/getChats";
 import {addChat} from "../../store/actions/chat/addChat";
+import Chat from "./Chat";
 
-class Chat extends Component {
+class ChatList extends Component {
 
     componentDidMount() {
         this.props.getChats();
     }
 
     render() {
-        console.log(this.props);
+
+        let items = this.props.chats;
+
+        const chatId = new URLSearchParams(this.props.location.search).get('id');
+        if (chatId) {
+            return (
+                <Chat chatId={chatId} />
+            );
+        }
+
         return (
             <div className={"chat"}>
                 <div className={"chat-wrapper mx-auto"}>
-                    <DialogHeader chatId={this.props.chatId}/>
-                    <Dialog chatId={this.props.chatId}/>
-                    <DialogInput chatId={this.props.chatId}/>
+                    <Search/>
+                    <div className={"dialog-items-wrapper"}>
+                        {items.map(chat => <DialogItem key={"dialog-item-" + chat.chatId} chatId={chat.chatId} />)}
+                    </div>
+                    <Navigation/>
                 </div>
             </div>
         );
     }
 }
 
-const chatStateToProps = (state) => ({
+const chatListStateToProps = (state) => ({
     chats: state.chats
 })
 
-const chatDispatchToProps = {
+const chatListDispatchToProps = {
     getChats, addChat
 }
 
-export default connect(chatStateToProps, chatDispatchToProps)(Chat);
+export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);

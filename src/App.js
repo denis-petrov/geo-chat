@@ -1,17 +1,18 @@
 import React from 'react'
-import {Redirect, Route} from 'react-router'
+import {Redirect, Route, Switch} from 'react-router'
 import {BrowserRouter} from 'react-router-dom'
 import './assets/css/App.css'
-import Chat from './components/chat/Chat'
+import ChatList from './components/chat/ChatList'
 import Map from './components/map/Map'
-import Dialog from "./components/chat/Dialog";
-
+import Chat from "./components/chat/Chat";
 
 const App = () => (
     <BrowserRouter>
-        <Redirect to="/map"/>
-        <Route path="/map" component={Map}/>
-        <Route path="/chat" component={Chat}/>
+        <Switch>
+            <Route path="/map" exact component={Map}/>
+            <Route path="/chat" exact component={ChatList}/>
+            <Redirect to="/map"/>
+        </Switch>
     </BrowserRouter>
 )
 
