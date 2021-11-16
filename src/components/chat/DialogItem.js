@@ -1,5 +1,6 @@
-import {Card} from "react-bootstrap";
-import "../../assets/css/chat/Chat.css";
+import React from 'react'
+import {Card} from 'react-bootstrap'
+import '../../assets/css/chat/Chat.css'
 
 const DialogItem = (props) => (
     <Card className={"block-round chat-item text-white flex-row px-3 py-2 mb-1"}>
