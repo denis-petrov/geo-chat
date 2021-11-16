@@ -12,12 +12,18 @@ import ChatSearch from "../navigation/search/ChatSearch";
 class ChatList extends Component {
 
     componentDidMount() {
-        console.log('here');
+        console.log('test');
         this.props.getChats();
     }
 
     render() {
         let items = this.props.chats;
+        console.log(this.props);
+        let dialogItems = [];
+        for (let key in items) {
+            let chat = items[key];
+            dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId} />);
+        }
 
         const controlPanel = [<Add key={"Add"}/>];
 
@@ -26,7 +32,7 @@ class ChatList extends Component {
                 <div className={"chat-wrapper mx-auto"}>
                     <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>Chats</div>
                     <div className={"dialog-items-wrapper"}>
-                        {items.map(chat => <DialogItem key={"dialog-item-" + chat.chatId} chatId={chat.chatId} />)}
+                        {dialogItems}
                     </div>
                     <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={ChatSearch}/>
                 </div>

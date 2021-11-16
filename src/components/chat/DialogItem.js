@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import '../../assets/css/chat/Chat.css';
-import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {connect} from "react-redux";
 import {getUserInfo} from "../../store/actions/user/getUserInfo";
 import {getMessages} from "../../store/actions/chat/getMessages";
@@ -10,9 +9,9 @@ import {Link} from "react-router-dom";
 class DialogItem extends Component {
 
     componentDidMount() {
-        this.props.getChatInfo();
-
+        console.log(this.props);
         this.props.getMessages(this.props.chatId, 1);
+        console.log(this.props);
         if (this.messages !== undefined && this.messages.length > 0) {
             let lastSender = this.messages[0].sender;
             this.props.getUserInfo(lastSender);
@@ -43,11 +42,12 @@ class DialogItem extends Component {
 }
 
 const dialogItemStateToProps = (state) => ({
-    chat: state.chat
+    messages: state.messages,
+    test: state
 })
 
 const dialogItemDispatchToProps = {
-    getChatInfo, getUserInfo, getMessages
+    getUserInfo, getMessages
 }
 
 export default connect(dialogItemStateToProps, dialogItemDispatchToProps)(DialogItem);
