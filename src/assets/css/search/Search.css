@@ -5,7 +5,51 @@
     background: -webkit-linear-gradient(to right, #fca178, #d0d498);
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #fca178, #d0d498)
+    background: linear-gradient(to right, #fca178, #d0d498);
+
+    height: 37px;
+    flex-direction: column;
+}
+
+.search__address_list {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: -265px;
+    overflow: scroll;
+    height: 185px;
+
+    z-index: 100;
+    color: #e4bd89;
+    background: #201e21;
+    border-radius: 1.0rem;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.search__address_list__label {
+    background-color: inherit;
+    border: 0;
+    width: 100%;
+    display: flex;
+
+    color: #EBE5E3;
+    font-size: 13px;
+    font-weight: 500;
+    text-indent: 1vh;
+    text-align: left;
+}
+
+.search__address_list__label__icon {
+    height: 20px;
+    width: 20px;
+    margin: 0 0 0 15px;
+}
+
+.search__address_list__label__text {
+    margin-right: 10px;
 }
 
 input,

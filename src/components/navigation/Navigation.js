@@ -6,7 +6,6 @@ import Pages from '../navigation/Pages'
 
 
 const Navigation = (props) => {
-
     const currPage = props.currPage
 
     const search = props.search
@@ -19,7 +18,7 @@ const Navigation = (props) => {
             </div>
 
             <Card className={"navigation"}>
-                {search()}
+                {search}
 
                 <Card className={"navigation__block flex-row p-2 mb-2"}>
 

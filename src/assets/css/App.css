@@ -3,6 +3,28 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+html {
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  width: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  height: inherit;
+}
+
 .App {
   text-align: center;
 }
@@ -79,4 +101,15 @@
 
 .block-round {
   border-radius: 1.5rem !important;
+}
+
+.block-round-small {
+  border-radius: .5rem;
+}
+
+[contenteditable][data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #a2acb4;
+  display: block;
+  pointer-events: none;
 }
