@@ -39,7 +39,9 @@ const App = () => {
                 <Route path="/" exact render={() => requireAuth()}/>
                 <Route path="/map" exact render={() => requireAuth(<Map />)}/>
                 <Route path="/chat" exact render={() => requireAuth(<ChatList />)}/>
-                <Route path="/chat/:chatId" exact render={() => requireAuth(<Chat />)}/>
+                <Route path="/chat/:chatId" render={({ match }) => (
+                    requireAuth(<Chat chatId={match.params.chatId} />)
+                )} />
                 <Route path="/login" exact render={() => requireAuth()}/>
                 <Redirect to="/login"/>
             </Switch>

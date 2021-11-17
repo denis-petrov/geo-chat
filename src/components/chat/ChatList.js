@@ -8,16 +8,17 @@ import {addChat} from "../../store/actions/chat/addChat";
 import Add from "../navigation/control-button/Add";
 import Pages from "../navigation/Pages";
 import ChatSearch from "../navigation/search/ChatSearch";
+import {getMessages} from "../../store/actions/chat/getMessages";
 
 class ChatList extends Component {
 
     componentDidMount() {
         console.log('test');
-        this.props.getChats();
+        this.props.getChats('33f502fa-fe33-438b-8da3-5072d71444bc');
     }
 
     render() {
-        let items = this.props.chats;
+        let items = this.props.chats.chats;
         console.log(this.props);
         let dialogItems = [];
         for (let key in items) {
@@ -46,7 +47,7 @@ const chatListStateToProps = (state) => ({
 })
 
 const chatListDispatchToProps = {
-    getChats, addChat
+    getChats, addChat, getMessages
 }
 
 export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);

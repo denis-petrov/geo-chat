@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import "../../assets/css/chat/Chat.css";
-import {addMessage} from "../../store/actions/chat/addMessage";
-import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {connect} from "react-redux";
 
 class DialogTextItem extends Component {
@@ -29,7 +27,6 @@ const dialogTextItemStateToProps = (state) => ({
 })
 
 const dialogTextItemDispatchToProps = {
-    addMessage, getChatInfo
 }
 
 export default connect(dialogTextItemStateToProps, dialogTextItemDispatchToProps)(DialogTextItem);

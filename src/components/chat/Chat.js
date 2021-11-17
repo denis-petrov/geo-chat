@@ -6,11 +6,11 @@ import DialogInput from "./DialogInput";
 import {connect} from "react-redux";
 import {getChats} from "../../store/actions/chat/getChats";
 import {addChat} from "../../store/actions/chat/addChat";
+import {getMessages} from "../../store/actions/chat/getMessages";
 
 class Chat extends Component {
 
     componentDidMount() {
-        this.props.getChats();
     }
 
     render() {
@@ -28,11 +28,12 @@ class Chat extends Component {
 }
 
 const chatStateToProps = (state) => ({
-    chats: state.chats
+    chats: state.chats,
+    messages: state.messages
 })
 
 const chatDispatchToProps = {
-    getChats, addChat
+    getChats, addChat, getMessages
 }
 
 export default connect(chatStateToProps, chatDispatchToProps)(Chat);

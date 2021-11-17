@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 class DialogHeader extends Component {
 
     componentDidMount() {
-        this.props.getChatInfo();
+        //this.props.getChatInfo();
     }
 
     render() {

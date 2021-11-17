@@ -4,12 +4,12 @@ import {ADD_MESSAGE, MESSAGES_ERROR} from '../../types';
 export const addMessage = (chatId, userId, message) => async dispatch => {
     try {
         let data = {
-            chat: chatId,
-            sender: userId,
+            chatId: chatId,
+            senderId: userId,
             message: message,
-            sendDate: new Date()
+            sentDate: new Date().getTime()
         };
-        const res = await API.post('/message/create', data)
+        const res = await API.post('/message/create', data);
         dispatch({
             type: ADD_MESSAGE,
             payload: res.data

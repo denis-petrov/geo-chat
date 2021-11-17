@@ -23,7 +23,7 @@ class Dialog extends Component {
 
         // get chat's messages
         // let messages = getMessages(props.chat.chatId);
-        let messages = [
+        /*let messages = [
             {
                 messageId: "1",
                 sender: "1",
@@ -46,16 +46,20 @@ class Dialog extends Component {
                 message: "Sup",
                 sentDate: "2021-10-31 19:22:30"
             }
-        ];
+        ];*/
 
         let dialogTextItems = [];
-        messages.forEach((message) => {
-            dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} user={user} />);
-        });
+        let messages = this.props.messages.messages;
+        if (messages) {
+            messages.reverse();
+            messages.forEach((message) => {
+                dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} user={user} />);
+            });
+        }
 
         return (
             <div className={"p-3 dialog-content"}>
-                <div className={"w-100"}>
+                <div id={'dialog-content'} className={"w-100"}>
                     {dialogTextItems}
                 </div>
             </div>

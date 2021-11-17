@@ -1,8 +1,17 @@
-const onConnected = (userId) => {
+export const onConnected = () => {
     console.log("connected");
 
-    stompClient.subscribe(
-        "message/create/" + userId,
-        console.log('received msg')
-    );
+    /*window.stompClient.subscribe(
+        "/message/create/33f502fa-fe33-438b-8da3-5072d71444bc",
+        test()
+    );*/
 };
+
+export const onError = () => {
+    console.log("error ws");
+};
+
+export function test() {
+    console.log('msg received');
+    return 'test subscribe';
+}
