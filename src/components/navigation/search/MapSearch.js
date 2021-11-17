@@ -1,24 +1,77 @@
-import React from 'react'
-import {Button, Card} from 'react-bootstrap'
+import React, {useEffect, useRef, useState} from 'react'
 import '../../../assets/css/search/Search.css'
+import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch'
+import {connect} from 'react-redux'
+import {updateCenterPosition} from '../../../store/actions/position/updateCenter'
 
-const MapSearch = () => {
+
+const search = async (event, searchReq, setAddresses) => {
+    const provider = new OpenStreetMapProvider()
+    const searchControl = new GeoSearchControl({
+        provider,
+    })
+    event.target.value = searchReq
+    await searchControl.autoSearch(event)
+    const results = searchControl.resultList.results
+    if (results !== null && results.length > 0) {
+        setAddresses(results)
+    }
+}
+
+
+const MapSearch = (props) => {
+
+    const [addresses, setAddresses] = useState([])
+    const [searchReq, setSearchReq] = useState("")
+    const [isVisibleAddressList, setIsVisibleAddressList] = useState(false)
+
+    const searchRef = useRef()
+    const handleClickOutside = e => {
+        if (!searchRef.current.contains(e.target)) {
+            setIsVisibleAddressList(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    })
+
+    let visibilityOfAddressList = (isVisibleAddressList) ? "" : "hidden"
+    let addressList
+    addressList = (
+        <div className={"search__address_list " + visibilityOfAddressList} ref={searchRef}>
+            <div className={"p-2"}>
+                {addresses.map((e, id) =>
+                    <button className={"search__address_list__label py-2"} key={"search-label-" + id}
+                         onClick={() => props.updateCenterPosition(e)}>
+                        <img src="icons/navigation/marker-address-list.png" alt="marker" className={"search__address_list__label__icon"}/>
+                        <div className={"search__address_list__label__text"}>{e.label}</div>
+                    </button>
+                )}
+            </div>
+        </div>
+    )
+
     return (
         <div className={"px-3 py-4 bg-transparent"}>
             <div className="d-flex block-round search">
                 <input type="text" placeholder="Search..."
-                       className={"border-0 py-1 px-3 w-100 rounded-left bg-transparent"}/>
-                <div className={"my-1 bg-secondary stick"} />
-                <div className="input-group-append">
-                    <Button className={"border-0 bg-transparent rounded-right shadow-none search_button"}>
-                        <img src={"/icons/navigation/arrow.png"} alt="Arrow"
-                             className={"search__submit_icon"}/>
-                    </Button>
-                </div>
+                       className={"border-0 py-1 px-3 w-100 h-100 rounded-left bg-transparent"}
+                       onInput={e => setSearchReq(e.target.value)}
+                       onKeyPress={e => search(e, searchReq, setAddresses)}
+                       onClick={() => setIsVisibleAddressList(true)}
+                       value={searchReq}
+                />
+                {addressList}
             </div>
         </div>
     )
 }
 
-export default MapSearch
+const mapSearchToProps = (state) => ({
+    centerPosition: state.centerPosition
+})
+
+export default connect(mapSearchToProps, {updateCenterPosition})(MapSearch)
 
