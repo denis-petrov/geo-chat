@@ -54,7 +54,7 @@ const MapSearch = (props) => {
     )
 
     return (
-        <div className={"px-3 py-4 bg-transparent"}>
+        <div className={"p-3 bg-transparent"}>
             <div className="d-flex block-round search">
                 <input type="text" placeholder="Search..."
                        className={"border-0 py-1 px-3 w-100 h-100 rounded-left bg-transparent"}

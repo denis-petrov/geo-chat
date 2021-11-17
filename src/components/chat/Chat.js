@@ -1,31 +1,39 @@
-import React from 'react'
-import "../../assets/css/chat/Chat.css";
-import DialogItem from "./DialogItem";
-import Search from "../search/Search";
-import Navigation from "../navigation/Navigation";
-import Pages from '../navigation/Pages'
-import Add from '../navigation/control-button/Add'
-import ChatSearch from '../navigation/search/ChatSearch'
+import React, {Component} from 'react';
+import '../../assets/css/chat/Chat.css';
+import Dialog from "./Dialog";
+import DialogHeader from "./DialogHeader";
+import DialogInput from "./DialogInput";
+import {connect} from "react-redux";
+import {getChats} from "../../store/actions/chat/getChats";
+import {addChat} from "../../store/actions/chat/addChat";
+import {getMessages} from "../../store/actions/chat/getMessages";
 
-const Chat = (props) => {
-    let items = [];
-    for (let i = 0; i < 12; i++) {
-        items.push(<DialogItem/>);
+class Chat extends Component {
+
+    componentDidMount() {
     }
 
-    const controlPanel = [<Add key={"Add"}/>]
-
-    return (
-        <div className={"chat"}>
-            <div className={"chat-wrapper mx-auto"}>
-                <Search/>
-                <div className={"dialog-items-wrapper"}>
-                    {items}
+    render() {
+        console.log(this.props);
+        return (
+            <div className={"chat"}>
+                <div className={"chat-wrapper mx-auto"}>
+                    <DialogHeader chatId={this.props.chatId}/>
+                    <Dialog chatId={this.props.chatId}/>
+                    <DialogInput chatId={this.props.chatId}/>
                 </div>
-                <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={<ChatSearch/>}/>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default Chat;
+const chatStateToProps = (state) => ({
+    chats: state.chats,
+    messages: state.messages
+})
+
+const chatDispatchToProps = {
+    getChats, addChat, getMessages
+}
+
+export default connect(chatStateToProps, chatDispatchToProps)(Chat);
