@@ -13,6 +13,9 @@ export const CHATS_ERROR = 'CHATS_ERROR';
 
 export const GET_CHAT_INFO = 'GET_CHAT_INFO';
 
+export const GET_CENTER_POSITION = 'GET_CENTER_POSITION'
+export const UPDATE_CENTER_POSITION = 'UPDATE_CENTER_POSITION'
+export const USER_CENTER_ERROR = 'USER_CENTER_ERROR'
 // user
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const GET_USER = 'GET_USER';

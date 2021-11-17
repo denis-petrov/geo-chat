@@ -1,22 +1,21 @@
-import {GET_USER_POSITION, UPDATE_USER_POSITION} from '../types'
-
+import {GET_CENTER_POSITION, UPDATE_CENTER_POSITION} from '../types'
 
 const initialState = {
     lat: 55.74101998457737,
     lng: 37.62268066406251
 }
 
-const userPositionReducer = (state = initialState, action) => {
+const centerPositionReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_USER_POSITION:
+        case GET_CENTER_POSITION:
             return {
                 ...state,
             }
-        case UPDATE_USER_POSITION:
+        case UPDATE_CENTER_POSITION:
             return action.payload
         default:
             return state
     }
 }
 
-export default userPositionReducer
+export default centerPositionReducer
