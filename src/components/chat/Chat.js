@@ -22,7 +22,7 @@ const Chat = (props) => {
                 <div className={"dialog-items-wrapper"}>
                     {items}
                 </div>
-                <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={ChatSearch}/>
+                <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={<ChatSearch/>}/>
             </div>
         </div>
     );

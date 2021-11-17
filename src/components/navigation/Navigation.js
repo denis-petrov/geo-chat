@@ -19,7 +19,7 @@ const Navigation = (props) => {
             </div>
 
             <Card className={"navigation"}>
-                {search()}
+                {search}
 
                 <Card className={"navigation__block flex-row p-2 mb-2"}>
 

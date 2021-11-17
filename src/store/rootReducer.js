@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import markerReducer from './reducers/markerReducer'
-import userPositionReducer from './reducers/userPositionReducer'
+import centerPositionReducer from './reducers/centerPositionReducer'
 
 export default combineReducers({
     markers: markerReducer,
-    userPosition: userPositionReducer
+    centerPosition: centerPositionReducer
 })
