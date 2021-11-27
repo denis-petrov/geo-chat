@@ -55,6 +55,7 @@
 .dialog-content {
     display: flex;
     flex-direction: column-reverse;
+    overflow: scroll;
 }
 
 .msg-time {

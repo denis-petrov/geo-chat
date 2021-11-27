@@ -7,6 +7,10 @@ import {addMessage} from "../../store/actions/chat/addMessage";
 import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {getUserInfo} from "../../store/actions/user/getUserInfo";
 import {getCurrentUser} from "../../utils/getCurrentUser";
+import SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
+import {connectWs} from "../../webSocket/connect";
+import {test} from "../../webSocket/messageNotification";
 
 class DialogInput extends Component {
 
@@ -16,40 +20,18 @@ class DialogInput extends Component {
     }
 
     render() {
-        var ws = new WebSocket("ws://localhost:8001/ws");
-        ws.onmessage = function(event) {
-            console.log(event.data);
-        };
-        ws.onopen = function(e) {
-            console.log("[open] Соединение установлено");
-            console.log("Отправляем данные на сервер");
-            ws.send("test msg");
-        };
-        /*let socket = new WebSocket("ws://6392-136-169-211-95.ngrok.io/ws");
 
-        socket.onopen = function(e) {
-            console.log("[open] Соединение установлено");
-            console.log("Отправляем данные на сервер");
-            socket.send("Меня зовут Джон");
-        };
-
-        socket.onmessage = function(event) {
-            console.log(`[message] Данные получены с сервера: ${event.data}`);
-        };
-
-        socket.onclose = function(event) {
-            if (event.wasClean) {
-                console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
-            } else {
-                // например, сервер убил процесс или сеть недоступна
-                // обычно в этом случае event.code 1006
-                console.log('[close] Соединение прервано');
-            }
-        };
-
-        socket.onerror = function(error) {
-            console.log(`[error] ${error.message}`);
-        };*/
+        let sockJSClient = new SockJS("http://localhost:80/api/ws");
+        let stompClient = Stomp.over(sockJSClient);
+        stompClient.connect({}, function () {
+            console.log("connected")
+            stompClient.subscribe(
+                "/create/33f502fa-fe33-438b-8da3-5072d71444bc",
+                test()
+            );
+        }, function () {
+            console.log('error')
+        });
 
         const addMessage = (e) => {
             let msgInput = document.getElementsByClassName('dialog-input')[0];
