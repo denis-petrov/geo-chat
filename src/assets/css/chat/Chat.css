@@ -74,3 +74,7 @@
 .dialog-input:focus-visible {
     outline: none;
 }
+
+.members-block {
+    color: white;
+}

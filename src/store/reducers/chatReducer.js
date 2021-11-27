@@ -1,4 +1,4 @@
-import {ADD_CHAT, GET_CHAT_INFO, GET_CHATS} from '../types'
+import {ADD_CHAT, ADD_MEMBER_TO_CHAT, GET_CHAT_INFO, GET_CHATS, UPDATE_CHAT_NAME} from '../types'
 
 const initialState = [];
 
@@ -12,7 +12,10 @@ const chatReducer = (state = initialState, action) => {
             }
         case ADD_CHAT:
             console.log(state, action)
-            return action.payload
+            return {
+                ...state,
+                newChatId: action.payload
+            }
         case GET_CHAT_INFO:
             console.log(state, action)
             return {

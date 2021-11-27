@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {addMessage} from "../../store/actions/chat/addMessage";
 import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {getUserInfo} from "../../store/actions/user/getUserInfo";
+import {getCurrentUser} from "../../utils/getCurrentUser";
 
 class DialogInput extends Component {
 
@@ -15,7 +16,7 @@ class DialogInput extends Component {
     }
 
     render() {
-        var ws = new WebSocket("ws://6392-136-169-211-95.ngrok.io/ws");
+        var ws = new WebSocket("ws://localhost:8001/ws");
         ws.onmessage = function(event) {
             console.log(event.data);
         };
@@ -54,7 +55,8 @@ class DialogInput extends Component {
             let msgInput = document.getElementsByClassName('dialog-input')[0];
             if (msgInput.textContent.length) {
                 //sendMessage(msgInput.textContent);
-                this.props.addMessage(this.props.chatId, '33f502fa-fe33-438b-8da3-5072d71444bc', msgInput.textContent);
+                let user = getCurrentUser()
+                this.props.addMessage(this.props.chatId, user.userId, msgInput.textContent);
             }
 
             msgInput.textContent = "";

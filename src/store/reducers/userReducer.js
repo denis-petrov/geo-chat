@@ -1,11 +1,6 @@
 import {GET_USER_INFO} from '../types'
 
 const initialState = {
-    userId: '1',
-    role: 'String',
-    name: 'String',
-    email: 'String',
-    password: 'String'
 }
 
 const chatReducer = (state = initialState, action) => {

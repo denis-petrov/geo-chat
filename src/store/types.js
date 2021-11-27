@@ -9,7 +9,12 @@ export const MESSAGES_ERROR = 'MESSAGES_ERROR';
 
 export const GET_CHATS = 'GET_CHATS';
 export const ADD_CHAT = 'ADD_CHAT'
+export const REMOVE_CHAT = 'REMOVE_CHAT'
+export const UPDATE_CHAT_NAME = 'UPDATE_CHAT_NAME'
 export const CHATS_ERROR = 'CHATS_ERROR';
+
+export const ADD_MEMBER_TO_CHAT = 'ADD_MEMBER_TO_CHAT'
+export const REMOVE_MEMBER = 'REMOVE_MEMBER'
 
 export const GET_CHAT_INFO = 'GET_CHAT_INFO';
 
@@ -19,6 +24,7 @@ export const USER_CENTER_ERROR = 'USER_CENTER_ERROR'
 // user
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const GET_USER = 'GET_USER';
+export const REMOVE_USER = 'REMOVE_USER'
 export const USER_ERROR = 'USER_ERROR';
 
 export const GET_USER_POSITION = 'GET_USER_POSITION';

@@ -10,9 +10,6 @@ import {getMessages} from "../../store/actions/chat/getMessages";
 
 class Chat extends Component {
 
-    componentDidMount() {
-    }
-
     render() {
         console.log(this.props);
         return (
