@@ -3,6 +3,7 @@ import {GET_MESSAGES, MESSAGES_ERROR} from '../../types';
 
 export const getMessages = (chatId, numberOfMessages) => async dispatch => {
     try {
+        console.log('get msg', chatId, numberOfMessages);
         const res = await API.get('/message/getLast', {params: {chatId: chatId, numberOfMessages: numberOfMessages}})
         console.log(res.data);
         dispatch({

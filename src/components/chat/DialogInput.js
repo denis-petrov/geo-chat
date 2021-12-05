@@ -7,42 +7,27 @@ import {addMessage} from "../../store/actions/chat/addMessage";
 import {getChatInfo} from "../../store/actions/chat/getChatInfo";
 import {getUserInfo} from "../../store/actions/user/getUserInfo";
 import {getCurrentUser} from "../../utils/getCurrentUser";
-import SockJS from 'sockjs-client'
-import Stomp from 'stompjs'
 import {connectWs} from "../../webSocket/connect";
-import {test} from "../../webSocket/messageNotification";
 
 class DialogInput extends Component {
 
     componentDidMount() {
-        //this.props.getChatInfo();
-        //this.props.getUserInfo();
+        this.props.getUserInfo(getCurrentUser().userId)
+    }
+
+    addMessage(e) {
+        let msgInput = document.getElementsByClassName('dialog-input')[0];
+        if (msgInput.textContent.length) {
+            let user = getCurrentUser()
+            console.log(this.props)
+            this.props.addMessage(this.props.chatId, user.userId, msgInput.textContent);
+        }
+
+        msgInput.textContent = "";
     }
 
     render() {
-
-        let sockJSClient = new SockJS("http://localhost:80/api/ws");
-        let stompClient = Stomp.over(sockJSClient);
-        stompClient.connect({}, function () {
-            console.log("connected")
-            stompClient.subscribe(
-                "/create/33f502fa-fe33-438b-8da3-5072d71444bc",
-                test()
-            );
-        }, function () {
-            console.log('error')
-        });
-
-        const addMessage = (e) => {
-            let msgInput = document.getElementsByClassName('dialog-input')[0];
-            if (msgInput.textContent.length) {
-                //sendMessage(msgInput.textContent);
-                let user = getCurrentUser()
-                this.props.addMessage(this.props.chatId, user.userId, msgInput.textContent);
-            }
-
-            msgInput.textContent = "";
-        }
+        connectWs()
 
         return (
             <div className={"px-3 py-4 bg-transparent"}>
@@ -53,7 +38,7 @@ class DialogInput extends Component {
                     </div>
                     <div className={"d-flex flex-column-reverse"}>
                         <FontAwesomeIcon icon={faArrowCircleRight} className={"text-light fa-3x ms-2"}
-                                         onClick={(e) => {addMessage(e)}}/>
+                                         onClick={(e) => {this.addMessage(e)}}/>
                     </div>
                 </div>
             </div>

@@ -9,11 +9,12 @@ import {getCurrentUser} from "../../utils/getCurrentUser";
 class Dialog extends Component {
 
     componentDidMount() {
+        console.log(this.props.chatId)
         this.props.getMessages(this.props.chatId, 50);
     }
 
     render() {
-        let user = getCurrentUser()
+        console.log(this.props);
 
         let dialogTextItems = [];
         let messages = this.props.messages.messages;

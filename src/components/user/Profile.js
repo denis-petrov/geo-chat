@@ -12,6 +12,7 @@ class Login extends Component {
 
     deleteAccount() {
         let user = getCurrentUser()
+        console.log(user.userId)
         this.props.removeUser(user.userId)
     }
 

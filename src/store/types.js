@@ -1,32 +1,34 @@
-export const GET_MARKERS = 'GET_MARKERS';
-export const ADD_MARKER = 'ADD_MARKER';
-export const MARKERS_ERROR = 'MARKERS_ERROR';
+export const GET_MARKERS = 'GET_MARKERS'
+export const ADD_MARKER = 'ADD_MARKER'
+export const MARKERS_ERROR = 'MARKERS_ERROR'
 
 // chat
-export const GET_MESSAGES = 'GET_MESSAGES';
-export const ADD_MESSAGE = 'ADD_MESSAGE';
-export const MESSAGES_ERROR = 'MESSAGES_ERROR';
+export const GET_MESSAGES = 'GET_MESSAGES'
+export const ADD_MESSAGE = 'ADD_MESSAGE'
+export const MESSAGES_ERROR = 'MESSAGES_ERROR'
 
-export const GET_CHATS = 'GET_CHATS';
+export const GET_CHATS = 'GET_CHATS'
 export const ADD_CHAT = 'ADD_CHAT'
 export const REMOVE_CHAT = 'REMOVE_CHAT'
 export const UPDATE_CHAT_NAME = 'UPDATE_CHAT_NAME'
-export const CHATS_ERROR = 'CHATS_ERROR';
+export const CHATS_ERROR = 'CHATS_ERROR'
 
 export const ADD_MEMBER_TO_CHAT = 'ADD_MEMBER_TO_CHAT'
 export const REMOVE_MEMBER = 'REMOVE_MEMBER'
 
-export const GET_CHAT_INFO = 'GET_CHAT_INFO';
+export const GET_CHAT_INFO = 'GET_CHAT_INFO'
 
 export const GET_CENTER_POSITION = 'GET_CENTER_POSITION'
 export const UPDATE_CENTER_POSITION = 'UPDATE_CENTER_POSITION'
 export const USER_CENTER_ERROR = 'USER_CENTER_ERROR'
 // user
-export const GET_USER_INFO = 'GET_USER_INFO';
-export const GET_USER = 'GET_USER';
+export const GET_USER_INFO = 'GET_USER_INFO'
+export const GET_USER = 'GET_USER'
 export const REMOVE_USER = 'REMOVE_USER'
-export const USER_ERROR = 'USER_ERROR';
+export const USER_ERROR = 'USER_ERROR'
+export const CREATE_USER = 'CREATE_USER'
+export const AUTH_USER = 'AUTH_USER'
 
-export const GET_USER_POSITION = 'GET_USER_POSITION';
-export const UPDATE_USER_POSITION = 'UPDATE_USER_POSITION';
-export const USER_POSITION_ERROR = 'USER_POSITION_ERROR';
+export const GET_USER_POSITION = 'GET_USER_POSITION'
+export const UPDATE_USER_POSITION = 'UPDATE_USER_POSITION'
+export const USER_POSITION_ERROR = 'USER_POSITION_ERROR'
