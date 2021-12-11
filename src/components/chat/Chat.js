@@ -11,7 +11,6 @@ import {getMessages} from "../../store/actions/chat/getMessages";
 class Chat extends Component {
 
     render() {
-        console.log(this.props);
         return (
             <div className={"chat"}>
                 <div className={"chat-wrapper mx-auto"}>

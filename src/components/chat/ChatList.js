@@ -29,7 +29,6 @@ class ChatList extends Component {
         let user = getCurrentUser()
         this.props.getChats(user.userId)
     }
-
     render() {
         let items = this.props.chats.chats
         let dialogItems = []
@@ -42,7 +41,6 @@ class ChatList extends Component {
         }
 
         if (dialogItems.length === 0) {
-            console.log('here')
             dialogItems.push(<div key={'empty'} className={"text-light"}>Chat list is empty</div>)
         }
 

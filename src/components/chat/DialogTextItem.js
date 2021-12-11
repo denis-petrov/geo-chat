@@ -7,9 +7,7 @@ class DialogTextItem extends Component {
 
     render() {
         const yourMsgClass = "is-out";
-        console.log(this.props);
         let user = getCurrentUser()
-        console.log(user)
         let isYourMsg = user.userId === this.props.message.senderId;
         let message = this.props.message;
 
@@ -18,7 +16,7 @@ class DialogTextItem extends Component {
         return (
             <div className={`my-2 d-flex ${isYourMsg ? yourMsgClass : ""}`}>
                 <div className={"message-text px-3 p-2 rounded-3"}>
-                    {message.message}
+                    <span>{message.message}</span>
                     <span className={"msg-time"}>{`${date.getHours()}:${date.getMinutes()}`}</span>
                 </div>
             </div>

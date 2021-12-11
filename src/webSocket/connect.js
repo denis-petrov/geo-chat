@@ -4,7 +4,7 @@ import {getCurrentUser} from "../utils/getCurrentUser";
 
 let stompClient = null;
 
-export const connectWs = () => {
+const connectWs = () => {
     let sockJSClient = new SockJS("http://localhost:80/api/ws");
     stompClient = Stomp.over(sockJSClient);
     stompClient.connect({}, onConnected, onError);
