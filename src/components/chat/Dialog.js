@@ -9,7 +9,7 @@ import {getMessagesBeforeDate} from "../../store/actions/chat/getMessagesBeforeD
 class Dialog extends Component {
 
     componentDidMount() {
-        this.props.getMessages(this.props.chatId, 10);
+        this.props.getMessages(this.props.chatId, 50);
         let dialogContent = document.getElementsByClassName('dialog-content')[0]
         dialogContent.addEventListener('scroll', function(e) {
             this.getMessagesBefore(e.target)
