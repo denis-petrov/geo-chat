@@ -91,7 +91,6 @@ const messageReducer = (state = initialState, action) => {
             }
         default:
             console.log(state, action)
-            console.log('error')
             return state
     }
 }

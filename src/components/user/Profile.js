@@ -12,7 +12,6 @@ class Login extends Component {
 
     deleteAccount() {
         let user = getCurrentUser()
-        console.log(user.userId)
         this.props.removeUser(user.userId)
     }
 
@@ -23,10 +22,14 @@ class Login extends Component {
             <div className={"chat"}>
                 <div className={"chat-wrapper mx-auto"}>
                     <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
-                        {user.name}
+                        {user ? user.name : ''}
                     </div>
 
                     <div>
+                        <Link to={'/friends'}>
+                            <button id={"friends"} type="button" className="btn btn-primary">Friends</button>
+                        </Link>
+
                         <div>
                             <Link to={'/logout'}>
                                 <button id={"logout"} type="button" className="btn btn-primary">Logout</button>

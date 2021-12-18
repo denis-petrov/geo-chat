@@ -83,7 +83,10 @@ class ChatSetting extends Component {
 
                         <div className={"members-block"}>
                             <div>{members ? members.length : ''} Members</div>
-                            <button id={"add-member"} type="button" className="btn btn-primary">Add Member</button>
+                            <button id={"add-member"} type="button" className="btn btn-primary">
+                                Add Member
+                            </button>
+
                             <div>
                                 {members}
                             </div>

@@ -9,6 +9,7 @@ import Chat from "./components/chat/Chat";
 import ChatSetting from "./components/chat/ChatSetting";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
+import FriendList from "./components/friend/FriendList";
 
 function requireAuth(component) {
     if (!window.localStorage.getItem('authenticated')) {
@@ -44,6 +45,7 @@ const App = () => {
                 <Route path="/" exact render={() => requireAuth(null)}/>
                 <Route path="/map" exact render={() => requireAuth(<Map/>)}/>
                 <Route path="/profile" exact render={() => requireAuth(<Profile />)}/>
+                <Route path="/friends" exact render={() => requireAuth(<FriendList />)}/>
                 <Route path="/chat" exact render={() => requireAuth(<ChatList/>)}/>
                 <Route path="/chat/:chatId/settings" render={({match}) => (
                     requireAuth(<ChatSetting chatId={match.params.chatId}/>)
