@@ -14,7 +14,7 @@ const GetLocation = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    userPosition: state.userPosition
+    centerPosition: state.centerPosition
 })
 
 

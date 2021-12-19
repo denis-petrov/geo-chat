@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {ADD_MESSAGE, MESSAGES_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {ADD_MESSAGE, MESSAGES_ERROR} from '../../types'
 
 export const addMessage = (chatId, userId, message) => async dispatch => {
     try {
@@ -20,5 +20,3 @@ export const addMessage = (chatId, userId, message) => async dispatch => {
         })
     }
 }
-
-export default addMessage();

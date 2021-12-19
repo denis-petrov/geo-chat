@@ -1,86 +1,94 @@
 import '../../assets/css/map/Map.css'
-import React, {Component, useEffect, useState} from 'react'
-import {MapConsumer, MapContainer, TileLayer, useMap} from 'react-leaflet'
+import React, {useCallback, useEffect} from 'react'
+import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
 import Navigation from '../navigation/Navigation'
 import {connect} from 'react-redux'
 import {getMarkers} from '../../store/actions/markers/getMarkers'
-import {addMarker} from '../../store/actions/markers/addMarkers'
 import Pages from '../navigation/Pages'
 import Add from '../navigation/control-button/Add'
 import GetLocation from '../navigation/control-button/GetLocation'
 import MapSearch from '../navigation/search/MapSearch'
 import {getCenterPosition} from '../../store/actions/position/getCenterPosition'
+import AddMarker from '../navigation/control-button/AddMarker'
+import L from "leaflet"
+import "leaflet/dist/leaflet.css"
+import MarkerClusterGroup from "react-leaflet-markercluster"
+import "leaflet/dist/images/marker-shadow.png"
 
 
-class Map extends Component {
-
-    constructor(props) {
-        super(props)
-
-        this.search = null
+const createClusterCustomIcon = cluster => {
+    let clusterSize = "small"
+    if (cluster.getChildCount() >= 10) {
+        clusterSize = "medium"
     }
-
-    componentDidMount() {
-        this.props.getMarkers()
-        this.props.getCenterPosition()
-    }
-
-
-    render() {
-        const {markers} = this.props.markers
-        console.log(markers)
-
-        const center = this.props.centerPosition
-
-        const controlPanel = [<Add key={"Add"}/>, <GetLocation key={"GetLocation"}/>]
-
-        return (
-            <div className={"map"}>
-                <div className={"map-wrapper mx-auto"}>
-                    <MapContainer
-                        center={center}
-                        zoom={12}
-                        zoomControl={false}
-                        className={"map-container"}
-                        /*onclick={this.handleClick}*/
-                        whenReady={(map) => {
-                            console.log(map);
-                            map.target.on("click", function (e) {
-                                const {lat, lng} = e.latlng
-                                console.log(e.latlng)
-                            })
-                        }}
-                    >
-                        <MapConsumer>
-                            {(map) => {
-                                console.log("map center:", map.getCenter())
-                                return null
-                            }}
-                        </MapConsumer>
-                        <ChangeView center={center} zoom={12} search={this.search}/>
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                    </MapContainer>
-                    <Navigation currPage={Pages.MAP} controlPanel={controlPanel}
-                                search={<MapSearch/>}/>
-                </div>
-            </div>
-        )
-    }
+    return new L.divIcon({
+        html: `<div class="marker-cluster-wrapper"><span class="marker-cluster-counter">${cluster.getChildCount()}</span></div>`,
+        className: 'marker-cluster marker-cluster-' + clusterSize,
+        iconSize: L.point(40, 40, true),
+    })
 }
 
-const ChangeView = ({center, zoom, search}) => {
-    const map = useMap()
+const Map = (props) => {
 
-    map.setView(center, zoom)
-    console.log('search: ' + search)
     useEffect(() => {
-        if (search !== undefined && search !== null) {
-            map.addControl(search)
-            return () => map.removeControl(search)
-        }
-    }, [map, search])
+        props.getMarkers()
+        props.getCenterPosition()
+    }, [])
+
+    const markers = props.markers.map(e => [e.lat, e.lng])
+    console.log(markers)
+
+    const center = props.centerPosition
+    console.log(center)
+
+    const controlPanel = [<AddMarker key={"Add"}/>, <GetLocation key={"GetLocation"}/>]
+
+    return (
+        <div className={"map"}>
+            <div className={"map-wrapper mx-auto"}>
+                <MapContainer
+                    center={center}
+                    zoom={12}
+                    zoomControl={false}
+                    className={"map-container"}
+                >
+                    <ChangeView center={center} zoom={12}/>
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <MarkerClusterGroup
+                        spiderfyOnMaxZoom={true}
+                        iconCreateFunction={createClusterCustomIcon}
+                        showCoverageOnHover={false}
+                    >
+                        {markers.map((position, idx) =>
+                            <Marker key={`marker-${idx}`} position={position}>
+                                <Popup>
+                                    <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+                                </Popup>
+                            </Marker>
+                        )}
+                    </MarkerClusterGroup>
+                </MapContainer>
+                <Navigation currPage={Pages.MAP} controlPanel={controlPanel}
+                            search={<MapSearch/>}/>
+            </div>
+        </div>
+    )
+}
+
+const ChangeView = ({center, zoom}) => {
+    const map = useMap()
+    map.setView(center, zoom)
+
+    const onMove = useCallback(() => {
+        localStorage.setItem("center", JSON.stringify(map.getCenter()))
+    }, [map])
+    useEffect(() => {
+        map.on('move', onMove)
+        return () => map.off('move', onMove)
+    }, [map, onMove])
 
     return null
 }
@@ -91,7 +99,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getMarkers, addMarker, getCenterPosition
+    getMarkers, getCenterPosition
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map)

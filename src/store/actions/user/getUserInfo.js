@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {GET_USER_INFO, USER_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {GET_USER_INFO, USER_ERROR} from '../../types'
 
 export const getUserInfo = (userId) => async dispatch => {
     try {
@@ -15,5 +15,3 @@ export const getUserInfo = (userId) => async dispatch => {
         })
     }
 }
-
-export default getUserInfo();
