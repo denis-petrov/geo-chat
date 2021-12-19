@@ -1,4 +1,10 @@
-import {ADD_MESSAGE, GET_LAST_MESSAGES_FOR_CHAT_LIST, GET_MESSAGES, GET_MESSAGES_BEFORE_DATE} from '../types'
+import {
+    ADD_MESSAGE,
+    GET_LAST_MESSAGE,
+    GET_LAST_MESSAGES_FOR_CHAT_LIST,
+    GET_MESSAGES,
+    GET_MESSAGES_BEFORE_DATE
+} from '../types'
 
 const initialState = [];
 
@@ -56,7 +62,8 @@ const messageReducer = (state = initialState, action) => {
                     && data.length === 1
                 ) {
                     let messages = state.messages[chatId]
-                    if (messages[messages.length - 1].chatId === data[0].chatId) {
+                    console.log(state.messages[chatId], data)
+                    if (messages[messages.length - 1].chatId === data[0].chatId && messages[messages.length - 1].messageId !== data[0].messageId) {
                         data = data.concat(messages)
                     }
                 }

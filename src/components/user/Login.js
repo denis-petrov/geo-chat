@@ -16,8 +16,10 @@ class Login extends Component {
         this.props.authByEmail(userAuthData)
             .then(() => {
                 console.log(this.props.user, JSON.stringify(this.props.user));
-                window.localStorage.setItem('authenticated', JSON.stringify(this.props.user));
-                window.location.assign(window.location.origin + '/map');
+                if (Object.keys(this.props.user).length > 0) {
+                    window.localStorage.setItem('authenticated', JSON.stringify(this.props.user));
+                    window.location.assign(window.location.origin + '/map');
+                }
             })
             .catch((err) => {
                 console.log(err)

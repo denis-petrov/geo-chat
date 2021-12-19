@@ -25,7 +25,12 @@ class Login extends Component {
                         {user ? user.name : ''}
                     </div>
 
-                    <div>
+                    <div className={"text-light"}>
+                        <div>
+                            <div>Your User Id:</div>
+                            {user.userId}
+                        </div>
+
                         <Link to={'/friends'}>
                             <button id={"friends"} type="button" className="btn btn-primary">Friends</button>
                         </Link>

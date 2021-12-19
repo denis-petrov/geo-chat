@@ -4,13 +4,12 @@ import {BrowserRouter} from 'react-router-dom'
 import './assets/css/App.css'
 import ChatList from './components/chat/ChatList'
 import Map from './components/map/Map'
-import Login from "./components/user/Login"
-import Chat from "./components/chat/Chat"
-import ChatSetting from "./components/chat/ChatSetting"
-import Register from "./components/user/Register"
-import Profile from "./components/user/Profile"
-import FriendList from "./components/friend/FriendList"
-
+import Login from './components/user/Login'
+import Chat from './components/chat/Chat'
+import ChatSetting from './components/chat/ChatSetting'
+import Register from './components/user/Register'
+import Profile from './components/user/Profile'
+import FriendList from './components/friend/FriendList'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'
 import 'leaflet-defaulticon-compatibility'

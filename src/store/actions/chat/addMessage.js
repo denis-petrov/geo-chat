@@ -8,6 +8,7 @@ export const addMessage = (chatId, userId, message) => async dispatch => {
         bodyFormData.append('senderId', userId);
         bodyFormData.append('message', message);
         bodyFormData.append('timestamp', new Date().getTime());
+        bodyFormData.append('attachments[]', []);
         const res = await API.post('/message/create', bodyFormData);
         dispatch({
             type: ADD_MESSAGE,

@@ -9,14 +9,24 @@ import {updateChatName} from "../../store/actions/chat/updateChatName";
 import {removeChat} from "../../store/actions/chat/removeChat";
 import {removeMember} from "../../store/actions/chat/removeMember";
 import {getCurrentUser} from "../../utils/getCurrentUser";
+import {Modal} from "react-bootstrap";
+import {getFriends} from "../../store/actions/friend/getFriends";
+import {addMemberToChat} from "../../store/actions/chat/addMemberToChat";
 
 class ChatSetting extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {showModal: false}
+    }
 
     componentDidMount() {
         this.props.getChatInfo(this.props.chatId).then(() => {
             // get chat members info
             //this.props.getUsersByIds(this.props.chats.chatInfo.members);
-        });
+        })
+        let user = getCurrentUser()
+        this.props.getFriends(user.userId)
     }
 
     leaveFromChat() {
@@ -32,13 +42,36 @@ class ChatSetting extends Component {
         }
     }
 
+    addFriendToChat(friendId) {
+        this.props.addMemberToChat(friendId, this.props.chatId)
+    }
+
     render() {
-        console.log(this.props)
         let chat
         let members
         if (this.props.chats.chatInfo) {
             chat = this.props.chats.chatInfo;
             members = chat.members;
+        }
+
+        let stateFriends = this.props.friends.friends
+        let friends = []
+
+        if (stateFriends) {
+            for (let key in stateFriends) {
+                let friend = stateFriends[key]
+                friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`} className={"text-light d-flex"}>
+                    <span className={"w-100"}>{friend.name}</span>
+                    <button className="btn-primary" type="button" onClick={() => {
+                        this.addFriendToChat(friend.userId)
+                    }}>+
+                    </button>
+                </div>)
+            }
+        }
+
+        if (friends.length === 0) {
+            friends.push(<div key={'empty'} className={"text-light"}>Friend list is empty</div>)
         }
 
         return (
@@ -74,16 +107,18 @@ class ChatSetting extends Component {
                                     <button id={"leave-chat"} type="button" className="btn btn-danger">Leave Chat</button>
                                 </Link>
                             </div>
-                            <div onClick={() => {this.props.removeChat(this.props.chatId)}}>
+                            {/*<div onClick={() => {this.props.removeChat(this.props.chatId)}}>
                                 <Link to={'/chat'}>
                                     <button id={"remove-chat"} type="button" className="btn btn-danger">Remove Chat</button>
                                 </Link>
-                            </div>
+                            </div>*/}
                         </div>
 
                         <div className={"members-block"}>
                             <div>{members ? members.length : ''} Members</div>
-                            <button id={"add-member"} type="button" className="btn btn-primary">
+                            <button id={"add-member"} type="button" className="btn btn-primary" onClick={() => {
+                                this.setState({showModal: true})
+                            }}>
                                 Add Member
                             </button>
 
@@ -94,6 +129,31 @@ class ChatSetting extends Component {
                     </div>
 
                 </div>
+
+                <Modal show={this.state.showModal}>
+                    <div className={"chat"}>
+                        <div className={"chat-wrapper mx-auto"}>
+
+                            <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
+                                <div className={"w-100"}>Add Member</div>
+                                <button type="button" className="btn btn-primary" onClick={() => {
+                                    this.setState({showModal: false})
+                                }}>
+                                    x
+                                </button>
+                            </div>
+
+                            <div className={"dialog-items-wrapper p-3"}>
+                                <div className={"text-light py-2"}>
+                                    <h4>Friends</h4>
+                                    <div className={"friend-list-content"}>
+                                        {friends}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         );
     }
@@ -101,10 +161,11 @@ class ChatSetting extends Component {
 
 const chatSettingStateToProps = (state) => ({
     chats: state.chats,
+    friends: state.friends
 })
 
 const chatSettingDispatchToProps = {
-    getChatInfo, updateChatName, removeChat, removeMember
+    getChatInfo, updateChatName, removeChat, removeMember, getFriends, addMemberToChat
 }
 
 export default connect(chatSettingStateToProps, chatSettingDispatchToProps)(ChatSetting);

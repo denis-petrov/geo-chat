@@ -15,8 +15,10 @@ class Register extends Component {
                 console.log(this.props.user.userId);
                 this.props.getUserInfo(this.props.user.userId).then(() => {
                     console.log(this.props)
-                    window.localStorage.setItem('authenticated', JSON.stringify(this.props.user));
-                    window.location.assign(window.location.origin + '/map');
+                    if (Object.keys(this.props.user).length > 0) {
+                        window.localStorage.setItem('authenticated', JSON.stringify(this.props.user));
+                        window.location.assign(window.location.origin + '/map');
+                    }
                 });
             })
             .catch((err) => {console.log(err)})
