@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {ADD_MESSAGE, MESSAGES_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {ADD_MESSAGE, MESSAGES_ERROR} from '../../types'
 
 export const addMessage = (chatId, userId, message) => async dispatch => {
     try {
@@ -8,8 +8,8 @@ export const addMessage = (chatId, userId, message) => async dispatch => {
             senderId: userId,
             message: message,
             sentDate: new Date().getTime()
-        };
-        const res = await API.post('/message/create', data);
+        }
+        const res = await API.post('/message/create', data)
         dispatch({
             type: ADD_MESSAGE,
             payload: res.data
@@ -21,5 +21,3 @@ export const addMessage = (chatId, userId, message) => async dispatch => {
         })
     }
 }
-
-export default addMessage();

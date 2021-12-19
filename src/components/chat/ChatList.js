@@ -47,7 +47,7 @@ const chatListStateToProps = (state) => ({
 })
 
 const chatListDispatchToProps = {
-    getChats, addChat, getMessages
+        getChats, addChat, getMessages
 }
 
 export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);

@@ -7,6 +7,11 @@ import Map from './components/map/Map'
 import Login from "./components/user/Login";
 import Chat from "./components/chat/Chat";
 
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'
+import 'leaflet-defaulticon-compatibility'
+
+
 function requireAuth(component = null) {
     if (!window.localStorage.getItem('authenticated')) {
         if (component === null) {

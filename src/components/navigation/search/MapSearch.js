@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import '../../../assets/css/search/Search.css'
 import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch'
 import {connect} from 'react-redux'
-import {updateCenterPosition} from '../../../store/actions/position/updateCenter'
+import {updateCenterPosition} from '../../../store/actions/position/updateCenterPosition'
 
 
 const search = async (event, searchReq, setAddresses) => {
@@ -37,14 +37,17 @@ const MapSearch = (props) => {
         return () => document.removeEventListener('mousedown', handleClickOutside)
     })
 
-    let visibilityOfAddressList = (isVisibleAddressList) ? "" : "hidden"
-    let addressList
-    addressList = (
+    const visibilityOfAddressList = (isVisibleAddressList) ? "" : "hidden"
+    const addressList = (
         <div className={"search__address_list " + visibilityOfAddressList} ref={searchRef}>
             <div className={"p-2"}>
                 {addresses.map((e, id) =>
                     <button className={"search__address_list__label py-2"} key={"search-label-" + id}
-                         onClick={() => props.updateCenterPosition(e)}>
+                         onClick={() => {
+                             const lng = e.x
+                             const lat = e.y
+                             props.updateCenterPosition({lat, lng})
+                         }}>
                         <img src="icons/navigation/marker-address-list.png" alt="marker" className={"search__address_list__label__icon"}/>
                         <div className={"search__address_list__label__text"}>{e.label}</div>
                     </button>

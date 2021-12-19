@@ -1,7 +1,7 @@
 import {API} from '../../../api/API'
 import {GET_USER_INFO, USER_ERROR} from '../../types'
 
-export const getUserInfo = (userId) => async dispatch => {
+export const createUser = () => async dispatch => {
     try {
         const res = await API.get('/user/getUserInfo', { params: { userId: userId}})
         dispatch({
