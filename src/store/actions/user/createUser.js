@@ -1,11 +1,15 @@
-import {API} from '../../../api/API'
-import {GET_USER_INFO, USER_ERROR} from '../../types'
+import {API} from '../../../api/API';
+import {CREATE_USER, USER_ERROR} from '../../types';
 
-export const createUser = () => async dispatch => {
+export const createUser = (name, email, password) => async dispatch => {
     try {
-        const res = await API.get('/user/getUserInfo', { params: { userId: userId}})
+        let bodyFormData = new FormData();
+        bodyFormData.append('name', name);
+        bodyFormData.append('email', email);
+        bodyFormData.append('password', password);
+        const res = await API.post('/user/create', bodyFormData)
         dispatch({
-            type: GET_USER_INFO,
+            type: CREATE_USER,
             payload: res.data
         })
     } catch (e) {

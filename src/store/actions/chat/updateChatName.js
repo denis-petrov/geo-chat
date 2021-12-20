@@ -1,13 +1,14 @@
 import {API} from '../../../api/API';
-import {ADD_CHAT, CHATS_ERROR} from '../../types';
+import {UPDATE_CHAT_NAME, CHATS_ERROR} from '../../types';
 
-export const addChat = (name) => async dispatch => {
+export const updateChatName = (chatId, name) => async dispatch => {
     try {
         let bodyFormData = new FormData();
+        bodyFormData.append('chatId', chatId);
         bodyFormData.append('name', name);
-        const res = await API.post('/chat/create', bodyFormData)
+        const res = await API.post('/chat/updateName', bodyFormData)
         dispatch({
-            type: ADD_CHAT,
+            type: UPDATE_CHAT_NAME,
             payload: res.data
         })
     } catch (e) {
@@ -18,4 +19,4 @@ export const addChat = (name) => async dispatch => {
     }
 }
 
-export default addChat();
+export default updateChatName();

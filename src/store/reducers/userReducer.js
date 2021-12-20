@@ -1,15 +1,11 @@
-import {CREATE_USER, GET_USER_INFO} from '../types'
+import {AUTH_USER, CREATE_USER, GET_USER_INFO} from '../types'
 
 const initialState = {
-    userId: '1',
-    role: 'String',
-    name: 'String',
-    email: 'String',
-    password: 'String'
 }
 
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
+        case AUTH_USER:
         case GET_USER_INFO:
             console.log(state, action)
             return {
@@ -20,7 +16,7 @@ const chatReducer = (state = initialState, action) => {
             console.log(state, action)
             return {
                 ...state,
-                user: action.payload
+                userId: action.payload
             }
         default:
             return state

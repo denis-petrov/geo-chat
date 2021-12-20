@@ -42,6 +42,7 @@
 .message-text {
     max-width: calc(100% - 5.5625rem);
     background: #9f90ad;
+    word-break: break-word;
 }
 
 .is-out {
@@ -59,9 +60,10 @@
 }
 
 .msg-time {
+    position: relative;
     left: 6px;
     top: 6px;
-    position: relative;
+    float: right;
     font-size: 12px;
 }
 
@@ -74,4 +76,8 @@
 .dialog-input:focus,
 .dialog-input:focus-visible {
     outline: none;
+}
+
+.members-block {
+    color: white;
 }

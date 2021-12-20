@@ -9,24 +9,42 @@ import Add from "../navigation/control-button/Add"
 import Pages from "../navigation/Pages"
 import ChatSearch from "../navigation/search/ChatSearch"
 import {getMessages} from "../../store/actions/chat/getMessages"
+import {addMemberToChat} from "../../store/actions/chat/addMemberToChat";
+import {getCurrentUser} from "../../utils/getCurrentUser";
 
 class ChatList extends Component {
 
-    componentDidMount() {
-        console.log('test')
-        this.props.getChats('33f502fa-fe33-438b-8da3-5072d71444bc')
+    newChat() {
+        this.props.addChat('default chat').then(() => {
+            let newChatId = this.props.chats.newChatId;
+            if (newChatId) {
+                let user = getCurrentUser();
+                this.props.addMemberToChat(user.userId, newChatId);
+                window.location.assign(window.location.origin + '/chat/' + newChatId + '/settings');
+            }
+        });
     }
 
+    componentDidMount() {
+        let user = getCurrentUser()
+        this.props.getChats(user.userId)
+    }
     render() {
         let items = this.props.chats.chats
-        console.log(this.props)
         let dialogItems = []
-        for (let key in items) {
-            let chat = items[key]
-            dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId}/>)
+        if (items) {
+            for (let key in items) {
+                let chat = items[key]
+                dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId}/>)
+            }
+            dialogItems.reverse();
         }
 
-        const controlPanel = [<Add key={"Add"}/>]
+        if (dialogItems.length === 0) {
+            dialogItems.push(<div key={'empty'} className={"text-light"}>Chat list is empty</div>)
+        }
+
+        const controlPanel = [<Add key={"Add"} onClick={() => {this.newChat()}} />]
 
         return (
             <div className={"chat"}>
@@ -47,7 +65,7 @@ const chatListStateToProps = (state) => ({
 })
 
 const chatListDispatchToProps = {
-        getChats, addChat, getMessages
+    getChats, addChat, getMessages, addMemberToChat
 }
 
 export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);

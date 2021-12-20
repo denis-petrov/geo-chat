@@ -4,57 +4,56 @@ import DialogTextItem from "./DialogTextItem";
 import {connect} from "react-redux";
 import {getMessages} from "../../store/actions/chat/getMessages";
 import {addMessage} from "../../store/actions/chat/addMessage";
+import {getMessagesBeforeDate} from "../../store/actions/chat/getMessagesBeforeDate";
 
 class Dialog extends Component {
 
     componentDidMount() {
         this.props.getMessages(this.props.chatId, 50);
+        let dialogContent = document.getElementsByClassName('dialog-content')[0]
+        dialogContent.addEventListener('scroll', function(e) {
+            this.getMessagesBefore(e.target)
+        }.bind(this));
+    }
+
+    getMessagesBefore(target) {
+        if (target.scrollTop < 0) {
+            if (target.offsetHeight - target.scrollHeight >= target.scrollTop) {
+                let messages = this.props.messages.messages;
+                if (messages) {
+                    messages = messages[this.props.chatId]
+                    if (messages) {
+                        let message = messages[messages.length - 1]
+                        this.props.getMessagesBeforeDate(this.props.chatId, 50, message.sentDate);
+                    }
+                }
+            }
+        }
     }
 
     render() {
-        // get user
-        // let user = getUser();
-        let user = {
-            userId: "1",
-            role: "Admin",
-            name: "Andrey Okunev",
-            email: "test1@test.com"
-        };
-
-        // get chat's messages
-        // let messages = getMessages(props.chat.chatId);
-        /*let messages = [
-            {
-                messageId: "1",
-                sender: "1",
-                chat: "1",
-                message: "Hi, my friend!",
-                sentDate: "2021-10-31 19:20:00"
-
-            },
-            {
-                messageId: "2",
-                sender: "2",
-                chat: "1",
-                message: "Oh, hi",
-                sentDate: "2021-10-31 19:22:00"
-            },
-            {
-                messageId: "3",
-                sender: "2",
-                chat: "1",
-                message: "Sup",
-                sentDate: "2021-10-31 19:22:30"
-            }
-        ];*/
-
         let dialogTextItems = [];
         let messages = this.props.messages.messages;
-        if (messages) {
+        if (messages !== undefined && messages[this.props.chatId]) {
+            messages = messages[this.props.chatId]
             messages.reverse();
-            messages.forEach((message) => {
-                dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} user={user} />);
-            });
+            for (let i = 0; i < messages.length; i++) {
+                let message = messages[i]
+                if (message.chatId !== this.props.chatId) {
+                    continue
+                }
+
+                let message2 = i - 1 >= 0 ? messages[i - 1] : messages[i]
+
+                let date = new Date(message.sentDate)
+                let date2 = new Date(message2.sentDate)
+
+                if (i === 0 || date.toLocaleDateString() !== date2.toLocaleDateString()) {
+                    dialogTextItems.push(<div key={"date-" + message.sentDate + i} className={"text-light mx-auto w-25"}>{date.toLocaleDateString()}</div>);
+                }
+
+                dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} />);
+            }
         }
 
         return (
@@ -72,7 +71,7 @@ const messagesStateToProps = (state) => ({
 })
 
 const dialogDispatchToProps = {
-    getMessages, addMessage
+    getMessages, addMessage, getMessagesBeforeDate
 }
 
 export default connect(messagesStateToProps, dialogDispatchToProps)(Dialog);
