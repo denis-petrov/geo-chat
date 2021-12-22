@@ -72,7 +72,7 @@ const Navigation = (props) => {
                         <Link to="/friends">
                             <div
                                 className={"navigation__block_item_background" + (currPage === Pages.FRIENDS ? " active" : "")}>
-                                <img src={"/icons/navigation/settings.png"} alt="Profile"
+                                <img src={"/icons/navigation/friends.png"} alt="Profile"
                                      className={"navigation__block_item_logo center"}/>
                             </div>
                             <p className={"navigation__block_item_name p__center"}>Friends</p>

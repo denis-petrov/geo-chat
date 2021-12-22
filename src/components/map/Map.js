@@ -1,6 +1,6 @@
 import '../../assets/css/map/Map.css'
-import React, {useCallback, useEffect} from 'react'
-import {MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
+import React, {useCallback, useEffect, useState} from 'react'
+import {MapContainer, Marker, TileLayer, useMap} from 'react-leaflet'
 import Navigation from '../navigation/Navigation'
 import {connect} from 'react-redux'
 import {getMarkers} from '../../store/actions/markers/getMarkers'
@@ -14,6 +14,11 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 import MarkerClusterGroup from "react-leaflet-markercluster"
 import "leaflet/dist/images/marker-shadow.png"
+import {Button, Modal} from "react-bootstrap"
+import {addMemberToChat} from "../../store/actions/chat/addMemberToChat"
+import {getCurrentUser} from "../../utils/getCurrentUser"
+import {useHistory} from "react-router"
+import {updateCenterPosition} from "../../store/actions/position/updateCenterPosition"
 
 
 const createClusterCustomIcon = cluster => {
@@ -24,11 +29,12 @@ const createClusterCustomIcon = cluster => {
     return new L.divIcon({
         html: `<div class="marker-cluster-wrapper"><span class="marker-cluster-counter">${cluster.getChildCount()}</span></div>`,
         className: 'marker-cluster marker-cluster-' + clusterSize,
-        iconSize: L.point(40, 40, true),
+        iconSize: L.point(40, 40, true)
     })
 }
 
 const Map = (props) => {
+    const history = useHistory()
 
     useEffect(() => {
         props.getMarkers()
@@ -39,10 +45,29 @@ const Map = (props) => {
     console.log(markers)
 
     const center = props.centerPosition
-    console.log(center)
 
     const controlPanel = [<AddMarker key={"Add"}/>, <GetLocation key={"GetLocation"}/>]
 
+    const handleClickMarker = (marker) => {
+        setCurrMarker(marker)
+        setModalShow(true)
+    }
+    const [currMarker, setCurrMarker] = useState(null)
+
+
+    const [modalShow, setModalShow] = useState(false)
+    const handleClose = () => {
+        setCurrMarker(null)
+        setModalShow(false)
+    }
+
+    const handleModalSubmit = () => {
+        addMemberToChat(getCurrentUser().userId, currMarker.chatId)
+        setModalShow(false)
+        history.push('/chat/' + currMarker.chatId)
+    }
+
+    console.log(center)
     return (
         <div className={"map"}>
             <div className={"map-wrapper mx-auto"}>
@@ -62,19 +87,34 @@ const Map = (props) => {
                         iconCreateFunction={createClusterCustomIcon}
                         showCoverageOnHover={false}
                     >
-                        {markers.map(marker => {
-                                console.log(marker)
-                                const position = {lat: marker.lat, lng: marker.lng}
-                                return (<Marker key={`marker-${marker.markerId}`} position={position} onClick={e => console.log('click')}>
-                                        <h1></h1>
-                                        <Popup>
-                                            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-                                        </Popup>
-                                    </Marker>
-                                )
-                            }
-                        )}
+                        {markers.map(marker => (
+                            <Marker key={`marker-${marker.markerId}`} position={{lat: marker.lat, lng: marker.lng}}
+                                    eventHandlers={{click: () => {
+                                            handleClickMarker(marker)
+                                            props.updateCenterPosition({lat: marker.lat, lng: marker.lng})
+                                        }}}>
+                            </Marker>
+                        ))}
                     </MarkerClusterGroup>
+
+                    {(currMarker !== null) ?
+                        <Modal show={modalShow} onHide={handleClose} centered>
+                            <Modal.Header closeButton className={"map__modal"}>
+                                <Modal.Title>{currMarker.title}</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className={"map__modal"}>
+                                {currMarker.description}
+                            </Modal.Body>
+                            <Modal.Footer className={"map__modal map__modal_footer"}>
+                                {(currMarker.chatId !== null && currMarker.chatId !== undefined) ?
+                                    <Button className={"map__model_create"} onClick={handleModalSubmit}>
+                                        Join to Chat
+                                    </Button> : null
+                                }
+                            </Modal.Footer>
+                        </Modal> : null
+                    }
+
                 </MapContainer>
                 <Navigation currPage={Pages.MAP} controlPanel={controlPanel}
                             search={<MapSearch/>}/>
@@ -104,7 +144,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getMarkers, getCenterPosition
+    getMarkers, getCenterPosition, addMemberToChat, updateCenterPosition
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map)

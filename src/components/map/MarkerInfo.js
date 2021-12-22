@@ -1,13 +1,8 @@
+import '../../assets/css/map/Map.css'
 import React, {useState} from 'react'
-import '../../../assets/css/navigation/Navigation.css'
-import {connect} from 'react-redux'
-import {updateCenterPosition} from '../../../store/actions/position/updateCenterPosition'
-import {addMarker} from '../../../store/actions/markers/addMarker'
-import {Button, FloatingLabel, Form, Modal} from "react-bootstrap"
-import '../../../assets/css/map/Map.css'
-import {getMarkers} from "../../../store/actions/markers/getMarkers"
+import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 
-const AddMarker = (props) => {
+const MarkerInfo = (props) => {
     const [modalShow, setModalShow] = useState(false)
     const handleClose = () => {
         setModalShow(false)
@@ -63,19 +58,11 @@ const AddMarker = (props) => {
                                       className={"map__modal_input"}
                                       placeholder="Description"
                         />
-
-                        <Form.Select className={"me-sm-2 map__modal_select"}
-                                     id="isCreateChat"
-                                     onChange={handleSelectLinkedChat}
-                        >
-                            <option value={0}>Create linked chat</option>
-                            <option value={1}>Do not create chat</option>
-                        </Form.Select>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer className={"map__modal map__modal_footer"}>
                     <Button className={"map__model_create"} onClick={handleSubmit}>
-                        Add marker
+                        Join to Chat
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -83,14 +70,4 @@ const AddMarker = (props) => {
     )
 }
 
-
-const mapStateToProps = (state) => ({
-    centerPosition: state.centerPosition
-})
-
-
-const mapDispatchToProps = {
-    updateCenterPosition, addMarker, getMarkers
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddMarker)
+export default MarkerInfo
