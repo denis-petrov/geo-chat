@@ -7,9 +7,7 @@ const markerReducer = (state = initialState, action) => {
         case GET_MARKERS:
             return action.payload
         case ADD_MARKER:
-            console.log(state)
             state = state.concat(action.payload)
-            console.log(state)
             return state
         default:
             return state

@@ -51,6 +51,7 @@ const Map = (props) => {
     const handleClickMarker = (marker) => {
         setCurrMarker(marker)
         setModalShow(true)
+        console.log(marker)
     }
     const [currMarker, setCurrMarker] = useState(null)
 
@@ -89,10 +90,12 @@ const Map = (props) => {
                     >
                         {markers.map(marker => (
                             <Marker key={`marker-${marker.markerId}`} position={{lat: marker.lat, lng: marker.lng}}
-                                    eventHandlers={{click: () => {
+                                    eventHandlers={{
+                                        click: () => {
                                             handleClickMarker(marker)
                                             props.updateCenterPosition({lat: marker.lat, lng: marker.lng})
-                                        }}}>
+                                        }
+                                    }}>
                             </Marker>
                         ))}
                     </MarkerClusterGroup>
@@ -106,10 +109,11 @@ const Map = (props) => {
                                 {currMarker.description}
                             </Modal.Body>
                             <Modal.Footer className={"map__modal map__modal_footer"}>
-                                {(currMarker.chatId !== null && currMarker.chatId !== undefined) ?
-                                    <Button className={"map__model_create"} onClick={handleModalSubmit}>
-                                        Join to Chat
-                                    </Button> : null
+                                {(currMarker.chatId !== null && currMarker.chatId !== undefined)
+                                    ? (<Button className={"map__model_create"} onClick={handleModalSubmit}>
+                                            Join to Chat
+                                        </Button>
+                                    ) : null
                                 }
                             </Modal.Footer>
                         </Modal> : null
