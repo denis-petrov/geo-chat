@@ -1,9 +1,8 @@
 import {AUTH_USER, CREATE_USER, GET_USER_INFO} from '../types'
 
-const initialState = {
-}
+const initialState = {}
 
-const chatReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_USER:
         case GET_USER_INFO:
@@ -23,4 +22,4 @@ const chatReducer = (state = initialState, action) => {
     }
 }
 
-export default chatReducer;
+export default userReducer

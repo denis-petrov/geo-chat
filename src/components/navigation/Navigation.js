@@ -3,6 +3,8 @@ import {Card} from 'react-bootstrap'
 import '../../assets/css/navigation/Navigation.css'
 import {Link} from 'react-router-dom'
 import Pages from '../navigation/Pages'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircle} from "@fortawesome/free-solid-svg-icons";
 
 
 const Navigation = (props) => {
@@ -10,6 +12,16 @@ const Navigation = (props) => {
 
     const search = props.search
     const controlPanel = props.controlPanel
+
+    let chatMessages = JSON.parse(window.localStorage.getItem('chatMessages'))
+    if (!chatMessages) {
+        chatMessages = {}
+    }
+
+    let unreadMessages = ''
+    if (Object.keys(chatMessages).length > 0) {
+        unreadMessages = <FontAwesomeIcon icon={faCircle} className={"text-primary fa-xs unread-msg-point"}/>
+    }
 
     return (
         <div className={"navigation__wrapper"}>
@@ -41,6 +53,7 @@ const Navigation = (props) => {
                                      className={"navigation__block_item_logo center"}/>
                             </div>
                             <p className={"navigation__block_item_name p__center"}>Chat</p>
+                            {unreadMessages}
                         </Link>
                     </Card>
 
@@ -55,14 +68,14 @@ const Navigation = (props) => {
                         </Link>
                     </Card>
 
-                    <Card className={"navigation__block_item mx-auto" + (currPage === Pages.SETTINGS ? " active" : "")}>
-                        <Link to="/settings">
+                    <Card className={"navigation__block_item mx-auto" + (currPage === Pages.FRIENDS ? " active" : "")}>
+                        <Link to="/friends">
                             <div
-                                className={"navigation__block_item_background" + (currPage === Pages.SETTINGS ? " active" : "")}>
+                                className={"navigation__block_item_background" + (currPage === Pages.FRIENDS ? " active" : "")}>
                                 <img src={"/icons/navigation/settings.png"} alt="Profile"
                                      className={"navigation__block_item_logo center"}/>
                             </div>
-                            <p className={"navigation__block_item_name p__center"}>Settings</p>
+                            <p className={"navigation__block_item_name p__center"}>Friends</p>
                         </Link>
                     </Card>
                 </Card>

@@ -1,3 +1,7 @@
 .friend-list-content {
     overflow-y: scroll;
 }
+
+.name-field {
+    font-size: 18px;
+}

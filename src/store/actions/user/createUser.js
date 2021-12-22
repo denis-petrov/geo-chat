@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {CREATE_USER, USER_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {CREATE_USER, USER_ERROR} from '../../types'
 
 export const createUser = (name, email, password) => async dispatch => {
     try {
@@ -12,6 +12,8 @@ export const createUser = (name, email, password) => async dispatch => {
             type: CREATE_USER,
             payload: res.data
         })
+
+        return res.data
     } catch (e) {
         dispatch({
             type: USER_ERROR,

@@ -10,6 +10,8 @@ export const addChat = (name) => async dispatch => {
             type: ADD_CHAT,
             payload: res.data
         })
+
+        return res.data
     } catch (e) {
         dispatch({
             type: CHATS_ERROR,

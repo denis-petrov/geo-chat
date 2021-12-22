@@ -81,3 +81,16 @@
 .members-block {
     color: white;
 }
+
+.msg-sender-name {
+    font-size: 13px;
+    margin-right: auto;
+}
+
+.token-field {
+    outline: none;
+    border: none;
+    color: #fff;
+    background: #201E21;
+    padding-right: 1rem;
+}

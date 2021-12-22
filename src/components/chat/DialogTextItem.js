@@ -1,27 +1,56 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../assets/css/chat/Chat.css";
 import {connect} from "react-redux";
 import {getCurrentUser} from "../../utils/getCurrentUser";
+import {getUserInfo} from "../../store/actions/user/getUserInfo";
 
-class DialogTextItem extends Component {
+const DialogTextItem = (props) => {
 
-    render() {
-        const yourMsgClass = "is-out";
-        let user = getCurrentUser()
-        let isYourMsg = user.userId === this.props.message.senderId;
-        let message = this.props.message;
+    useEffect(() => {
+        if (props.showUser) {
+            let users = JSON.parse(window.localStorage.getItem('users'))
+            if (!users) {
+                users = {}
+            }
 
-        let date = new Date(message.sentDate);
+            let userName = users[message.senderId]
+            if (!userName) {
+                if (Object.keys(props.user).length === 0) {
+                    props.getUserInfo(message.senderId)
+                }
+            }
+        }
+    }, [])
 
-        return (
-            <div className={`my-2 d-flex ${isYourMsg ? yourMsgClass : ""}`}>
-                <div className={"message-text px-3 p-2 rounded-3"}>
-                    <span>{message.message}</span>
-                    <span className={"msg-time"}>{`${date.getHours()}:${date.getMinutes()}`}</span>
-                </div>
+    const yourMsgClass = "is-out";
+    let user = getCurrentUser()
+    let isYourMsg = user.userId === props.message.senderId;
+    let message = props.message;
+
+    let date = new Date(message.sentDate);
+
+    let userName = ''
+    if (props.showUser && !isYourMsg) {
+        let users = JSON.parse(window.localStorage.getItem('users'))
+        if (!users) {
+            users = {}
+        }
+        userName = <div className={"d-flex"}>
+            <div className={"msg-sender-name"}>
+                {users[message.senderId]}
             </div>
-        )
+        </div>
     }
+
+    return (
+        <div className={`my-2 d-flex ${isYourMsg ? yourMsgClass : ""}`}>
+            <div className={"message-text px-3 p-2 rounded-3"}>
+                {userName}
+                <span>{message.message}</span>
+                <span className={"msg-time"}>{`${date.getHours()}:${date.getMinutes()}`}</span>
+            </div>
+        </div>
+    )
 }
 
 const dialogTextItemStateToProps = (state) => ({
@@ -29,6 +58,7 @@ const dialogTextItemStateToProps = (state) => ({
 })
 
 const dialogTextItemDispatchToProps = {
+    getUserInfo
 }
 
 export default connect(dialogTextItemStateToProps, dialogTextItemDispatchToProps)(DialogTextItem);

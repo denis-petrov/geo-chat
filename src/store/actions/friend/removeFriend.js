@@ -18,5 +18,3 @@ export const removeFriend = (userId, friendId) => async dispatch => {
         })
     }
 }
-
-export default removeFriend();

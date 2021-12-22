@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../../assets/css/chat/Chat.css'
 import DialogItem from './DialogItem'
 import Navigation from '../navigation/Navigation'
@@ -11,53 +11,98 @@ import ChatSearch from "../navigation/search/ChatSearch"
 import {getMessages} from "../../store/actions/chat/getMessages"
 import {addMemberToChat} from "../../store/actions/chat/addMemberToChat";
 import {getCurrentUser} from "../../utils/getCurrentUser";
+import {Modal} from "react-bootstrap";
+import {addMemberByInvite} from "../../store/actions/chat/addMemberByInvite";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faTimes} from "@fortawesome/free-solid-svg-icons";
 
-class ChatList extends Component {
+const ChatList = (props) => {
 
-    newChat() {
-        this.props.addChat('default chat').then(() => {
-            let newChatId = this.props.chats.newChatId;
+    const [isShowModal, setShowModal] = useState(false)
+
+    useEffect(() => {
+        let user = getCurrentUser()
+        props.getChats(user.userId)
+    }, [props.chats.inviteStatus])
+
+    const newChat = () => {
+        props.addChat('default chat')
+            .then((newChatId) => {
             if (newChatId) {
                 let user = getCurrentUser();
-                this.props.addMemberToChat(user.userId, newChatId);
+                props.addMemberToChat(user.userId, newChatId);
                 window.location.assign(window.location.origin + '/chat/' + newChatId + '/settings');
             }
         });
     }
 
-    componentDidMount() {
+    const addMemberByInvite = () => {
+        let input = document.getElementById('invite-token-field')
+        let token = input.value
         let user = getCurrentUser()
-        this.props.getChats(user.userId)
+        props.addMemberByInvite(token, user.userId)
+        input.value = ''
     }
-    render() {
-        let items = this.props.chats.chats
-        let dialogItems = []
-        if (items) {
-            for (let key in items) {
-                let chat = items[key]
-                dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId}/>)
-            }
-            dialogItems.reverse();
+
+    let items = props.chats.chats
+    let dialogItems = []
+    if (items) {
+        for (let key in items) {
+            let chat = items[key]
+            dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId}/>)
         }
+        dialogItems.reverse();
+    }
 
-        if (dialogItems.length === 0) {
-            dialogItems.push(<div key={'empty'} className={"text-light"}>Chat list is empty</div>)
-        }
+    if (dialogItems.length === 0) {
+        dialogItems.push(<h5 key={'empty'} className={"text-light text-center p-5"}>Chat list is empty</h5>)
+    }
 
-        const controlPanel = [<Add key={"Add"} onClick={() => {this.newChat()}} />]
+    const controlPanel = [<Add key={"Add"} onClick={() => {newChat()}} />]
 
-        return (
-            <div className={"chat"}>
-                <div className={"chat-wrapper mx-auto"}>
-                    <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>Chats</div>
-                    <div className={"dialog-items-wrapper"}>
-                        {dialogItems}
-                    </div>
-                    <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={<ChatSearch/>}/>
+    return (
+        <div className={"chat"}>
+            <div className={"chat-wrapper mx-auto"}>
+                <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
+                    <div>Chats</div>
+                    <FontAwesomeIcon icon={faPlus} className={"text-light my-auto ms-auto"} onClick={() => {
+                        setShowModal(true)
+                    }}/>
                 </div>
+                <div className={"dialog-items-wrapper"}>
+                    {dialogItems}
+                </div>
+                <Navigation currPage={Pages.CHAT} controlPanel={controlPanel} search={<ChatSearch/>}/>
             </div>
-        )
-    }
+
+            <Modal show={isShowModal}>
+                <div className={"chat"}>
+                    <div className={"chat-wrapper mx-auto"}>
+
+                        <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
+                            <div className={"w-100"}>Find Chat</div>
+                            <FontAwesomeIcon icon={faTimes} className={"my-auto"} onClick={() => {
+                                setShowModal(false)
+                            }}/>
+                        </div>
+
+                        <div className={"dialog-items-wrapper p-3"}>
+                            <div className="input-group mb-3">
+                                <input id="invite-token-field" type="text" className="form-control" placeholder="Invite token"
+                                       aria-label="Invite token" aria-describedby="basic-addon2"/>
+                                <div className="input-group-append">
+                                    <button id={"add-friend"} className="btn btn-primary" type="button" onClick={() => {
+                                        addMemberByInvite()
+                                    }}>Find
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+        </div>
+    )
 }
 
 const chatListStateToProps = (state) => ({
@@ -65,7 +110,7 @@ const chatListStateToProps = (state) => ({
 })
 
 const chatListDispatchToProps = {
-    getChats, addChat, getMessages, addMemberToChat
+    getChats, addChat, getMessages, addMemberToChat, addMemberByInvite
 }
 
 export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);

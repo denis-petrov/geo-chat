@@ -147,3 +147,9 @@ input {
 
     margin-bottom: 0;
 }
+
+.unread-msg-point {
+    position: relative;
+    bottom: 40px;
+    float: right;
+}

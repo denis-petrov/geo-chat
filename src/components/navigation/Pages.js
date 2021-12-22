@@ -2,6 +2,6 @@ const Pages = Object.freeze({
     MAP: 'map',
     CHAT: 'chat',
     PROFILE: 'profile',
-    SETTINGS: 'settings'
+    FRIENDS: 'friends'
 })
 export default Pages

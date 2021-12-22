@@ -8,6 +8,8 @@ export const authByName = (formData) => async dispatch => {
             type: AUTH_USER,
             payload: res.data
         })
+
+        return res.data
     } catch (e) {
         dispatch({
             type: USER_ERROR,
@@ -23,6 +25,8 @@ export const authByEmail = (formData) => async dispatch => {
             type: AUTH_USER,
             payload: res.data
         })
+
+        return res.data
     } catch (e) {
         dispatch({
             type: USER_ERROR,

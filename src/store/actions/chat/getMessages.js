@@ -9,6 +9,8 @@ export const getMessages = (chatId, numberOfMessages, type = GET_MESSAGES) => as
             type: type,
             payload: res.data
         })
+
+        return res.data
     } catch (e) {
         dispatch({
             type: MESSAGES_ERROR,

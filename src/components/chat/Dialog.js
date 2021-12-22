@@ -1,69 +1,90 @@
-import React, {Component} from 'react';
-import "../../assets/css/chat/Chat.css";
-import DialogTextItem from "./DialogTextItem";
-import {connect} from "react-redux";
-import {getMessages} from "../../store/actions/chat/getMessages";
-import {addMessage} from "../../store/actions/chat/addMessage";
-import {getMessagesBeforeDate} from "../../store/actions/chat/getMessagesBeforeDate";
+import React, {useEffect} from 'react'
+import "../../assets/css/chat/Chat.css"
+import DialogTextItem from "./DialogTextItem"
+import {connect} from "react-redux"
+import {getMessages} from "../../store/actions/chat/getMessages"
+import {addMessage} from "../../store/actions/chat/addMessage"
+import {getMessagesBeforeDate} from "../../store/actions/chat/getMessagesBeforeDate"
 
-class Dialog extends Component {
+const Dialog = (props) => {
 
-    componentDidMount() {
-        this.props.getMessages(this.props.chatId, 50);
+    useEffect(() => {
+        props.getMessages(props.chatId, 50)
         let dialogContent = document.getElementsByClassName('dialog-content')[0]
         dialogContent.addEventListener('scroll', function(e) {
-            this.getMessagesBefore(e.target)
-        }.bind(this));
+            getMessagesBefore(e.target)
+        })
+        updateUnreadMessages(props.chatId)
+    }, [])
+
+    const updateUnreadMessages = (chatId) => {
+        let chatMessages = JSON.parse(window.localStorage.getItem('chatMessages'))
+        if (!chatMessages) {
+            chatMessages = {}
+        }
+
+        delete chatMessages[chatId]
+        window.localStorage.setItem('chatMessages', JSON.stringify(chatMessages))
     }
 
-    getMessagesBefore(target) {
+    const getMessagesBefore = (target) => {
         if (target.scrollTop < 0) {
             if (target.offsetHeight - target.scrollHeight >= target.scrollTop) {
-                let messages = this.props.messages.messages;
+                let messages = props.messages.messages
                 if (messages) {
-                    messages = messages[this.props.chatId]
+                    messages = messages[props.chatId]
                     if (messages) {
                         let message = messages[messages.length - 1]
-                        this.props.getMessagesBeforeDate(this.props.chatId, 50, message.sentDate);
+                        let date = new Date(message.sentDate)
+                        props.getMessagesBeforeDate(props.chatId, 50, date.getTime())
                     }
                 }
             }
         }
     }
 
-    render() {
-        let dialogTextItems = [];
-        let messages = this.props.messages.messages;
-        if (messages !== undefined && messages[this.props.chatId]) {
-            messages = messages[this.props.chatId]
-            messages.reverse();
-            for (let i = 0; i < messages.length; i++) {
-                let message = messages[i]
-                if (message.chatId !== this.props.chatId) {
-                    continue
-                }
-
-                let message2 = i - 1 >= 0 ? messages[i - 1] : messages[i]
-
-                let date = new Date(message.sentDate)
-                let date2 = new Date(message2.sentDate)
-
-                if (i === 0 || date.toLocaleDateString() !== date2.toLocaleDateString()) {
-                    dialogTextItems.push(<div key={"date-" + message.sentDate + i} className={"text-light mx-auto w-25"}>{date.toLocaleDateString()}</div>);
-                }
-
-                dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} />);
-            }
+    const reverse = (arr) => {
+        var ret = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            ret.push(arr[i]);
         }
 
-        return (
-            <div className={"p-3 dialog-content"}>
-                <div id={'dialog-content'} className={"w-100"}>
-                    {dialogTextItems}
-                </div>
-            </div>
-        )
+        return ret;
     }
+
+    let dialogTextItems = []
+    let messages = props.messages.messages
+    if (messages !== undefined && messages[props.chatId]) {
+        messages = messages[props.chatId]
+        messages = reverse(messages)
+        for (let i = 0; i < messages.length; i++) {
+            let message = messages[i]
+            if (message.chatId !== props.chatId) {
+                continue
+            }
+
+            let message2 = i - 1 >= 0 ? messages[i - 1] : messages[i]
+
+            let date = new Date(message.sentDate)
+            let date2 = new Date(message2.sentDate)
+
+            if (i === 0 || date.toLocaleDateString() !== date2.toLocaleDateString()) {
+                dialogTextItems.push(<div key={"date-" + message.sentDate + i} className={"text-light mx-auto w-25"}>{date.toLocaleDateString()}</div>)
+            }
+
+            let showUser = i === 0 || message.senderId !== message2.senderId
+
+            dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} showUser={showUser} />)
+        }
+    }
+
+    return (
+        <div className={"p-3 dialog-content"}>
+            <div id={'dialog-content'} className={"w-100"}>
+                {dialogTextItems}
+            </div>
+        </div>
+    )
 }
 
 const messagesStateToProps = (state) => ({
@@ -74,4 +95,4 @@ const dialogDispatchToProps = {
     getMessages, addMessage, getMessagesBeforeDate
 }
 
-export default connect(messagesStateToProps, dialogDispatchToProps)(Dialog);
+export default connect(messagesStateToProps, dialogDispatchToProps)(Dialog)
