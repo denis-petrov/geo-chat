@@ -18,9 +18,9 @@
 
 .marker-cluster-wrapper {
     height: 55px !important;
-    width: 55px !important;;
-    margin-left: 5px;
-    margin-top: 5px;
+    width: 55px !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
     text-align: center;
     border-radius: 50px !important;
     font: 17px "Helvetica Neue", Arial, Helvetica, sans-serif !important;

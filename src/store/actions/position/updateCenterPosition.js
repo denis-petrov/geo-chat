@@ -11,7 +11,6 @@ export const updateCenterPosition = ({lat, lng}) => async dispatch => {
             }
         })
     } catch (e) {
-        console.log('ERORRRR')
         dispatch({
             type: USER_CENTER_ERROR,
             payload: console.log(e),

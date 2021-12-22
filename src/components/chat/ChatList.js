@@ -9,8 +9,8 @@ import Add from "../navigation/control-button/Add"
 import Pages from "../navigation/Pages"
 import ChatSearch from "../navigation/search/ChatSearch"
 import {getMessages} from "../../store/actions/chat/getMessages"
-import {addMemberToChat} from "../../store/actions/chat/addMemberToChat";
-import {getCurrentUser} from "../../utils/getCurrentUser";
+import {addMemberToChat} from "../../store/actions/chat/addMemberToChat"
+import {getCurrentUser} from "../../utils/getCurrentUser"
 import {Modal} from "react-bootstrap";
 import {addMemberByInvite} from "../../store/actions/chat/addMemberByInvite";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

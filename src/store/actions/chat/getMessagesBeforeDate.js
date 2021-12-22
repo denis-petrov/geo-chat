@@ -1,9 +1,9 @@
-import {API} from '../../../api/API';
-import {GET_MESSAGES_BEFORE_DATE, MESSAGES_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {GET_MESSAGES_BEFORE_DATE, MESSAGES_ERROR} from '../../types'
 
 export const getMessagesBeforeDate = (chatId, numberOfMessages, timestamp) => async dispatch => {
     try {
-        let data = {
+        const data = {
             chatId: chatId,
             numberOfMessages: numberOfMessages,
             timestamp: timestamp

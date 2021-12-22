@@ -9,7 +9,8 @@ const markerReducer = (state = initialState, action) => {
             return action.payload
         case ADD_MARKER:
             console.log(state)
-            const updatedMarkers = state.markers
+            console.log(action.payload)
+            const updatedMarkers = state.markers != null ? state.markers : []
             updatedMarkers.push(action.payload)
             return updatedMarkers
         default:

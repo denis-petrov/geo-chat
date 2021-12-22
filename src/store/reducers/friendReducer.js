@@ -1,6 +1,6 @@
 import {ACCEPT_INVITE, GET_FRIENDS, GET_INVITES, INVITE_FRIEND, REJECT_INVITE, REMOVE_FRIEND} from '../types'
 
-const initialState = [];
+const initialState = []
 
 const friendReducer = (state = initialState, action) => {
     console.log(state, action.payload)

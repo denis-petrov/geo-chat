@@ -35,7 +35,7 @@ const Map = (props) => {
         props.getCenterPosition()
     }, [])
 
-    const markers = props.markers.map(e => [e.lat, e.lng])
+    const markers = props.markers
     console.log(markers)
 
     const center = props.centerPosition
@@ -62,12 +62,17 @@ const Map = (props) => {
                         iconCreateFunction={createClusterCustomIcon}
                         showCoverageOnHover={false}
                     >
-                        {markers.map((position, idx) =>
-                            <Marker key={`marker-${idx}`} position={position}>
-                                <Popup>
-                                    <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-                                </Popup>
-                            </Marker>
+                        {markers.map(marker => {
+                                console.log(marker)
+                                const position = {lat: marker.lat, lng: marker.lng}
+                                return (<Marker key={`marker-${marker.markerId}`} position={position} onClick={e => console.log('click')}>
+                                        <h1></h1>
+                                        <Popup>
+                                            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+                                        </Popup>
+                                    </Marker>
+                                )
+                            }
                         )}
                     </MarkerClusterGroup>
                 </MapContainer>

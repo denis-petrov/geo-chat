@@ -1,10 +1,10 @@
-import {API} from '../../../api/API';
-import {REMOVE_USER, USER_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {REMOVE_USER, USER_ERROR} from '../../types'
 
 export const removeUser = (userId) => async dispatch => {
     try {
-        let bodyFormData = new FormData();
-        bodyFormData.append('userId', userId);
+        let bodyFormData = new FormData()
+        bodyFormData.append('userId', userId)
         const res = await API.post('/user/remove', bodyFormData)
         dispatch({
             type: REMOVE_USER,
@@ -18,4 +18,4 @@ export const removeUser = (userId) => async dispatch => {
     }
 }
 
-export default removeUser();
+export default removeUser()

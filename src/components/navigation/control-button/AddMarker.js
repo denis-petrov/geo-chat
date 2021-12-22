@@ -10,14 +10,14 @@ const AddMarker = (props) => {
     const [modalShow, setModalShow] = useState(false)
     const handleClose = () => {
         setModalShow(false)
-        setName(null)
+        setTitle(null)
         setDescription(null)
         setStateLinkedChat(0)
     }
     const handleShow = () => setModalShow(true)
 
-    const [name, setName] = useState(null)
-    const handleNameInput = (e) => setName(e.target.value)
+    const [title, setTitle] = useState(null)
+    const handleTitleInput = (e) => setTitle(e.target.value)
 
     const [description, setDescription] = useState(null)
     const handleDescriptionInput = (e) => setDescription(e.target.value)
@@ -28,8 +28,7 @@ const AddMarker = (props) => {
     const handleSubmit = () => {
         const {lat, lng} = JSON.parse(localStorage.getItem("center"))
         props.updateCenterPosition({lat, lng})
-        console.log({lat, lng, name, description, stateLinkedChat})
-        props.addMarker({lat, lng, name, description, stateLinkedChat})
+        props.addMarker({lat, lng, title, description, chatState: stateLinkedChat})
         handleClose()
     }
 
@@ -52,9 +51,9 @@ const AddMarker = (props) => {
                             label="Name"
                             className={"mb-3 map__modal_input_label"}
                         >
-                            <Form.Control type="text" onChange={handleNameInput}
+                            <Form.Control type="text" onChange={handleTitleInput}
                                           className={"map__modal_input"}
-                                          placeholder="Name"
+                                          placeholder="Title"
                             />
                         </FloatingLabel>
 
@@ -68,8 +67,8 @@ const AddMarker = (props) => {
                                      id="isCreateChat"
                                      onChange={handleSelectLinkedChat}
                         >
-                            <option value="0">Create linked chat</option>
-                            <option value="1">Do not create chat</option>
+                            <option value={0}>Create linked chat</option>
+                            <option value={1}>Do not create chat</option>
                         </Form.Select>
                     </Form.Group>
                 </Modal.Body>

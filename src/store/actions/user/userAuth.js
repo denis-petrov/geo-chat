@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {AUTH_USER, USER_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {AUTH_USER, USER_ERROR} from '../../types'
 
 export const authByName = (formData) => async dispatch => {
     try {

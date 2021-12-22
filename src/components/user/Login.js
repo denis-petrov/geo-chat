@@ -9,8 +9,8 @@ const Login = (props) => {
 
     const auth = (e) => {
         e.preventDefault()
-        let formData = new FormData(e.target)
-        let userAuthData = new FormData()
+        const formData = new FormData(e.target)
+        const userAuthData = new FormData()
         userAuthData.append('email', formData.get('email'))
         userAuthData.append('password', formData.get('password'))
         props.authByEmail(userAuthData)

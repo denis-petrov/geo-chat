@@ -47,22 +47,22 @@ const App = (props) => {
     }, [])
 
     const connectWs = () => {
-        let sockJSClient = new SockJS("http://localhost:80/api/ws")
-        let stompClient = Stomp.over(sockJSClient)
-        stompClient.connect({}, function () {
-            let user = getCurrentUser()
+        const sockJSClient = new SockJS("http://localhost:80/api/ws")
+        const stompClient = Stomp.over(sockJSClient)
+        stompClient.connect({}, () => {
+            const user = getCurrentUser()
             stompClient.subscribe(
                 `/user/${user.userId}/queue/message/create`,
-                function (frame) {
+                frame => {
                     console.log('ПОДПИСКА APP')
-                    let chatId = frame.body.substring(1, frame.body.length - 1)
+                    const chatId = frame.body.substring(1, frame.body.length - 1)
                     props.getMessages(chatId, 1)
                         .then((messages) => {
                             changeLocalStorageMsg(chatId, messages)
                         })
                 }
             )
-        }, function () {
+        }, () => {
             console.log("error ws")
         })
     }
@@ -73,20 +73,20 @@ const App = (props) => {
             chatMessages = {}
         }
 
-        let user = getCurrentUser()
+        const user = getCurrentUser()
         if (messages[0].senderId !== user.userId) {
             chatMessages[chatId] = chatMessages[chatId] !== undefined ? chatMessages[chatId] + 1 : 1
             window.localStorage.setItem('chatMessages', JSON.stringify(chatMessages))
         }
     }
 
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
 
-    window.addEventListener("resize", function () {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    });
+    window.addEventListener("resize", () => {
+        const vh = window.innerHeight * 0.01
+        document.documentElement.style.setProperty('--vh', `${vh}px`)
+    })
 
     return (
         <BrowserRouter>
@@ -111,7 +111,7 @@ const App = (props) => {
                 <Redirect to="/login"/>
             </Switch>
         </BrowserRouter>
-    );
+    )
 }
 
 const appStateToProps = (state) => ({

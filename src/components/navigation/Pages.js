@@ -4,4 +4,5 @@ const Pages = Object.freeze({
     PROFILE: 'profile',
     FRIENDS: 'friends'
 })
+
 export default Pages

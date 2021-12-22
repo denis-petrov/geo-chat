@@ -13,11 +13,11 @@ import {faCopy, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 const Profile = (props) => {
 
     const deleteAccount = () => {
-        let user = getCurrentUser()
+        const user = getCurrentUser()
         props.removeUser(user.userId)
     }
 
-    let user = getCurrentUser();
+    const user = getCurrentUser()
 
     return (
         <div className={"chat"}>
@@ -28,7 +28,7 @@ const Profile = (props) => {
                     </div>
                     <Link to={'/logout'} className={"d-block my-auto ms-auto"}>
                         <FontAwesomeIcon icon={faSignOutAlt} className={"text-light"} onClick={() => {
-                            let userId = document.getElementById("user-id")
+                            const userId = document.getElementById("user-id")
                             userId.select()
                             document.execCommand("copy")
                         }}/>
@@ -41,7 +41,7 @@ const Profile = (props) => {
                         <div className={"d-flex"}>
                             <input className={"token-field w-100"} readOnly={true} type={"text"} id="user-id" value={user.userId}/>
                             <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
-                                let userId = document.getElementById("user-id")
+                                const userId = document.getElementById("user-id")
                                 userId.select()
                                 document.execCommand("copy")
                             }}/>
