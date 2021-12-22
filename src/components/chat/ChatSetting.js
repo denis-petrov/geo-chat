@@ -3,7 +3,7 @@ import '../../assets/css/chat/Chat.css'
 import {connect} from "react-redux"
 import {Link} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faArrowLeft, faCheck, faCopy} from "@fortawesome/free-solid-svg-icons"
+import {faArrowLeft, faCheck, faCopy, faPlus, faTimes} from "@fortawesome/free-solid-svg-icons"
 import {getChatInfo} from "../../store/actions/chat/getChatInfo"
 import {updateChatName} from "../../store/actions/chat/updateChatName"
 import {removeChat} from "../../store/actions/chat/removeChat"
@@ -81,10 +81,9 @@ const ChatSetting = (props) => {
             let friend = stateFriends[key]
             friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`} className={"text-light d-flex"}>
                 <span className={"w-100"}>{friend.name}</span>
-                <button className="btn-primary" type="button" onClick={() => {
+                <FontAwesomeIcon icon={faPlus} className={"my-auto"} onClick={() => {
                     addFriendToChat(friend.userId)
-                }}>+
-                </button>
+                }}/>
             </div>)
         }
     }
@@ -159,11 +158,9 @@ const ChatSetting = (props) => {
 
                         <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
                             <div className={"w-100"}>Add Member</div>
-                            <button type="button" className="btn btn-primary" onClick={() => {
+                            <FontAwesomeIcon icon={faTimes} className={"fa-lg my-auto ms-3"} onClick={() => {
                                 setShowModal(false)
-                            }}>
-                                x
-                            </button>
+                            }}/>
                         </div>
 
                         <div className={"dialog-items-wrapper p-3"}>
