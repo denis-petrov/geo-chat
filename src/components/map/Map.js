@@ -62,7 +62,7 @@ const Map = (props) => {
     }
 
     const handleModalSubmit = () => {
-        addMemberToChat(getCurrentUser().userId, currMarker.chatId)
+        props.addMemberToChat(getCurrentUser().userId, currMarker.chatId)
         setModalShow(false)
         history.push('/chat/' + currMarker.chatId)
     }
