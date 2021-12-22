@@ -47,7 +47,7 @@ const App = (props) => {
     }, [])
 
     const connectWs = () => {
-        const sockJSClient = new SockJS("http://localhost:80/api/ws")
+        const sockJSClient = new SockJS(`${window.location.protocol}//${window.location.host}/api/ws`)
         const stompClient = Stomp.over(sockJSClient)
         stompClient.connect({}, () => {
             const user = getCurrentUser()

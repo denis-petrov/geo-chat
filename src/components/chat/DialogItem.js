@@ -23,7 +23,7 @@ const DialogItem = (props) => {
     }, [])
 
     const connectWs = () => {
-        let sockJSClient = new SockJS("http://localhost:80/api/ws")
+        let sockJSClient = new SockJS(`${window.location.protocol}//${window.location.host}/api/ws`)
         let stompClient = Stomp.over(sockJSClient)
         stompClient.connect({}, function () {
             let user = getCurrentUser()

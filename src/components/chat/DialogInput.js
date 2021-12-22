@@ -7,15 +7,12 @@ import {addMessage} from "../../store/actions/chat/addMessage"
 import {getChatInfo} from "../../store/actions/chat/getChatInfo"
 import {getUserInfo} from "../../store/actions/user/getUserInfo"
 import {getCurrentUser} from "../../utils/getCurrentUser"
-import SockJS from "sockjs-client"
-import Stomp from "stompjs"
 import {getMessages} from "../../store/actions/chat/getMessages"
 
 const DialogInput = (props) => {
 
     useEffect(() => {
         const MAX_LEN = 1000
-        //connectWs()
         let input = document.getElementById("dialog-input")
         input.addEventListener('input', event => {
             if (input.innerHTML.length > MAX_LEN) {
@@ -34,25 +31,6 @@ const DialogInput = (props) => {
         }
 
         msgInput.textContent = ""
-    }
-
-    const connectWs = () => {
-        let sockJSClient = new SockJS("http://localhost:80/api/ws")
-        let stompClient = Stomp.over(sockJSClient)
-        stompClient.connect({}, function () {
-            let user = getCurrentUser()
-            stompClient.subscribe(
-                `/user/${user.userId}/queue/message/create`,
-                function (frame) {
-                    console.log('ПОДПИСКА')
-                    console.log(frame, frame.body)
-                    let chatId = frame.body.substring(1, frame.body.length - 1)
-                    props.getMessages(chatId, 1)
-                }
-            )
-        }, function () {
-            console.log("error ws")
-        })
     }
 
     return (
