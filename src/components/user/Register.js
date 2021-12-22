@@ -30,22 +30,21 @@ const Register = (props) => {
     }
 
     return (
-        <div className={"text-center d-flex h-100"}>
-            <form onSubmit={(e) => register(e, props)} className="form-login m-auto">
-                <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
-                <input type="text" name="name" id="inputText" className="form-control" placeholder="Name" required="required"
-                       autoFocus=""/>
-                <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email address" required="required"
-                       autoFocus=""/>
-                <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password"
-                       required="required"/>
-                <div className="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
-                    </label>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
-            </form>
+        <div className={"text-center d-flex flex-row h-100 auth-wrapper"}>
+            <div className={"m-auto pt-3 pb-4 px-3 border border-white"}>
+                <form onSubmit={(e) => {
+                    register(e)
+                }} className="form-login pb-3">
+                    <h1 className="h3 mb-3 font-weight-normal text-light">Sign Up</h1>
+                    <input type="text" name="name" id="inputText" className="form-control px-0 mb-3" placeholder="Name" required="required"
+                           autoFocus=""/>
+                    <input type="email" name="email" id="inputEmail" className="form-control px-0 mb-3" placeholder="Email address" required="required"
+                           autoFocus=""/>
+                    <input type="password" name="password" id="inputPassword" className="form-control px-0 mb-3" placeholder="Password"
+                           required="required"/>
+                    <button className="btn btn-primary btn-block w-100" type="submit">Sign Up</button>
+                </form>
+            </div>
         </div>
     )
 }

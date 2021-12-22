@@ -31,28 +31,23 @@ const Login = (props) => {
     }
 
     return (
-        <div className={"text-center d-flex flex-row h-100"}>
-            <div className={"m-auto"}>
+        <div className={"text-center d-flex flex-row h-100 auth-wrapper"}>
+            <div className={"m-auto pt-3 pb-4 px-3 border border-white"}>
                 <form onSubmit={(e) => {
                     auth(e)
-                }} className="form-login">
-                    <h1 className="h3 mb-3 font-weight-normal">Log in</h1>
-                    <input type="email" name="email" id="inputEmail" className="form-control"
+                }} className="form-login pb-3 mb-3 border-bottom border-white">
+                    <h1 className="h3 mb-3 font-weight-normal text-light">Log in</h1>
+                    <input type="email" name="email" id="inputEmail" className="form-control px-0 mb-3"
                            placeholder="Email address" required="required"
                            autoFocus=""/>
-                    <input type="password" name="password" id="inputPassword" className="form-control"
+                    <input type="password" name="password" id="inputPassword" className="form-control px-0 mb-3"
                            placeholder="Password"
                            required="required"/>
-                    <div className="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"/> Remember me
-                        </label>
-                    </div>
-                    <button className="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                    <button className="btn btn-primary btn-block w-100" type="submit">Log In</button>
                 </form>
                 <div>
                     <Link to={'/signup'}>
-                        <button className="btn btn-lg btn-primary btn-block">Create New Account</button>
+                        <button className="btn btn-primary btn-block w-100">Create New Account</button>
                     </Link>
                 </div>
             </div>
