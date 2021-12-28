@@ -15,7 +15,7 @@ const DialogTextItem = (props) => {
 
             let userName = users[message.senderId]
             if (!userName) {
-                if (Object.keys(props.user).length === 0) {
+                if (!props.user.user || props.user.user.userId !== message.senderId) {
                     props.getUserInfo(message.senderId)
                 }
             }
