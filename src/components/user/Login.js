@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "../../assets/css/auth/Auth.css"
 import {connect} from "react-redux"
 import {Redirect} from "react-router"
@@ -6,6 +6,8 @@ import {Link} from "react-router-dom"
 import {authByEmail} from "../../store/actions/user/userAuth"
 
 const Login = (props) => {
+
+    const [formError, setFormError] = useState(false)
 
     const auth = (e) => {
         e.preventDefault()
@@ -22,7 +24,7 @@ const Login = (props) => {
                 }
             })
             .catch((err) => {
-                console.log(err)
+                setFormError(true)
             })
     }
 
@@ -37,6 +39,9 @@ const Login = (props) => {
                     auth(e)
                 }} className="form-login pb-3 mb-3 border-bottom border-white">
                     <h1 className="h3 mb-3 font-weight-normal text-light">Log in</h1>
+                    <div className={`alert alert-danger ${!formError ? 'd-none' : ''}`} role="alert">
+                        {props.user.error}
+                    </div>
                     <input type="email" name="email" id="inputEmail" className="form-control px-0 mb-3"
                            placeholder="Email address" required="required"
                            autoFocus=""/>
