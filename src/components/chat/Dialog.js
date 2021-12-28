@@ -14,7 +14,6 @@ const Dialog = (props) => {
         dialogContent.addEventListener('scroll', function(e) {
             getMessagesBefore(e.target)
         })
-        updateUnreadMessages(props.chatId)
     }, [])
 
     const updateUnreadMessages = (chatId) => {
@@ -77,6 +76,8 @@ const Dialog = (props) => {
             dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} showUser={showUser} />)
         }
     }
+
+    updateUnreadMessages(props.chatId)
 
     return (
         <div className={"p-3 dialog-content"}>
