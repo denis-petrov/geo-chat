@@ -54,7 +54,7 @@ const ChatSetting = (props) => {
 
             let userName = users[member]
             members.push(
-                <div className={"py-1 d-flex"}>
+                <div className={"py-1 d-flex"} key={`chat-member-${member}`}>
                     <div>{userName}</div>
                 </div>
             )
@@ -92,6 +92,8 @@ const ChatSetting = (props) => {
         friends.push(<div key={'empty'} className={"text-light"}>Friend list is empty</div>)
     }
 
+    let inviteToken = props.chats.inviteToken ? props.chats.inviteToken : ''
+
     return (
         <div className={"chat"}>
             <div className={"chat-wrapper mx-auto"}>
@@ -109,7 +111,7 @@ const ChatSetting = (props) => {
                     <div>
                         <div className="input-group mb-3">
                             <div className="block-round-small bg-light w-100 p-2">
-                                <div id={"chat-name"} contentEditable={true} data-placeholder="Chat name"
+                                <div id={"chat-name"} contentEditable={true} suppressContentEditableWarning={true} data-placeholder="Chat name"
                                      className={"py-1 px-3 w-100 bg-transparent dialog-input"}>
                                     {chat ? chat.name : 'default chat name'}
                                 </div>
@@ -133,7 +135,7 @@ const ChatSetting = (props) => {
                     <div className={"text-light py-3 border-bottom"}>
                         <h5>Invite Token:</h5>
                         <div className={"d-flex"}>
-                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token" value={props.chats.inviteToken}/>
+                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token" value={inviteToken}/>
                             <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
                                 var token = document.getElementById("invite-token")
                                 token.select()

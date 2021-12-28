@@ -4,7 +4,7 @@ import '../../assets/css/chat/Chat.css'
 import {connect} from "react-redux"
 import {getUserInfo} from "../../store/actions/user/getUserInfo"
 import {getMessages} from "../../store/actions/chat/getMessages"
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 import {getChatInfo} from "../../store/actions/chat/getChatInfo"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCircle, faTimes} from "@fortawesome/free-solid-svg-icons"
@@ -21,6 +21,8 @@ const DialogItem = (props) => {
         props.getMessages(props.chatId, 1, GET_LAST_MESSAGES_FOR_CHAT_LIST)
         connectWs()
     }, [])
+
+    const history = useHistory()
 
     const connectWs = () => {
         let sockJSClient = new SockJS(`${window.location.protocol}//${window.location.host}/api/ws`)
@@ -70,25 +72,24 @@ const DialogItem = (props) => {
     }
 
     return (
-        <Link to={'/chat/' + props.chatId} id={props.chatId}>
-            <Card className={"block-round chat-item text-white flex-row px-3 py-2 mb-1"}>
-                <img alt="anime girl" className={"profile-picture medium rounded-circle m-auto"}
-                     src="https://avatars.mds.yandex.net/get-zen_doc/1911932/pub_5d6370bcac412400aeb2c040_5d884d0d6d29c100adddaf85/scale_1200"/>
-                <Card.Body className={"py-0 text-truncate"}>
-                    <Card.Title className={"chat-item-title"}>{chat ? chat.name : 'new chat'}</Card.Title>
-                    <div className={"d-flex"}>
-                        {lastMsg}
-                        {unreadMessages}
-                    </div>
-                </Card.Body>
-                <Link to={'/chat'}>
-                    <FontAwesomeIcon icon={faTimes} className={"text-light ms-2"}
-                                     onClick={() => {
-                                         leaveFromChat()
-                                     }}/>
-                </Link>
-            </Card>
-        </Link>
+        <Card className={"block-round chat-item text-white flex-row px-3 py-2 mb-1"} onClick={() => {
+            history.push('/chat/' + props.chatId);
+        }}>
+            <img alt="anime girl" className={"profile-picture medium rounded-circle m-auto"}
+                 src="https://avatars.mds.yandex.net/get-zen_doc/1911932/pub_5d6370bcac412400aeb2c040_5d884d0d6d29c100adddaf85/scale_1200"/>
+            <Card.Body className={"py-0 text-truncate"}>
+                <Card.Title className={"chat-item-title"}>{chat ? chat.name : 'new chat'}</Card.Title>
+                <div className={"d-flex"}>
+                    {lastMsg}
+                    {unreadMessages}
+                </div>
+            </Card.Body>
+            <FontAwesomeIcon icon={faTimes} className={"text-light ms-2"}
+                             onClick={(e) => {
+                                 e.stopPropagation()
+                                 leaveFromChat()
+                             }}/>
+        </Card>
     )
 }
 
