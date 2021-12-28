@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Card} from 'react-bootstrap'
 import '../../assets/css/navigation/Navigation.css'
 import {Link} from 'react-router-dom'
 import Pages from '../navigation/Pages'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCircle} from '@fortawesome/free-solid-svg-icons'
+import {connect} from 'react-redux'
 
 
 const Navigation = (props) => {
@@ -84,4 +85,10 @@ const Navigation = (props) => {
     )
 }
 
-export default Navigation
+const navigationStateToProps = (state) => ({
+    messages: state.messages
+})
+
+const navigationDispatchToProps = {}
+
+export default connect(navigationStateToProps, navigationDispatchToProps)(Navigation)
