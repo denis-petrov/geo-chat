@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
-import "../../assets/css/chat/Chat.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faArrowCircleRight} from "@fortawesome/free-solid-svg-icons"
-import {connect} from "react-redux"
-import {addMessage} from "../../store/actions/chat/addMessage"
-import {getChatInfo} from "../../store/actions/chat/getChatInfo"
-import {getUserInfo} from "../../store/actions/user/getUserInfo"
-import {getCurrentUser} from "../../utils/getCurrentUser"
-import {getMessages} from "../../store/actions/chat/getMessages"
+import '../../assets/css/chat/Chat.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons'
+import {connect} from 'react-redux'
+import {addMessage} from '../../store/actions/chat/addMessage'
+import {getChatInfo} from '../../store/actions/chat/getChatInfo'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {getMessages} from '../../store/actions/chat/getMessages'
 
 const DialogInput = (props) => {
 

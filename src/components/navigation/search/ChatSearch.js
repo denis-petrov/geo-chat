@@ -1,8 +1,8 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 import '../../../assets/css/navigation/Navigation.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faLongArrowAltRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons'
 
 const ChatSearch = () => {
     return (

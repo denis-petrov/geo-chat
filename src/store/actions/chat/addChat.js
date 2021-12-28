@@ -19,5 +19,3 @@ export const addChat = (name) => async dispatch => {
         })
     }
 }
-
-export default addChat();

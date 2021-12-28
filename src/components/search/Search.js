@@ -17,6 +17,6 @@ const Search = (props) => (
             </div>
         </div>
     </div>
-);
+)
 
-export default Search;
+export default Search

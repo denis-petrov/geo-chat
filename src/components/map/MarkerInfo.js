@@ -1,6 +1,6 @@
 import '../../assets/css/map/Map.css'
 import React, {useState} from 'react'
-import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
+import {Button, FloatingLabel, Form, Modal} from 'react-bootstrap'
 
 const MarkerInfo = (props) => {
     const [modalShow, setModalShow] = useState(false)

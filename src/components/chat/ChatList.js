@@ -2,19 +2,19 @@ import React, {useEffect, useState} from 'react'
 import '../../assets/css/chat/Chat.css'
 import DialogItem from './DialogItem'
 import Navigation from '../navigation/Navigation'
-import {connect} from "react-redux"
-import {getChats} from "../../store/actions/chat/getChats"
-import {addChat} from "../../store/actions/chat/addChat"
-import Add from "../navigation/control-button/Add"
-import Pages from "../navigation/Pages"
-import ChatSearch from "../navigation/search/ChatSearch"
-import {getMessages} from "../../store/actions/chat/getMessages"
-import {addMemberToChat} from "../../store/actions/chat/addMemberToChat"
-import {getCurrentUser} from "../../utils/getCurrentUser"
-import {Modal} from "react-bootstrap";
-import {addMemberByInvite} from "../../store/actions/chat/addMemberByInvite";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {connect} from 'react-redux'
+import {getChats} from '../../store/actions/chat/getChats'
+import {addChat} from '../../store/actions/chat/addChat'
+import Add from '../navigation/control-button/Add'
+import Pages from '../navigation/Pages'
+import ChatSearch from '../navigation/search/ChatSearch'
+import {getMessages} from '../../store/actions/chat/getMessages'
+import {addMemberToChat} from '../../store/actions/chat/addMemberToChat'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {Modal} from 'react-bootstrap'
+import {addMemberByInvite} from '../../store/actions/chat/addMemberByInvite'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faPlus, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 const ChatList = (props) => {
 
@@ -31,9 +31,9 @@ const ChatList = (props) => {
         props.addChat(chatName)
             .then((newChatId) => {
             if (newChatId) {
-                let user = getCurrentUser();
-                props.addMemberToChat(user.userId, newChatId);
-                window.location.assign(window.location.origin + '/chat/' + newChatId);
+                let user = getCurrentUser()
+                props.addMemberToChat(user.userId, newChatId)
+                window.location.assign(window.location.origin + '/chat/' + newChatId)
             }
         })
     }
@@ -53,7 +53,7 @@ const ChatList = (props) => {
             let chat = items[key]
             dialogItems.push(<DialogItem key={"dialog-item-" + chat.chatId} chatId={"" + chat.chatId}/>)
         }
-        dialogItems.reverse();
+        dialogItems.reverse()
     }
 
     if (dialogItems.length === 0) {
@@ -149,4 +149,4 @@ const chatListDispatchToProps = {
     getChats, addChat, getMessages, addMemberToChat, addMemberByInvite
 }
 
-export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList);
+export default connect(chatListStateToProps, chatListDispatchToProps)(ChatList)

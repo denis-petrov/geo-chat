@@ -18,5 +18,3 @@ export const addMemberToChat = (userId, chatId) => async dispatch => {
         })
     }
 }
-
-export default addMemberToChat();

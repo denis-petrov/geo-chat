@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react'
 import {Card} from 'react-bootstrap'
 import '../../assets/css/chat/Chat.css'
-import {connect} from "react-redux"
-import {getUserInfo} from "../../store/actions/user/getUserInfo"
-import {getMessages} from "../../store/actions/chat/getMessages"
-import {Link, useHistory} from "react-router-dom"
-import {getChatInfo} from "../../store/actions/chat/getChatInfo"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCircle, faTimes} from "@fortawesome/free-solid-svg-icons"
-import {removeChat} from "../../store/actions/chat/removeChat"
-import SockJS from "sockjs-client"
-import Stomp from "stompjs"
-import {getCurrentUser} from "../../utils/getCurrentUser"
-import {GET_LAST_MESSAGES_FOR_CHAT_LIST} from "../../store/types"
-import {removeMember} from "../../store/actions/chat/removeMember";
+import {connect} from 'react-redux'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
+import {getMessages} from '../../store/actions/chat/getMessages'
+import {useHistory} from 'react-router-dom'
+import {getChatInfo} from '../../store/actions/chat/getChatInfo'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCircle, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {removeChat} from '../../store/actions/chat/removeChat'
+import SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {GET_LAST_MESSAGES_FOR_CHAT_LIST} from '../../store/types'
+import {removeMember} from '../../store/actions/chat/removeMember'
 
 const DialogItem = (props) => {
 
@@ -73,7 +73,7 @@ const DialogItem = (props) => {
 
     return (
         <Card className={"block-round chat-item text-white flex-row px-3 py-2 mb-1"} onClick={() => {
-            history.push('/chat/' + props.chatId);
+            history.push('/chat/' + props.chatId)
         }}>
             <img alt="anime girl" className={"profile-picture medium rounded-circle m-auto"}
                  src="https://avatars.mds.yandex.net/get-zen_doc/1911932/pub_5d6370bcac412400aeb2c040_5d884d0d6d29c100adddaf85/scale_1200"/>

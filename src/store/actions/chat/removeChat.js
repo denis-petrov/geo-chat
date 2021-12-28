@@ -18,5 +18,3 @@ export const removeChat = (chatId) => async dispatch => {
         })
     }
 }
-
-export default removeChat();

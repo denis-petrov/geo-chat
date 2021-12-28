@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import '../../assets/css/chat/Chat.css'
-import {connect} from "react-redux"
-import {Link} from "react-router-dom"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faArrowLeft, faCheck, faCopy, faPlus, faTimes} from "@fortawesome/free-solid-svg-icons"
-import {getChatInfo} from "../../store/actions/chat/getChatInfo"
-import {updateChatName} from "../../store/actions/chat/updateChatName"
-import {removeChat} from "../../store/actions/chat/removeChat"
-import {removeMember} from "../../store/actions/chat/removeMember"
-import {getCurrentUser} from "../../utils/getCurrentUser"
-import {Modal} from "react-bootstrap"
-import {getFriends} from "../../store/actions/friend/getFriends"
-import {addMemberToChat} from "../../store/actions/chat/addMemberToChat"
-import {getUserInfo} from "../../store/actions/user/getUserInfo"
-import {getChatInvite} from "../../store/actions/chat/getChatInvite"
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowLeft, faCheck, faCopy, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {getChatInfo} from '../../store/actions/chat/getChatInfo'
+import {updateChatName} from '../../store/actions/chat/updateChatName'
+import {removeChat} from '../../store/actions/chat/removeChat'
+import {removeMember} from '../../store/actions/chat/removeMember'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {Modal} from 'react-bootstrap'
+import {getFriends} from '../../store/actions/friend/getFriends'
+import {addMemberToChat} from '../../store/actions/chat/addMemberToChat'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
+import {getChatInvite} from '../../store/actions/chat/getChatInvite'
 
 const ChatSetting = (props) => {
 

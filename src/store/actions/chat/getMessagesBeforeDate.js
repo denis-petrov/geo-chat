@@ -20,5 +20,3 @@ export const getMessagesBeforeDate = (chatId, numberOfMessages, timestamp) => as
         })
     }
 }
-
-export default getMessagesBeforeDate();

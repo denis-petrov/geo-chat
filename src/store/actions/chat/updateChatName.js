@@ -18,5 +18,3 @@ export const updateChatName = (chatId, name) => async dispatch => {
         })
     }
 }
-
-export default updateChatName();

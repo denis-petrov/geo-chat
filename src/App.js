@@ -23,19 +23,19 @@ import {connect} from 'react-redux'
 function requireAuth(component) {
     if (!window.localStorage.getItem('authenticated')) {
         if (component === 'login') {
-            return <Login/>;
+            return <Login/>
         } else if (component === 'signup') {
-            return <Register/>;
+            return <Register/>
         }
 
-        return <Redirect to="/login"/>;
+        return <Redirect to="/login"/>
     }
 
     if (component === null || typeof component === 'string') {
-        return <Redirect to="/map"/>;
+        return <Redirect to="/map"/>
     }
 
-    return component;
+    return component
 }
 
 const App = (props) => {

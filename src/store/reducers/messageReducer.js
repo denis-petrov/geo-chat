@@ -5,7 +5,7 @@ import {
     GET_MESSAGES_BEFORE_DATE
 } from '../types'
 
-const initialState = [];
+const initialState = []
 
 const messageReducer = (state = initialState, action) => {
     let data = action.payload
@@ -101,4 +101,4 @@ const messageReducer = (state = initialState, action) => {
     }
 }
 
-export default messageReducer;
+export default messageReducer

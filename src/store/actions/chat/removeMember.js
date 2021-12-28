@@ -19,5 +19,3 @@ export const removeMember = (userId, chatId) => async dispatch => {
         })
     }
 }
-
-export default removeMember();

@@ -1,12 +1,12 @@
-import React from 'react';
-import '../../assets/css/chat/Chat.css';
-import Dialog from "./Dialog";
-import DialogHeader from "./DialogHeader";
-import DialogInput from "./DialogInput";
-import {connect} from "react-redux";
-import {getChats} from "../../store/actions/chat/getChats";
-import {addChat} from "../../store/actions/chat/addChat";
-import {getMessages} from "../../store/actions/chat/getMessages";
+import React from 'react'
+import '../../assets/css/chat/Chat.css'
+import Dialog from './Dialog'
+import DialogHeader from './DialogHeader'
+import DialogInput from './DialogInput'
+import {connect} from 'react-redux'
+import {getChats} from '../../store/actions/chat/getChats'
+import {addChat} from '../../store/actions/chat/addChat'
+import {getMessages} from '../../store/actions/chat/getMessages'
 
 const Chat = (props) => {
 
@@ -30,4 +30,4 @@ const chatDispatchToProps = {
     getChats, addChat, getMessages
 }
 
-export default connect(chatStateToProps, chatDispatchToProps)(Chat);
+export default connect(chatStateToProps, chatDispatchToProps)(Chat)

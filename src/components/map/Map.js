@@ -10,15 +10,15 @@ import GetLocation from '../navigation/control-button/GetLocation'
 import MapSearch from '../navigation/search/MapSearch'
 import {getCenterPosition} from '../../store/actions/position/getCenterPosition'
 import AddMarker from '../navigation/control-button/AddMarker'
-import L from "leaflet"
-import "leaflet/dist/leaflet.css"
-import MarkerClusterGroup from "react-leaflet-markercluster"
-import "leaflet/dist/images/marker-shadow.png"
-import {Button, Modal} from "react-bootstrap"
-import {addMemberToChat} from "../../store/actions/chat/addMemberToChat"
-import {getCurrentUser} from "../../utils/getCurrentUser"
-import {useHistory} from "react-router"
-import {updateCenterPosition} from "../../store/actions/position/updateCenterPosition"
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import MarkerClusterGroup from 'react-leaflet-markercluster'
+import 'leaflet/dist/images/marker-shadow.png'
+import {Button, Modal} from 'react-bootstrap'
+import {addMemberToChat} from '../../store/actions/chat/addMemberToChat'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {useHistory} from 'react-router'
+import {updateCenterPosition} from '../../store/actions/position/updateCenterPosition'
 
 
 const createClusterCustomIcon = cluster => {

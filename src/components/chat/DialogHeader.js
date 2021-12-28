@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
-import "../../assets/css/chat/Chat.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"
-import {faEllipsisV} from "@fortawesome/free-solid-svg-icons"
-import {connect} from "react-redux"
-import {getChatInfo} from "../../store/actions/chat/getChatInfo"
-import {getUserInfo} from "../../store/actions/user/getUserInfo"
-import {Link} from "react-router-dom"
-import {getChats} from "../../store/actions/chat/getChats"
+import '../../assets/css/chat/Chat.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons'
+import {connect} from 'react-redux'
+import {getChatInfo} from '../../store/actions/chat/getChatInfo'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
+import {Link} from 'react-router-dom'
+import {getChats} from '../../store/actions/chat/getChats'
 
 const DialogHeader = (props) => {
 

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import "../../assets/css/chat/Chat.css";
-import {connect} from "react-redux";
-import {getCurrentUser} from "../../utils/getCurrentUser";
-import {getUserInfo} from "../../store/actions/user/getUserInfo";
+import React, {useEffect} from 'react'
+import '../../assets/css/chat/Chat.css'
+import {connect} from 'react-redux'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
 
 const DialogTextItem = (props) => {
 
@@ -22,12 +22,12 @@ const DialogTextItem = (props) => {
         }
     }, [])
 
-    const yourMsgClass = "is-out";
+    const yourMsgClass = "is-out"
     let user = getCurrentUser()
-    let isYourMsg = user.userId === props.message.senderId;
-    let message = props.message;
+    let isYourMsg = user.userId === props.message.senderId
+    let message = props.message
 
-    let date = new Date(message.sentDate);
+    let date = new Date(message.sentDate)
 
     let userName = ''
     if (props.showUser && !isYourMsg) {
@@ -61,4 +61,4 @@ const dialogTextItemDispatchToProps = {
     getUserInfo
 }
 
-export default connect(dialogTextItemStateToProps, dialogTextItemDispatchToProps)(DialogTextItem);
+export default connect(dialogTextItemStateToProps, dialogTextItemDispatchToProps)(DialogTextItem)

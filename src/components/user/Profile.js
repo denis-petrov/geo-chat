@@ -1,14 +1,14 @@
-import React from 'react';
-import "../../assets/css/auth/Auth.css";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {getCurrentUser} from "../../utils/getCurrentUser";
-import {removeUser} from "../../store/actions/user/removeUser";
-import Navigation from "../navigation/Navigation";
-import Pages from "../navigation/Pages";
-import ChatSearch from "../navigation/search/ChatSearch";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCopy, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import '../../assets/css/auth/Auth.css'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {getCurrentUser} from '../../utils/getCurrentUser'
+import {removeUser} from '../../store/actions/user/removeUser'
+import Navigation from '../navigation/Navigation'
+import Pages from '../navigation/Pages'
+import ChatSearch from '../navigation/search/ChatSearch'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCopy, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 
 const Profile = (props) => {
 
@@ -66,4 +66,4 @@ const profileDispatchToProps = {
     removeUser
 }
 
-export default connect(profileStateToProps, profileDispatchToProps)(Profile);
+export default connect(profileStateToProps, profileDispatchToProps)(Profile)

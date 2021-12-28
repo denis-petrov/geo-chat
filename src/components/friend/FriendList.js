@@ -7,14 +7,14 @@ import Pages from '../navigation/Pages'
 import ChatSearch from '../navigation/search/ChatSearch'
 import {getCurrentUser} from '../../utils/getCurrentUser'
 import {getFriends} from '../../store/actions/friend/getFriends'
-import {removeFriend} from "../../store/actions/friend/removeFriend"
-import {inviteFriend} from "../../store/actions/friend/inviteFriend";
-import {Modal} from "react-bootstrap";
-import {getInvites} from "../../store/actions/friend/getInvites";
-import {acceptInvite} from "../../store/actions/friend/acceptInvite";
-import {rejectInvite} from "../../store/actions/friend/rejectInvite";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheckCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {removeFriend} from '../../store/actions/friend/removeFriend'
+import {inviteFriend} from '../../store/actions/friend/inviteFriend'
+import {Modal} from 'react-bootstrap'
+import {getInvites} from '../../store/actions/friend/getInvites'
+import {acceptInvite} from '../../store/actions/friend/acceptInvite'
+import {rejectInvite} from '../../store/actions/friend/rejectInvite'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCheckCircle, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 const FriendList = (props) => {
 

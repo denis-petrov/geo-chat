@@ -37,4 +37,4 @@ export const authByEmail = (formData) => async dispatch => {
     return res.data
 }
 
-export default {authByName, authByEmail};
+export default {authByName, authByEmail}

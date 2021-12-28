@@ -3,9 +3,9 @@ import '../../../assets/css/navigation/Navigation.css'
 import {connect} from 'react-redux'
 import {updateCenterPosition} from '../../../store/actions/position/updateCenterPosition'
 import {addMarker} from '../../../store/actions/markers/addMarker'
-import {Button, FloatingLabel, Form, Modal} from "react-bootstrap"
+import {Button, FloatingLabel, Form, Modal} from 'react-bootstrap'
 import '../../../assets/css/map/Map.css'
-import {getMarkers} from "../../../store/actions/markers/getMarkers"
+import {getMarkers} from '../../../store/actions/markers/getMarkers'
 
 const AddMarker = (props) => {
     const [modalShow, setModalShow] = useState(false)

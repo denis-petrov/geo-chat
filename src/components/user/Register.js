@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import "../../assets/css/auth/Auth.css"
-import {connect} from "react-redux"
-import {Redirect} from "react-router"
-import {createUser} from "../../store/actions/user/createUser"
-import {getUserInfo} from "../../store/actions/user/getUserInfo"
+import React, {useState} from 'react'
+import '../../assets/css/auth/Auth.css'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router'
+import {createUser} from '../../store/actions/user/createUser'
+import {getUserInfo} from '../../store/actions/user/getUserInfo'
 
 const Register = (props) => {
 

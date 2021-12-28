@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import "../../assets/css/chat/Chat.css"
-import DialogTextItem from "./DialogTextItem"
-import {connect} from "react-redux"
-import {getMessages} from "../../store/actions/chat/getMessages"
-import {addMessage} from "../../store/actions/chat/addMessage"
-import {getMessagesBeforeDate} from "../../store/actions/chat/getMessagesBeforeDate"
+import '../../assets/css/chat/Chat.css'
+import DialogTextItem from './DialogTextItem'
+import {connect} from 'react-redux'
+import {getMessages} from '../../store/actions/chat/getMessages'
+import {addMessage} from '../../store/actions/chat/addMessage'
+import {getMessagesBeforeDate} from '../../store/actions/chat/getMessagesBeforeDate'
 
 const Dialog = (props) => {
 
@@ -43,12 +43,12 @@ const Dialog = (props) => {
     }
 
     const reverse = (arr) => {
-        var ret = [];
+        var ret = []
         for (var i = arr.length - 1; i >= 0; i--) {
-            ret.push(arr[i]);
+            ret.push(arr[i])
         }
 
-        return ret;
+        return ret
     }
 
     let dialogTextItems = []

@@ -1,5 +1,5 @@
-import {API} from '../../../api/API';
-import {GET_CHAT_INFO, CHATS_ERROR} from '../../types';
+import {API} from '../../../api/API'
+import {GET_CHAT_INFO, CHATS_ERROR} from '../../types'
 
 export const getChatInfo = (chatId) => async dispatch => {
     try {
@@ -15,5 +15,3 @@ export const getChatInfo = (chatId) => async dispatch => {
         })
     }
 }
-
-export default getChatInfo();

@@ -8,7 +8,7 @@ import {
     UPDATE_CHAT_NAME
 } from '../types'
 
-const initialState = [];
+const initialState = []
 
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -45,4 +45,4 @@ const chatReducer = (state = initialState, action) => {
     }
 }
 
-export default chatReducer;
+export default chatReducer
