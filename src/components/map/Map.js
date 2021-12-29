@@ -134,7 +134,6 @@ const Map = (props) => {
 const ChangeView = ({center, zoom, getMarkers, updateCenterPosition, updateZoom}) => {
     const map = useMap()
     map.setView(center, zoom)
-    map.setMinZoom(2)
 
     const onMove = useCallback(() => {
         localStorage.setItem('center', JSON.stringify(map.getCenter()))
@@ -143,9 +142,9 @@ const ChangeView = ({center, zoom, getMarkers, updateCenterPosition, updateZoom}
     const onDragEnd = useCallback(() => {
         const {lat, lng} = JSON.parse(localStorage.getItem('center'))
         const zoomLocalStore = JSON.parse(localStorage.getItem('zoom'))
+        console.log(zoomLocalStore)
         getMarkers({lat: lat, lng: lng, zoom: zoomLocalStore})
         updateCenterPosition({lat, lng})
-        updateZoom({zoom: zoomLocalStore})
     }, [map])
 
     const onZoomEnd = useCallback(() => {
