@@ -96,7 +96,6 @@ const messageReducer = (state = initialState, action) => {
                 lastMessages: data
             }
         default:
-            console.log(state, action)
             return state
     }
 }

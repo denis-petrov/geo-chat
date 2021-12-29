@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import '../../../assets/css/search/Search.css'
 import {GeoSearchControl, OpenStreetMapProvider} from 'leaflet-geosearch'
 import {connect} from 'react-redux'
-import {updateCenterPosition} from '../../../store/actions/position/updateCenterPosition'
+import {updateCenterPosition} from '../../../store/actions/map/position/updateCenterPosition'
 
 
 const search = async (event, searchReq, setAddresses) => {

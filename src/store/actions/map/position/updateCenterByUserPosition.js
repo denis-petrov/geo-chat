@@ -1,4 +1,4 @@
-import {UPDATE_CENTER_POSITION, USER_CENTER_ERROR} from '../../types'
+import {CENTER_POSITION_CENTER_ERROR, UPDATE_CENTER_POSITION} from '../../../types'
 
 export const updateCenterByUserPosition = () => async dispatch => {
     try {
@@ -18,7 +18,7 @@ export const updateCenterByUserPosition = () => async dispatch => {
         )
     } catch (e) {
         dispatch({
-            type: USER_CENTER_ERROR,
+            type: CENTER_POSITION_CENTER_ERROR,
             payload: console.log(e),
         })
     }
