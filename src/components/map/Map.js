@@ -38,9 +38,10 @@ const Map = (props) => {
     const history = useHistory()
 
     useEffect(() => {
-        document.title = "Map"
         props.getCenterPosition()
         props.getMarkers({lat: props.centerPosition.lat, lng: props.centerPosition.lng, zoom: props.zoom})
+        localStorage.setItem('center', JSON.stringify({lat: props.centerPosition.lat, lng: props.centerPosition.lng}))
+        localStorage.setItem('zoom', JSON.stringify(props.zoom))
     }, [])
 
     const markers = props.markers
@@ -141,9 +142,10 @@ const ChangeView = ({center, zoom, getMarkers, updateCenterPosition, updateZoom}
 
     const onDragEnd = useCallback(() => {
         const {lat, lng} = JSON.parse(localStorage.getItem('center'))
-        const zoom = JSON.parse(localStorage.getItem('zoom'))
-        getMarkers({lat: lat, lng: lng, zoom: zoom})
+        const zoomLocalStore = JSON.parse(localStorage.getItem('zoom'))
+        getMarkers({lat: lat, lng: lng, zoom: zoomLocalStore})
         updateCenterPosition({lat, lng})
+        updateZoom({zoom: zoomLocalStore})
     }, [map])
 
     const onZoomEnd = useCallback(() => {

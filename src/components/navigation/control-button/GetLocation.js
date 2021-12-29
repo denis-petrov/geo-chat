@@ -7,7 +7,7 @@ import {updateCenterByUserPosition} from '../../../store/actions/map/position/up
 const GetLocation = (props) => {
     return (
         <button className={"navigation__control_button"} onClick={props.updateCenterByUserPosition}>
-            <img src={"/icons/navigation/navigation.png"} alt="Add"
+            <img src={"/icons/navigation/navigation.png"} alt="GetPosition"
                  className={"navigation__control_button__img center"}/>
         </button>
     )
