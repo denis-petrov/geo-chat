@@ -3,6 +3,7 @@ import '../../assets/css/chat/Chat.css'
 import {connect} from 'react-redux'
 import {getCurrentUser} from '../../utils/getCurrentUser'
 import {getUserInfo} from '../../store/actions/user/getUserInfo'
+import * as xss from "xss";
 
 const DialogTextItem = (props) => {
 
@@ -42,11 +43,14 @@ const DialogTextItem = (props) => {
         </div>
     }
 
+    let parsedMsg = xss(message.message);
+    parsedMsg = parsedMsg.replace(/\bhttps?:\/\/\S+/gi, '<a href="$&" target="_blank" rel="nofollow">$&</a>')
+
     return (
         <div className={`my-2 d-flex ${isYourMsg ? yourMsgClass : ""}`}>
             <div className={"message-text px-3 p-2 rounded-3"}>
                 {userName}
-                <span>{message.message}</span>
+                <span dangerouslySetInnerHTML={{__html: parsedMsg}} />
                 <span className={"msg-time"}>{`${date.getHours()}:${date.getMinutes()}`}</span>
             </div>
         </div>
