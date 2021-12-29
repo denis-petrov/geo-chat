@@ -12,11 +12,6 @@ import {faCopy, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 
 const Profile = (props) => {
 
-    const deleteAccount = () => {
-        const user = getCurrentUser()
-        props.removeUser(user.userId)
-    }
-
     const user = getCurrentUser()
 
     return (
@@ -47,8 +42,6 @@ const Profile = (props) => {
                             }}/>
                         </div>
                     </div>
-
-                    <button id={"remove-user"} type="button" className="btn btn-danger" onClick={() => {deleteAccount()}}>Delete Account</button>
 
                 </div>
 

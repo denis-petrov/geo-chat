@@ -26,11 +26,6 @@ const ChatSetting = (props) => {
         props.getChatInvite(props.chatId)
     }, [])
 
-    const leaveFromChat = () => {
-        let user = getCurrentUser()
-        props.removeMember(user.userId, props.chatId)
-    }
-
     const changeChatData = () => {
         console.log(props)
         let chatNameBlock = document.getElementById('chat-name')
@@ -43,6 +38,10 @@ const ChatSetting = (props) => {
         props.addMemberToChat(friendId, props.chatId)
     }
 
+    const removeUserFromChat = (userId) => {
+        props.removeMember(userId, props.chatId)
+    }
+
     const getChatMembers = (chat) => {
         let members = []
         for (let key in chat.members) {
@@ -52,10 +51,17 @@ const ChatSetting = (props) => {
                 users = {}
             }
 
+            const user = getCurrentUser()
+
             let userName = users[member]
             members.push(
                 <div className={"py-1 d-flex"} key={`chat-member-${member}`}>
                     <div>{userName}</div>
+                    {user.userId === chat.adminId && member !== user.userId &&
+                        <FontAwesomeIcon icon={faTimes} className={"my-auto fa-lg ms-auto"} onClick={() => {
+                            removeUserFromChat(member)
+                        }}/>
+                    }
                 </div>
             )
             if (!userName) {
@@ -94,6 +100,8 @@ const ChatSetting = (props) => {
 
     let inviteToken = props.chats.inviteToken ? props.chats.inviteToken : ''
 
+    const user = getCurrentUser()
+
     return (
         <div className={"chat"}>
             <div className={"chat-wrapper mx-auto"}>
@@ -122,7 +130,7 @@ const ChatSetting = (props) => {
                     <div className={"pb-2 border-bottom"}>
                         <Link to={'/chat'} className={"d-block mb-2"}>
                             <button id={"leave-chat"} type="button" className="btn btn-danger" onClick={() => {
-                                leaveFromChat()
+                                removeUserFromChat(user.userId)
                             }}>Leave Chat
                             </button>
                         </Link>
@@ -132,17 +140,19 @@ const ChatSetting = (props) => {
                         </button>
                     </div>
 
-                    <div className={"text-light py-3 border-bottom"}>
-                        <h5>Invite Token:</h5>
-                        <div className={"d-flex"}>
-                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token" value={inviteToken}/>
-                            <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
-                                var token = document.getElementById("invite-token")
-                                token.select()
-                                document.execCommand("copy")
-                            }}/>
+                    {(chat && user.userId === chat.adminId) &&
+                        <div className={"text-light py-3 border-bottom"}>
+                            <h5>Invite Token:</h5>
+                            <div className={"d-flex"}>
+                                <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token" value={inviteToken}/>
+                                <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
+                                    var token = document.getElementById("invite-token")
+                                    token.select()
+                                    document.execCommand("copy")
+                                }}/>
+                            </div>
                         </div>
-                    </div>
+                    }
 
                     <div className={"members-block py-3"}>
                         <h5>{members ? members.length : ''} Members</h5>
