@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../../assets/css/auth/Auth.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router'
@@ -8,6 +8,10 @@ import {getUserInfo} from '../../store/actions/user/getUserInfo'
 const Register = (props) => {
 
     const [formError, setFormError] = useState(false)
+
+    useEffect(() => {
+        document.title = "Sign Up"
+    }, [])
 
     const register = (e) => {
         e.preventDefault()

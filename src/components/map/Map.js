@@ -38,6 +38,7 @@ const Map = (props) => {
     const history = useHistory()
 
     useEffect(() => {
+        document.title = "Map"
         props.getCenterPosition()
         props.getMarkers({lat: props.centerPosition.lat, lng: props.centerPosition.lng, zoom: props.zoom})
     }, [])

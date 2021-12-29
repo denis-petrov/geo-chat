@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../../assets/css/auth/Auth.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router'
@@ -8,6 +8,10 @@ import {authByEmail} from '../../store/actions/user/userAuth'
 const Login = (props) => {
 
     const [formError, setFormError] = useState(false)
+
+    useEffect(() => {
+        document.title = "Login"
+    }, [])
 
     const auth = (e) => {
         e.preventDefault()

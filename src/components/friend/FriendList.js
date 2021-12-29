@@ -21,6 +21,7 @@ const FriendList = (props) => {
     const [modalShow, setModalShow] = useState(false)
 
     useEffect(() => {
+        document.title = "Friends"
         let user = getCurrentUser()
         props.getFriends(user.userId)
         props.getInvites(user.userId)

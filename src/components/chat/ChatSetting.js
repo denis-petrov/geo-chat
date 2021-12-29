@@ -24,6 +24,8 @@ const ChatSetting = (props) => {
         let user = getCurrentUser()
         props.getFriends(user.userId)
         props.getChatInvite(props.chatId)
+
+        document.title = props.chats.chatInfo.name
     }, [])
 
     const changeChatData = () => {

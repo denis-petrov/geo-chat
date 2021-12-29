@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import '../../assets/css/auth/Auth.css'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -11,6 +11,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCopy, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 
 const Profile = (props) => {
+
+    useEffect(() => {
+        const user = getCurrentUser()
+        document.title = user.name
+    }, [])
 
     const user = getCurrentUser()
 

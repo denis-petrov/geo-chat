@@ -13,6 +13,9 @@ const DialogHeader = (props) => {
 
     useEffect(() => {
         props.getChatInfo(props.chatId)
+        if (props.chats.chatInfo) {
+            document.title = props.chats.chatInfo.name
+        }
     }, [])
 
     console.log(props)

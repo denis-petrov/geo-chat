@@ -22,6 +22,7 @@ const ChatList = (props) => {
     const [createChatModal, setCreateChatModal] = useState(false)
 
     useEffect(() => {
+        document.title = "Chats"
         let user = getCurrentUser()
         props.getChats(user.userId)
     }, [props.chats.inviteStatus])
