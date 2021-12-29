@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../assets/css/navigation/Navigation.css'
 import {connect} from 'react-redux'
-import {updateCenterByUserPosition} from '../../../store/actions/position/updateCenterByUserPosition'
+import {updateCenterByUserPosition} from '../../../store/actions/map/position/updateCenterByUserPosition'
 
 
 const GetLocation = (props) => {

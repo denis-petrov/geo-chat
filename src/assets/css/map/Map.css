@@ -35,6 +35,10 @@
     background-color: #EBE5E3 !important;
 }
 
+.map__modal_window {
+    z-index: 1000000!important;
+}
+
 .map__modal {
     background-color: #201E21 !important;
     color: #EBE5E3 !important;

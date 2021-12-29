@@ -3,7 +3,6 @@ import {ACCEPT_INVITE, GET_FRIENDS, GET_INVITES, INVITE_FRIEND, REJECT_INVITE, R
 const initialState = []
 
 const friendReducer = (state = initialState, action) => {
-    console.log(state, action.payload)
     switch (action.type) {
         case GET_FRIENDS:
             return {

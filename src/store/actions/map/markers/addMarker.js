@@ -1,6 +1,6 @@
-import {API} from '../../../api/API'
-import {ADD_MARKER, MARKERS_ERROR} from '../../types'
-import {getCurrentUser} from "../../../utils/getCurrentUser";
+import {API} from '../../../../api/API'
+import {ADD_MARKER, MARKERS_ERROR} from '../../../types'
+import {getCurrentUser} from "../../../../utils/getCurrentUser";
 
 export const addMarker = ({lat, lng, title, description, chatState}) => async dispatch => {
     try {
@@ -13,7 +13,7 @@ export const addMarker = ({lat, lng, title, description, chatState}) => async di
     } catch (e) {
         dispatch({
             type: MARKERS_ERROR,
-            payload: console.log(e),
+            payload: console.log(e)
         })
     }
 }
