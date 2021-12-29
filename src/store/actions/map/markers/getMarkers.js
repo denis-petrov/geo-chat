@@ -4,7 +4,6 @@ import {getCurrentUser} from "../../../../utils/getCurrentUser";
 
 export const getMarkers = ({lat, lng, zoom}) => async dispatch => {
     try {
-        console.log({lat, lng, zoom})
         const res = await API.get('/map/markers',
             {
                 params: {
@@ -15,7 +14,6 @@ export const getMarkers = ({lat, lng, zoom}) => async dispatch => {
                 }
             }
         )
-        console.log(res)
         dispatch({
             type: GET_MARKERS,
             payload: res.data

@@ -38,7 +38,6 @@ const FriendList = (props) => {
     const removeFriend = (friendId) => {
         let user = getCurrentUser()
         props.removeFriend(user.userId, friendId)
-        document.getElementById(`friend-${friendId}`).remove()
     }
 
     const removeFriendItem = (friendId) => {
@@ -51,7 +50,8 @@ const FriendList = (props) => {
     if (stateFriends) {
         for (let key in stateFriends) {
             let friend = stateFriends[key]
-            friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`} className={"text-light d-flex py-1"}>
+            friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`}
+                              className={"text-light d-flex py-1"}>
                 <span className={"w-100 name-field"}>{friend.name}</span>
                 <FontAwesomeIcon icon={faTimes} className={"fa-lg my-auto"} onClick={() => {
                     removeFriendItem(friend.userId)
@@ -72,7 +72,8 @@ const FriendList = (props) => {
         let user = getCurrentUser()
         for (let key in stateInvites) {
             let invite = stateInvites[key]
-            invites.push(<div id={`friend-${invite.userId}`} key={`friend-${invite.userId}`} className={"text-light d-flex py-1"}>
+            invites.push(<div id={`friend-${invite.userId}`} key={`friend-${invite.userId}`}
+                              className={"text-light d-flex py-1"}>
                 <span className={"w-100 name-field"}>{invite.name}</span>
                 <FontAwesomeIcon icon={faCheckCircle} className={"fa-lg my-auto"} onClick={() => {
                     removeFriendItem(invite.userId)
@@ -102,12 +103,12 @@ const FriendList = (props) => {
                     <div className="input-group mb-3">
                         <input id="add-friend-field" type="text" className="form-control" placeholder="User id"
                                aria-label="User id" aria-describedby="basic-addon2"/>
-                            <div className="input-group-append">
-                                <button id={"add-friend"} className="btn btn-primary" type="button" onClick={() => {
-                                    addFriend()
-                                }}>Add friend
-                                </button>
-                            </div>
+                        <div className="input-group-append">
+                            <button id={"add-friend"} className="btn btn-primary" type="button" onClick={() => {
+                                addFriend()
+                            }}>Add friend
+                            </button>
+                        </div>
                     </div>
 
                     <button id={"friend-invites"} type="button" className="btn btn-primary my-2"

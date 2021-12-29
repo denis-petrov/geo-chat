@@ -11,7 +11,7 @@ const Dialog = (props) => {
     useEffect(() => {
         props.getMessages(props.chatId, 50)
         let dialogContent = document.getElementsByClassName('dialog-content')[0]
-        dialogContent.addEventListener('scroll', function(e) {
+        dialogContent.addEventListener('scroll', function (e) {
             getMessagesBefore(e.target)
         })
     }, [])
@@ -68,12 +68,14 @@ const Dialog = (props) => {
             let date2 = new Date(message2.sentDate)
 
             if (i === 0 || date.toLocaleDateString() !== date2.toLocaleDateString()) {
-                dialogTextItems.push(<div key={"date-" + message.sentDate + i} className={"text-light mx-auto w-25"}>{date.toLocaleDateString()}</div>)
+                dialogTextItems.push(<div key={"date-" + message.sentDate + i}
+                                          className={"text-light mx-auto w-25"}>{date.toLocaleDateString()}</div>)
             }
 
             let showUser = i === 0 || message.senderId !== message2.senderId
 
-            dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message} showUser={showUser} />)
+            dialogTextItems.push(<DialogTextItem key={`message-${message.messageId}`} message={message}
+                                                 showUser={showUser}/>)
         }
     }
 

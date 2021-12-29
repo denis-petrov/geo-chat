@@ -21,7 +21,6 @@ const Login = (props) => {
         userAuthData.append('password', formData.get('password'))
         props.authByEmail(userAuthData)
             .then((user) => {
-                console.log(user, JSON.stringify(user))
                 if (Object.keys(user).length > 0) {
                     window.localStorage.setItem('authenticated', JSON.stringify(user))
                     window.location.assign(window.location.origin + '/map')

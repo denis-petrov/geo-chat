@@ -54,7 +54,6 @@ const App = (props) => {
             stompClient.subscribe(
                 `/user/${user.userId}/queue/message/create`,
                 frame => {
-                    console.log('ПОДПИСКА APP')
                     const chatId = frame.body.substring(1, frame.body.length - 1)
                     props.getMessages(chatId, 1)
                         .then((messages) => {
@@ -63,7 +62,6 @@ const App = (props) => {
                 }
             )
         }, () => {
-            console.log("error ws")
         })
     }
 
@@ -93,8 +91,8 @@ const App = (props) => {
             <Switch>
                 <Route path="/" exact render={() => requireAuth(null)}/>
                 <Route path="/map" exact render={() => requireAuth(<Map/>)}/>
-                <Route path="/profile" exact render={() => requireAuth(<Profile />)}/>
-                <Route path="/friends" exact render={() => requireAuth(<FriendList />)}/>
+                <Route path="/profile" exact render={() => requireAuth(<Profile/>)}/>
+                <Route path="/friends" exact render={() => requireAuth(<FriendList/>)}/>
                 <Route path="/chat" exact render={() => requireAuth(<ChatList/>)}/>
                 <Route path="/chat/:chatId/settings" render={({match}) => (
                     requireAuth(<ChatSetting chatId={match.params.chatId}/>)

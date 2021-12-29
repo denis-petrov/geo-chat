@@ -3,7 +3,6 @@ import {FRIEND_ERROR, REJECT_INVITE} from '../../types'
 
 export const rejectInvite = (userId, friendId) => async dispatch => {
     try {
-        console.log(userId, friendId)
         let bodyFormData = new FormData()
         bodyFormData.append('invitingUserId', userId)
         bodyFormData.append('invitedUserId', friendId)

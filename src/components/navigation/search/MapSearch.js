@@ -43,12 +43,13 @@ const MapSearch = (props) => {
             <div className={"p-2"}>
                 {addresses.map((e, id) =>
                     <button className={"search__address_list__label py-2"} key={"search-label-" + id}
-                         onClick={() => {
-                             const lng = e.x
-                             const lat = e.y
-                             props.updateCenterPosition({lat, lng})
-                         }}>
-                        <img src="icons/navigation/marker-address-list.png" alt="marker" className={"search__address_list__label__icon"}/>
+                            onClick={() => {
+                                const lng = e.x
+                                const lat = e.y
+                                props.updateCenterPosition({lat, lng})
+                            }}>
+                        <img src="icons/navigation/marker-address-list.png" alt="marker"
+                             className={"search__address_list__label__icon"}/>
                         <div className={"search__address_list__label__text"}>{e.label}</div>
                     </button>
                 )}

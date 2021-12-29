@@ -12,7 +12,6 @@ const messageReducer = (state = initialState, action) => {
     let chatId = data !== undefined && data.length > 0 ? data[0].chatId : null
     switch (action.type) {
         case ADD_MESSAGE:
-            console.log(state, action)
             return {
                 ...state,
                 messageId: data
@@ -36,7 +35,6 @@ const messageReducer = (state = initialState, action) => {
                 }
 
                 state.messages[chatId] = state.messages[chatId].concat(data)
-                console.log(state.messages)
                 data = state.messages
 
                 if (data.length > 0) {
@@ -61,7 +59,6 @@ const messageReducer = (state = initialState, action) => {
                     && data.length === 1
                 ) {
                     let messages = state.messages[chatId]
-                    console.log(state.messages[chatId], data)
                     if (messages[messages.length - 1].chatId === data[0].chatId && messages[messages.length - 1].messageId !== data[0].messageId) {
                         data = data.concat(messages)
                     }
@@ -72,7 +69,6 @@ const messageReducer = (state = initialState, action) => {
                 }
 
                 state.messages[chatId] = data
-                console.log(state.messages)
                 data = state.messages
             }
 
@@ -87,7 +83,6 @@ const messageReducer = (state = initialState, action) => {
                 }
 
                 state.lastMessages[chatId] = data[0]
-                console.log(state.lastMessages)
                 data = state.lastMessages
             }
 

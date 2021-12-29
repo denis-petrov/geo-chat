@@ -10,7 +10,7 @@ const ChatSearch = () => {
             <div className="d-flex block-round search">
                 <input type="text" placeholder={"Which do you want?"}
                        className={"border-0 py-1 px-3 w-100 rounded-left bg-transparent"}/>
-                <div className={"my-1 bg-secondary stick"} />
+                <div className={"my-1 bg-secondary stick"}/>
                 <div className="input-group-append">
                     <Button className={"border-0 bg-transparent rounded-right shadow-none"}>
                         <FontAwesomeIcon icon={faLongArrowAltRight} className={"text-dark fa-lg"}/>

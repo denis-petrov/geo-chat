@@ -142,7 +142,6 @@ const ChangeView = ({center, zoom, getMarkers, updateCenterPosition, updateZoom}
     const onDragEnd = useCallback(() => {
         const {lat, lng} = JSON.parse(localStorage.getItem('center'))
         const zoomLocalStore = JSON.parse(localStorage.getItem('zoom'))
-        console.log(zoomLocalStore)
         getMarkers({lat: lat, lng: lng, zoom: zoomLocalStore})
         updateCenterPosition({lat, lng})
     }, [map])

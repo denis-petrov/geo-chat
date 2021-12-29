@@ -12,7 +12,6 @@ const initialState = {
 const mapReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_MARKERS:
-            console.log(state)
             return {
                 ...state,
                 markers: action.payload

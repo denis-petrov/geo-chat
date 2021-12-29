@@ -2,7 +2,6 @@ import {CENTER_POSITION_CENTER_ERROR, UPDATE_CENTER_POSITION} from '../../../typ
 
 export const updateCenterPosition = ({lat, lng}) => async dispatch => {
     try {
-        console.log(lat + " : " + lng)
         dispatch({
             type: UPDATE_CENTER_POSITION,
             payload: {

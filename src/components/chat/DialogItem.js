@@ -32,13 +32,11 @@ const DialogItem = (props) => {
             stompClient.subscribe(
                 `/user/${user.userId}/queue/message/create`,
                 function (frame) {
-                    console.log('ПОДПИСКА')
                     let chatId = frame.body.substring(1, frame.body.length - 1)
                     props.getMessages(chatId, 1, GET_LAST_MESSAGES_FOR_CHAT_LIST)
                 }
             )
         }, function () {
-            console.log("error ws")
         })
     }
 
@@ -47,7 +45,6 @@ const DialogItem = (props) => {
         props.removeMember(user.userId, props.chatId)
     }
 
-    console.log(props)
     let messages = props.messages.lastMessages
     let chat = props.chats.chats[props.chatId]
     let lastMsg = null

@@ -3,7 +3,7 @@ import {GET_USER_INFO, USER_ERROR} from '../../types'
 
 export const getUserInfo = (userId) => async dispatch => {
     try {
-        const res = await API.get('/user/getById', { params: { userId: userId}})
+        const res = await API.get('/user/getById', {params: {userId: userId}})
 
         let users = JSON.parse(window.localStorage.getItem('users'))
         if (!users) {

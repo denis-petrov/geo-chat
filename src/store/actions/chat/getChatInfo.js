@@ -3,7 +3,7 @@ import {GET_CHAT_INFO, CHATS_ERROR} from '../../types'
 
 export const getChatInfo = (chatId) => async dispatch => {
     try {
-        const res = await API.get('/chat/get', { params: { chatId: chatId } })
+        const res = await API.get('/chat/get', {params: {chatId: chatId}})
         dispatch({
             type: GET_CHAT_INFO,
             payload: res.data

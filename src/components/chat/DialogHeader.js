@@ -18,7 +18,6 @@ const DialogHeader = (props) => {
         }
     }, [])
 
-    console.log(props)
     let chat
     if (props.chats.chatInfo) {
         chat = props.chats.chatInfo
@@ -27,7 +26,7 @@ const DialogHeader = (props) => {
     return (
         <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
             <Link to={'/chat'}>
-                <FontAwesomeIcon icon={faArrowLeft} className={"text-light my-auto me-4"} />
+                <FontAwesomeIcon icon={faArrowLeft} className={"text-light my-auto me-4"}/>
             </Link>
             <div>{chat ? chat.name : 'default chat name'}</div>
             <div className={"ms-auto"}>

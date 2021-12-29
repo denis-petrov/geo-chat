@@ -26,7 +26,6 @@ const DialogInput = (props) => {
         let text = msgInput.textContent.trim()
         if (text.length) {
             let user = getCurrentUser()
-            console.log(props)
             props.addMessage(props.chatId, user.userId, text)
         }
 
@@ -42,7 +41,9 @@ const DialogInput = (props) => {
                 </div>
                 <div className={"d-flex flex-column-reverse"}>
                     <FontAwesomeIcon icon={faArrowCircleRight} className={"text-light fa-3x ms-2"}
-                                     onClick={(e) => {addMessage(e)}}/>
+                                     onClick={(e) => {
+                                         addMessage(e)
+                                     }}/>
                 </div>
             </div>
         </div>

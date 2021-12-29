@@ -3,7 +3,6 @@ import {REMOVE_CHAT, CHATS_ERROR} from '../../types'
 
 export const removeChat = (chatId) => async dispatch => {
     try {
-        console.log('remove')
         const bodyFormData = new FormData()
         bodyFormData.append('chatId', chatId)
         const res = await API.post('/chat/remove', bodyFormData)

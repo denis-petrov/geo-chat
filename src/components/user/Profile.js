@@ -39,7 +39,8 @@ const Profile = (props) => {
                     <div className={"text-light pb-2 border-bottom mb-3"}>
                         <h5>Your User Id:</h5>
                         <div className={"d-flex"}>
-                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="user-id" value={user.userId}/>
+                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="user-id"
+                                   value={user.userId}/>
                             <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
                                 const userId = document.getElementById("user-id")
                                 userId.select()

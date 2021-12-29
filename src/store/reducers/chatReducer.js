@@ -13,19 +13,16 @@ const initialState = []
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CHATS:
-            console.log(state, action)
             return {
                 ...state,
                 chats: action.payload
             }
         case ADD_CHAT:
-            console.log(state, action)
             return {
                 ...state,
                 newChatId: action.payload
             }
         case GET_CHAT_INFO:
-            console.log(state, action)
             return {
                 ...state,
                 chatInfo: action.payload

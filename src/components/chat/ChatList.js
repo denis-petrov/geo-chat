@@ -28,15 +28,14 @@ const ChatList = (props) => {
     }, [props.chats.inviteStatus])
 
     const newChat = (chatName) => {
-        console.log(chatName)
         props.addChat(chatName)
             .then((newChatId) => {
-            if (newChatId) {
-                let user = getCurrentUser()
-                props.addMemberToChat(user.userId, newChatId)
-                window.location.assign(window.location.origin + '/chat/' + newChatId)
-            }
-        })
+                if (newChatId) {
+                    let user = getCurrentUser()
+                    props.addMemberToChat(user.userId, newChatId)
+                    window.location.assign(window.location.origin + '/chat/' + newChatId)
+                }
+            })
     }
 
     const addMemberByInvite = () => {
@@ -63,7 +62,7 @@ const ChatList = (props) => {
 
     const controlPanel = [<Add key={"Add"} onClick={() => {
         setCreateChatModal(true)
-    }} />]
+    }}/>]
 
     return (
         <div className={"chat"}>
@@ -93,7 +92,8 @@ const ChatList = (props) => {
 
                         <div className={"dialog-items-wrapper p-3"}>
                             <div className="input-group mb-3">
-                                <input id="invite-token-field" type="text" className="form-control" placeholder="Invite token"
+                                <input id="invite-token-field" type="text" className="form-control"
+                                       placeholder="Invite token"
                                        aria-label="Invite token" aria-describedby="basic-addon2"/>
                                 <div className="input-group-append">
                                     <button id={"add-friend"} className="btn btn-primary" type="button" onClick={() => {
@@ -124,12 +124,13 @@ const ChatList = (props) => {
                                     <input id="chat-name" type="text" className="form-control" placeholder="Chat Name"
                                            aria-label="Chat Name" aria-describedby="basic-addon2"/>
                                     <div className="input-group-append">
-                                        <button id={"create-chat"} className="btn btn-primary" type="button" onClick={() => {
-                                            let chatName = document.getElementById('chat-name').value.trim()
-                                            if (chatName.length > 0) {
-                                                newChat(chatName)
-                                            }
-                                        }}>Create Chat
+                                        <button id={"create-chat"} className="btn btn-primary" type="button"
+                                                onClick={() => {
+                                                    let chatName = document.getElementById('chat-name').value.trim()
+                                                    if (chatName.length > 0) {
+                                                        newChat(chatName)
+                                                    }
+                                                }}>Create Chat
                                         </button>
                                     </div>
                                 </div>

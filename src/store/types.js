@@ -12,7 +12,6 @@ export const UPDATE_ZOOM = 'UPDATE_ZOOM'
 export const UPDATE_ZOOM_ERROR = 'UPDATE_ZOOM_ERROR'
 
 
-
 // chat
 export const GET_MESSAGES = 'GET_MESSAGES'
 export const ADD_MESSAGE = 'ADD_MESSAGE'

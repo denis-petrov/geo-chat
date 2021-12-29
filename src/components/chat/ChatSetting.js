@@ -29,7 +29,6 @@ const ChatSetting = (props) => {
     }, [])
 
     const changeChatData = () => {
-        console.log(props)
         let chatNameBlock = document.getElementById('chat-name')
         if (chatNameBlock) {
             props.updateChatName(props.chatId, chatNameBlock.textContent)
@@ -57,12 +56,13 @@ const ChatSetting = (props) => {
 
             let userName = users[member]
             members.push(
-                <div className={"py-1 d-flex"} key={`chat-member-${member}`}>
+                <div className={"py-1 d-flex"} id={`chat-member-${member}`} key={`chat-member-${member}`}>
                     <div>{userName}</div>
                     {user.userId === chat.adminId && member !== user.userId &&
-                        <FontAwesomeIcon icon={faTimes} className={"my-auto fa-lg ms-auto"} onClick={() => {
-                            removeUserFromChat(member)
-                        }}/>
+                    <FontAwesomeIcon icon={faTimes} className={"my-auto fa-lg ms-auto"} onClick={() => {
+                        document.getElementById(`chat-member-${member}`).remove()
+                        removeUserFromChat(member)
+                    }}/>
                     }
                 </div>
             )
@@ -87,7 +87,8 @@ const ChatSetting = (props) => {
     if (stateFriends) {
         for (let key in stateFriends) {
             let friend = stateFriends[key]
-            friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`} className={"text-light d-flex"}>
+            friends.push(<div id={`friend-${friend.userId}`} key={`friend-${friend.userId}`}
+                              className={"text-light d-flex"}>
                 <span className={"w-100"}>{friend.name}</span>
                 <FontAwesomeIcon icon={faPlus} className={"my-auto"} onClick={() => {
                     addFriendToChat(friend.userId)
@@ -109,11 +110,11 @@ const ChatSetting = (props) => {
             <div className={"chat-wrapper mx-auto"}>
                 <div className={"px-4 py-2 bg-transparent dialog-header d-flex"}>
                     <Link to={'/chat/' + props.chatId}>
-                        <FontAwesomeIcon icon={faArrowLeft} className={"text-light my-auto me-4"} />
+                        <FontAwesomeIcon icon={faArrowLeft} className={"text-light my-auto me-4"}/>
                     </Link>
                     <div>Chat</div>
                     <div id={'save-chat-data'} className={"ms-auto"} onClick={changeChatData}>
-                        <FontAwesomeIcon icon={faCheck} className={"text-light my-auto me-0"} />
+                        <FontAwesomeIcon icon={faCheck} className={"text-light my-auto me-0"}/>
                     </div>
                 </div>
 
@@ -121,7 +122,8 @@ const ChatSetting = (props) => {
                     <div>
                         <div className="input-group mb-3">
                             <div className="block-round-small bg-light w-100 p-2">
-                                <div id={"chat-name"} contentEditable={true} suppressContentEditableWarning={true} data-placeholder="Chat name"
+                                <div id={"chat-name"} contentEditable={true} suppressContentEditableWarning={true}
+                                     data-placeholder="Chat name"
                                      className={"py-1 px-3 w-100 bg-transparent dialog-input"}>
                                     {chat ? chat.name : 'default chat name'}
                                 </div>
@@ -137,23 +139,25 @@ const ChatSetting = (props) => {
                             </button>
                         </Link>
 
-                        <button id={"add-member"} type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>
+                        <button id={"add-member"} type="button" className="btn btn-primary"
+                                onClick={() => setShowModal(true)}>
                             Add Member
                         </button>
                     </div>
 
                     {(chat && user.userId === chat.adminId) &&
-                        <div className={"text-light py-3 border-bottom"}>
-                            <h5>Invite Token:</h5>
-                            <div className={"d-flex"}>
-                                <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token" value={inviteToken}/>
-                                <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
-                                    var token = document.getElementById("invite-token")
-                                    token.select()
-                                    document.execCommand("copy")
-                                }}/>
-                            </div>
+                    <div className={"text-light py-3 border-bottom"}>
+                        <h5>Invite Token:</h5>
+                        <div className={"d-flex"}>
+                            <input className={"token-field w-100"} readOnly={true} type={"text"} id="invite-token"
+                                   value={inviteToken}/>
+                            <FontAwesomeIcon icon={faCopy} className={"text-light"} onClick={() => {
+                                var token = document.getElementById("invite-token")
+                                token.select()
+                                document.execCommand("copy")
+                            }}/>
                         </div>
+                    </div>
                     }
 
                     <div className={"members-block py-3"}>

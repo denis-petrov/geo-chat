@@ -1,7 +1,7 @@
 import {API} from '../../../api/API'
 import {FRIEND_ERROR, GET_INVITES} from '../../types'
 
-export const getInvites= (userId) => async dispatch => {
+export const getInvites = (userId) => async dispatch => {
     try {
         const res = await API.get('/user/invites', {params: {userId: userId}})
         dispatch({

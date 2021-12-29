@@ -3,7 +3,6 @@ import {CHATS_ERROR, REMOVE_MEMBER} from '../../types'
 
 export const removeMember = (userId, chatId) => async dispatch => {
     try {
-        console.log(chatId)
         const bodyFormData = new FormData()
         bodyFormData.append('userId', userId)
         bodyFormData.append('chatId', chatId)
