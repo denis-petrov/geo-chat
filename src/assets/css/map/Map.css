@@ -85,7 +85,7 @@
 }
 
 .map__modal_hidden_element {
-    display: none;
+    display: none !important;
 }
 
 
