@@ -41,10 +41,11 @@ const FindFriend = (props) => {
         for (let key in stateUsers) {
             let user = stateUsers[key]
             users.push(<div id={`friend-${user.userId}`} key={`friend-${user.userId}`}
-                              className={"text-light d-flex py-1"}>
+                            className={"text-light d-flex py-1"}>
                 <span className={"w-100 name-field"}>{user.name}</span>
-                <FontAwesomeIcon icon={faPlus} className={"fa-lg my-auto"} onClick={() => {
+                <FontAwesomeIcon id={`user-${user.userId}`} icon={faPlus} className={"fa-lg my-auto"} onClick={(e) => {
                     addFriend(user.userId)
+                    document.getElementById(`user-${user.userId}`).remove()
                 }}/>
             </div>)
         }
