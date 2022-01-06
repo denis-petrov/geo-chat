@@ -18,6 +18,7 @@ import Stomp from 'stompjs'
 import {getCurrentUser} from './utils/getCurrentUser'
 import {getMessages} from './store/actions/chat/getMessages'
 import {connect} from 'react-redux'
+import FindFriend from "./components/friend/FindFriend";
 
 
 function requireAuth(component) {
@@ -93,6 +94,7 @@ const App = (props) => {
                 <Route path="/map" exact render={() => requireAuth(<Map/>)}/>
                 <Route path="/profile" exact render={() => requireAuth(<Profile/>)}/>
                 <Route path="/friends" exact render={() => requireAuth(<FriendList/>)}/>
+                <Route path="/find-friends" exact render={() => requireAuth(<FindFriend/>)}/>
                 <Route path="/chat" exact render={() => requireAuth(<ChatList/>)}/>
                 <Route path="/chat/:chatId/settings" render={({match}) => (
                     requireAuth(<ChatSetting chatId={match.params.chatId}/>)

@@ -113,3 +113,13 @@ body {
     display: block;
     pointer-events: none;
 }
+
+.btn-primary {
+    color: #0c0b0c !important;
+    border-color: #FBA178 !important;
+    background: #FBA178 !important;
+}
+
+.btn-primary:focus {
+    box-shadow: none !important;
+}

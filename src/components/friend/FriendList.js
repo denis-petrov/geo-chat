@@ -15,6 +15,7 @@ import {acceptInvite} from '../../store/actions/friend/acceptInvite'
 import {rejectInvite} from '../../store/actions/friend/rejectInvite'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheckCircle, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {Link} from "react-router-dom";
 
 const FriendList = (props) => {
 
@@ -26,14 +27,6 @@ const FriendList = (props) => {
         props.getFriends(user.userId)
         props.getInvites(user.userId)
     }, [props.friends.requestStatus])
-
-    const addFriend = () => {
-        let input = document.getElementById('add-friend-field')
-        let friendId = input.value
-        let user = getCurrentUser()
-        props.inviteFriend(user.userId, friendId)
-        input.value = ''
-    }
 
     const removeFriend = (friendId) => {
         let user = getCurrentUser()
@@ -100,20 +93,16 @@ const FriendList = (props) => {
 
                 <div className={"dialog-items-wrapper p-3"}>
 
-                    <div className="input-group mb-3">
-                        <input id="add-friend-field" type="text" className="form-control" placeholder="User id"
-                               aria-label="User id" aria-describedby="basic-addon2"/>
-                        <div className="input-group-append">
-                            <button id={"add-friend"} className="btn btn-primary" type="button" onClick={() => {
-                                addFriend()
-                            }}>Add friend
+                    <div className={"d-flex"}>
+                        <Link to={'/find-friends'} className={"d-block"}>
+                            <button id={"find-friends"} type="button" className="btn btn-primary my-2"
+                                    onClick={() => setModalShow(true)}>Find Friends
                             </button>
-                        </div>
+                        </Link>
+                        <button id={"friend-invites"} type="button" className="btn btn-primary my-2 ms-auto"
+                                onClick={() => setModalShow(true)}>Friend Invites
+                        </button>
                     </div>
-
-                    <button id={"friend-invites"} type="button" className="btn btn-primary my-2"
-                            onClick={() => setModalShow(true)}>Friend Invites
-                    </button>
 
                     <div className={"text-light py-2"}>
                         <h4>Friends</h4>

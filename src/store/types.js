@@ -38,6 +38,7 @@ export const REMOVE_USER = 'REMOVE_USER'
 export const USER_ERROR = 'USER_ERROR'
 export const CREATE_USER = 'CREATE_USER'
 export const AUTH_USER = 'AUTH_USER'
+export const GET_USERS_BY_NAME = 'GET_USERS_BY_NAME'
 
 export const GET_USER_POSITION = 'GET_USER_POSITION'
 export const UPDATE_USER_POSITION = 'UPDATE_USER_POSITION'

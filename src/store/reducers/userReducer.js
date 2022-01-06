@@ -1,4 +1,4 @@
-import {AUTH_USER, CREATE_USER, GET_USER_INFO, USER_ERROR} from '../types'
+import {AUTH_USER, CREATE_USER, GET_USER_INFO, GET_USERS_BY_NAME, USER_ERROR} from '../types'
 
 const initialState = {}
 
@@ -19,6 +19,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload
+            }
+        case GET_USERS_BY_NAME:
+            return {
+                ...state,
+                users: action.payload
             }
         default:
             return state
