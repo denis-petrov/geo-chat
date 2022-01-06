@@ -1,6 +1,7 @@
 // map
 export const GET_MARKERS = 'GET_MARKERS'
 export const ADD_MARKER = 'ADD_MARKER'
+export const DELETE_MARKER = 'DELETE_MARKER'
 export const MARKERS_ERROR = 'MARKERS_ERROR'
 
 export const GET_CENTER_POSITION = 'GET_CENTER_POSITION'

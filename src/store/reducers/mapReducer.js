@@ -1,4 +1,12 @@
-import {ADD_MARKER, GET_CENTER_POSITION, GET_MARKERS, UPDATE_CENTER_POSITION, UPDATE_ZOOM} from '../types'
+import {
+    ADD_MARKER,
+    DELETE_MARKER,
+    GET_CENTER_POSITION,
+    GET_MARKERS,
+    UPDATE_CENTER_POSITION,
+    UPDATE_ZOOM
+} from '../types'
+
 
 const initialState = {
     center: {
@@ -22,6 +30,13 @@ const mapReducer = (state = initialState, action) => {
                 ...state,
                 markers: newMarkers
             }
+        case DELETE_MARKER:
+            console.log(action.payload)
+            /*const updateMarkers = state.markers.concat(action.payload)
+            return {
+                ...state,
+                markers: newMarkers
+            }*/
         case GET_CENTER_POSITION:
             return {
                 ...state

@@ -61,7 +61,7 @@ const MarkerInfo = (props) => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer className={"map__modal map__modal_footer"}>
-                    <Button className={"map__model_create"} onClick={handleSubmit}>
+                    <Button className={"map__model_submit"} onClick={handleSubmit}>
                         Join to Chat
                     </Button>
                 </Modal.Footer>
@@ -69,5 +69,3 @@ const MarkerInfo = (props) => {
         </div>
     )
 }
-
-export default MarkerInfo

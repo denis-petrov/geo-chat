@@ -59,10 +59,15 @@ const AddMarker = (props) => {
                         </FloatingLabel>
 
 
-                        <Form.Control as="textarea" rows={3} onChange={handleDescriptionInput}
-                                      className={"map__modal_input"}
-                                      placeholder="Description"
-                        />
+                        <FloatingLabel
+                            label="Description"
+                            className={"mb-3 map__modal_input_label"}
+                        >
+                            <Form.Control type="text" onChange={handleDescriptionInput}
+                                          className={"map__modal_input"}
+                                          placeholder="Description"
+                            />
+                        </FloatingLabel>
 
                         <Form.Select className={"me-sm-2 map__modal_select"}
                                      id="isCreateChat"
@@ -74,7 +79,7 @@ const AddMarker = (props) => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer className={"map__modal map__modal_footer"}>
-                    <Button className={"map__model_create"} onClick={handleSubmit}>
+                    <Button className={"map__model_submit"} onClick={handleSubmit}>
                         Add marker
                     </Button>
                 </Modal.Footer>

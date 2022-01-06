@@ -45,6 +45,10 @@
     border-bottom: 1px solid #050505 !important;
 }
 
+.btn-close {
+    border-radius: 20px !important;
+}
+
 .map__modal_input {
     background-color: #DDCDAA !important;
     border: none !important;
@@ -57,22 +61,31 @@
 
 .map__modal_select {
     margin-top: 20px;
+    height: 58px;
     border-radius: 20px !important;
     color: #201E21 !important;
-    background-color: #fca178 !important;
+    background-color: #DDCDAA !important;
 }
 
 .map__modal_footer {
     border-top: 1px solid #050505 !important;
 }
 
-.map__model_create {
-    background-color: #a0cfea !important;
+.map__model_submit {
+    background-color: #FBA178!important;
     color: #201E21 !important;
     border: none !important;
 
     width: 100% !important;
     border-radius: 50px !important;
+}
+
+.map__model_delete {
+    background-color: #cd6b6b !important;
+}
+
+.map__modal_hidden_element {
+    display: none;
 }
 
 

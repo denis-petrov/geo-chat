@@ -20,7 +20,25 @@ import {getCurrentUser} from '../../utils/getCurrentUser'
 import {useHistory} from 'react-router'
 import {updateCenterPosition} from '../../store/actions/map/position/updateCenterPosition'
 import {updateZoom} from '../../store/actions/map/zoom/updateZoom';
+import {deleteMarker} from "../../store/actions/map/markers/deleteMarker";
 
+const blueIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+})
+
+const greenIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+})
 
 const createClusterCustomIcon = cluster => {
     let clusterSize = "small"
@@ -35,6 +53,8 @@ const createClusterCustomIcon = cluster => {
 }
 
 const Map = (props) => {
+    const currUserId = getCurrentUser().userId
+
     const history = useHistory()
 
     useEffect(() => {
@@ -61,12 +81,24 @@ const Map = (props) => {
         setModalShow(true)
     }
 
-    const handleModalSubmit = () => {
-        props.addMemberToChat(getCurrentUser().userId, currMarker.chatId)
-        setModalShow(false)
-        history.push('/chat/' + currMarker.chatId)
+    const handleModalDeleteMarker = (markerId) => {
+        props.deleteMarker(markerId).then(() => {
+            const {lat, lng} = JSON.parse(localStorage.getItem('center'))
+            const zoomLocalStore = JSON.parse(localStorage.getItem('zoom'))
+            props.getMarkers({lat: lat, lng: lng, zoom: zoomLocalStore})
+            setModalShow(false)
+        })
     }
 
+    const handleModalJoinToChat = () => {
+        props.addMemberToChat(getCurrentUser().userId, currMarker.chatId).then(() => {
+            setModalShow(false)
+            history.push('/chat/' + currMarker.chatId)
+        })
+    }
+
+    console.log(markers)
+    console.log(currUserId)
     return (
         <div className={"map"}>
             <div className={"map-wrapper mx-auto"}>
@@ -94,6 +126,7 @@ const Map = (props) => {
                     >
                         {markers.map(marker => (
                             <Marker key={`marker-${marker.markerId}`} position={{lat: marker.lat, lng: marker.lng}}
+                                    icon={marker.ownerId === currUserId ? greenIcon : blueIcon}
                                     eventHandlers={{
                                         click: () => {
                                             props.updateCenterPosition({lat: marker.lat, lng: marker.lng})
@@ -113,12 +146,17 @@ const Map = (props) => {
                                 {currMarker.description}
                             </Modal.Body>
                             <Modal.Footer className={"map__modal map__modal_footer"}>
-                                {(currMarker.chatId !== null && currMarker.chatId !== undefined)
-                                    ? (<Button className={"map__model_create"} onClick={handleModalSubmit}>
-                                            Join to Chat
-                                        </Button>
-                                    ) : null
-                                }
+                                <Button className={"map__model_submit map__model_delete " +
+                                    ((currMarker.ownerId !== currUserId) ? "map__modal_hidden_element" : "")
+                                } onClick={() => handleModalDeleteMarker(currMarker.markerId)}>
+                                    Delete marker
+                                </Button>
+
+                                <Button className={"map__model_submit " +
+                                    ((currMarker.chatId === null || currMarker.chatId === undefined) ? "map__modal_hidden_element" : "")
+                                } onClick={handleModalJoinToChat}>
+                                    Go to Chat
+                                </Button>
                             </Modal.Footer>
                         </Modal> : null
                     }
@@ -144,6 +182,7 @@ const ChangeView = ({center, zoom, getMarkers, updateCenterPosition, updateZoom}
         const zoomLocalStore = JSON.parse(localStorage.getItem('zoom'))
         getMarkers({lat: lat, lng: lng, zoom: zoomLocalStore})
         updateCenterPosition({lat, lng})
+        updateZoom({zoom: zoomLocalStore})
     }, [map])
 
     const onZoomEnd = useCallback(() => {
@@ -172,7 +211,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getMarkers, getCenterPosition, addMemberToChat, updateCenterPosition, updateZoom
+    getMarkers, deleteMarker, getCenterPosition, addMemberToChat, updateCenterPosition, updateZoom
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Map)

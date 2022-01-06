@@ -1,3 +1,11 @@
+.form-item {
+    border-radius: 10px !important;
+}
+
+.form-wrapper {
+    border-radius: 20px;
+}
+
 .form-login {
     width: 100%;
     max-width: 330px;
